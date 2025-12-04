@@ -3,8 +3,6 @@
 
 
 \usepackage{xcolor}
-% Imposto la lingua italiana
-\usepackage[italian]{babel}
 
 
 %Cose varie
@@ -43,18 +41,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-
+\usepackage{tikz-cd}
 
 \newcommand{\numberset}{\mathbb}
 \newcommand{\N}{\numberset{N}}
 \newcommand{\Z}{\numberset{Z}}
 \newcommand{\Q}{\numberset{Q}}
-\newcommand{\blu}{\textcolor{blue}{blu}}
-\newcommand{\rosso}{\textcolor{red}{rosso}}
-\newcommand{\rosse}{\textcolor{red}{rosse}}
-\newcommand{\rossi}{\textcolor{red}{rossi}}
-\newcommand{\rossa}{\textcolor{red}{rossa}}
-\newcommand{\leg}[2]{\left( \frac{#1}{#2}\right)}
+
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\ob}{\text{ob}}
 
 % simboli vari
 \usepackage{textcomp}
@@ -141,7 +137,7 @@
 %Bibliografia
 \usepackage[backend=biber, style=alphabetic]{biblatex}
 \usepackage{csquotes}
-\input{bibliografia}
+\addbibresource{BiblioTesi.bib}
 
 
 
@@ -153,16 +149,20 @@
 
 \pagestyle{Titolo}
 \pagenumbering{arabic}
-\include{frontespizio}
+\include{Capitoli/frontespizio}
 \tableofcontents
 
 
 \pagestyle{Main}
-\include{cap1}
+\include{Capitoli/cap1}
 
 
 
 \pagestyle{Titolo}
+
+
+\printbibliography
+
 
 
 \end{document}
