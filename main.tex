@@ -1,41 +1,168 @@
-\documentclass{article}
+% Documento pronto da stampare
+\documentclass[a4paper,12pt]{report}
+
+
+\usepackage{xcolor}
+% Imposto la lingua italiana
+\usepackage[italian]{babel}
+
+
+%Cose varie
+\usepackage{float}
+\usepackage{hhline}
+
+  
+
+% Settaggio dei margini
+\topmargin 0cm
+\headsep 1cm
+\headheight 0.6cm
+\textwidth 14.6cm
+\textheight 21.8cm
+\evensidemargin 1cm
+\oddsidemargin 1cm
+% 				VEDERE COME METTERE INTERLINEA!!!!  \linespread{1.1}
+% Pacchetti da includere per...
+
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Teorema}[section]  % sec. number + seq. number
+\newtheorem{definition}[theorem]{Definizione}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollario}
+\newtheorem{proposition}[theorem]{Proposizione}
+\newtheorem{remark}[theorem]{Osservazione}
+\newtheorem{example}[theorem]{Esempio}
+\newtheorem{notation}[theorem]{Notazione}
+\newtheorem{problem}[theorem]{Problema}
+
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+% simboli matematici
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+\newcommand{\numberset}{\mathbb}
+\newcommand{\N}{\numberset{N}}
+\newcommand{\Z}{\numberset{Z}}
+\newcommand{\Q}{\numberset{Q}}
+\newcommand{\blu}{\textcolor{blue}{blu}}
+\newcommand{\rosso}{\textcolor{red}{rosso}}
+\newcommand{\rosse}{\textcolor{red}{rosse}}
+\newcommand{\rossi}{\textcolor{red}{rossi}}
+\newcommand{\rossa}{\textcolor{red}{rossa}}
+\newcommand{\leg}[2]{\left( \frac{#1}{#2}\right)}
+
+% simboli vari
+\usepackage{textcomp}
+\usepackage[mathscr]{euscript}
+
+% figure
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\graphicspath{{images/}}
+
+
+% intestazioni
+\usepackage{fancyhdr}
+
+% encoding dei caratteri
 \usepackage[utf8]{inputenc}
-\title{Corso STEM PNRR di Preparazione alle Competizioni di Matematica}
-\date{}
+
+% riferimenti cliccabili nel pdf
+\usepackage[pdftex]{hyperref}
+
+\usepackage{array}
+
+
+%Graffa a destra
+\newenvironment{rcases}
+  {\left.\begin{aligned}}
+  {\end{aligned}\right\rbrace}
+
+  
+% Stile della pagina
+\fancypagestyle{Titolo}
+{
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \fancyfoot[C]{\thepage\ }
+}
+
+\fancypagestyle{Main}
+{
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhf[]{}
+    \fancyfoot[C]{\thepage\ }
+    \fancyhead[L]{Capitolo \thechapter}
+    \fancyhead[R]{\itshape\nouppercase{\rightmark}}
+}
+
+
+% Configurazioni varie
+
+% nonumchapter serve per introduzioni, prefazioni, ecc.
+% titola come un capitolo ma senza numero
+\def\nonumchapter#1{
+	\chapter*{#1}
+	\addcontentsline{toc}{chapter}{#1}
+}
+
+% estensioni e cartella delle immagini (non necessario...)
+\DeclareGraphicsExtensions{gif,eps,png,jpeg}
+\graphicspath{{./images/}}
+
+% crea una nuova lunghezza e gli assegna un valore
+\newlength{\defbaselineskip}
+\setlength{\defbaselineskip}{\baselineskip}
+
+% comando per settare  la variabile \baselineskip come multiplo di \defbaselineskip
+\newcommand{\setlinespacing}[1]%
+           {\setlength{\baselineskip}{#1 \defbaselineskip}}
+
+% permette l'inserimento "rapido" del virgolettato (ad es. per citazioni)
+\newcommand{\virgolette}[1]{``#1''}
+
+% Settaggio interlinea
+\setlinespacing{1.5}
+
+
+% Impostazioni della pagina
+\usepackage{indentfirst}
+\cfoot{\thepage}
+
+
+
+
+%Bibliografia
+\usepackage[backend=biber, style=alphabetic]{biblatex}
+\usepackage{csquotes}
+\input{bibliografia}
+
+
+
+%opening
+
 
 \begin{document}
 
-\maketitle
 
-\section*{Obiettivo Generale}
-Il progetto mira a potenziare le competenze matematiche degli studenti e prepararli per le competizioni matematiche nazionali e internazionali. Il corso è orientato a promuovere l'interesse e la passione per la matematica, sviluppando abilità di problem-solving avanzate.
-
-\section*{Descrizione del Corso}
-Il corso sarà strutturato in moduli tematici che copriranno argomenti fondamentali e avanzati di matematica, tra cui algebra, geometria, teoria dei numeri, combinatoria e analisi. Ogni modulo includerà lezioni teoriche, esercitazioni pratiche e simulazioni di gare matematiche.
-
-\section*{Durata}
-Il corso si svolgerà durante l'intero anno scolastico, con incontri settimanali di 2 ore ciascuno.
-
-\section*{Metodologia}
-\begin{itemize}
-  \item \textbf{Lezioni interattive:} Utilizzo di metodologie didattiche innovative e interattive per rendere le lezioni coinvolgenti.
-  \item \textbf{Esercitazioni pratiche:} Esercizi mirati e problemi di gara per sviluppare abilità di problem-solving.
-  \item \textbf{Simulazioni di gare:} Simulazioni di competizioni matematiche per preparare gli studenti alle gare reali.
-  \item \textbf{Tutoraggio:} Supporto individuale per gli studenti con maggiori difficoltà e per quelli più avanzati.
-\end{itemize}
-
-\section*{Valutazione}
-Gli studenti saranno valutati attraverso prove scritte, esercizi pratici e simulazioni di gare matematiche.
-
-\section*{Risultati Attesi}
-\begin{itemize}
-  \item Incremento delle competenze matematiche e delle abilità di problem-solving degli studenti.
-  \item Maggiore interesse e passione per la matematica.
-  \item Preparazione adeguata per competizioni matematiche nazionali e internazionali.
-\end{itemize}
+\pagestyle{Titolo}
+\pagenumbering{arabic}
+\include{frontespizio}
+\tableofcontents
 
 
-\section*{Conclusione}
-Il corso STEM di preparazione alle competizioni di matematica rappresenta un'opportunità significativa per gli studenti di sviluppare competenze avanzate e di avvicinarsi al mondo delle competizioni matematiche, favorendo lo sviluppo di abilità fondamentali per il loro futuro accademico e professionale.
+\pagestyle{Main}
+\include{cap1}
+
+
+
+\pagestyle{Titolo}
+
 
 \end{document}
