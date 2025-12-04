@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1764889390.1507 "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" "main.pdf" "main" 1764889391.19449 2
+["pdflatex"] 1764889448.58184 "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" "main.pdf" "main" 1764889449.5328 2
   "bibliografia.tex" 0 -1 0 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1764610530 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1764609291 1288 655e228510b4c2a1abe905c368440826 ""
@@ -85,7 +85,7 @@
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1764615587 3635444 eee18e64eb4e1cba96b092eec3391543 ""
   "c:/texlive/2025/texmf.cnf" 1764615385 713 e69b156964470283e0530f5060668171 ""
   "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" 1764889336 3518 8edff4ba43d51aea11c72777bb321ca8 ""
-  "main.aux" 1764889382 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "main.aux" 1764889440 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
   "main.tex" 1764889336 3518 8edff4ba43d51aea11c72777bb321ca8 ""
   (generated)
   "main.aux"
