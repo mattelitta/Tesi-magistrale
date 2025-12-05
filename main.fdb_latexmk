@@ -1,15 +1,15 @@
 # Fdb version 4
-["biber main"] 1764890129.12575 "main.bcf" "main.bbl" "main" 1764890133.86903 0
+["biber main"] 1764890129.12575 "main.bcf" "main.bbl" "main" 1764973518.94544 0
   "BiblioTesi.bib" 1764884960 371 221eadc6429993d2e37cf64e685dce4e ""
-  "main.bcf" 1764890133 108713 b9d65947f12788787f1a29c2ddd3066d "pdflatex"
+  "main.bcf" 1764973518 108713 b9d65947f12788787f1a29c2ddd3066d "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1764890132.37449 "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" "main.pdf" "main" 1764890133.86994 0
-  "Capitoli/cap1.aux" 1764890133 4326 f2e9e658112b264a68a9473837f6285c "pdflatex"
-  "Capitoli/cap1.tex" 1764889434 1387 921c862dc11583741b74a3b14540d847 ""
-  "Capitoli/frontespizio.aux" 1764890133 4025 17300cbeeb52f0b1824a9876572decab "pdflatex"
+["pdflatex"] 1764973517.34671 "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" "main.pdf" "main" 1764973518.94609 0
+  "Capitoli/cap1.aux" 1764973518 4565 682c0e1dd51857364d055d49a5d13967 "pdflatex"
+  "Capitoli/cap1.tex" 1764973516 4697 fbc8093b664b1210d253b7c690d43e38 ""
+  "Capitoli/frontespizio.aux" 1764973518 4025 17300cbeeb52f0b1824a9876572decab "pdflatex"
   "Capitoli/frontespizio.tex" 1764889336 1396 8deafc94028eaff6eea5091d4d76d892 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1764609298 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1764610530 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -202,14 +202,14 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1764615402 5587484 30eee748fa419a911c40b0c750dd21ba ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1764615587 3635444 eee18e64eb4e1cba96b092eec3391543 ""
   "c:/texlive/2025/texmf.cnf" 1764615385 713 e69b156964470283e0530f5060668171 ""
-  "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" 1764890127 3353 5d5102234092d4c7a7794fd0c1169f96 ""
+  "d:/PDF vari/PDF Uni/Tesi/VSCodium/Tesi-magistrale/main.tex" 1764893343 3342 2a85cbc9bbc1dc6646960adb00857b87 ""
   "images/unige.png" 1764883313 8574 632bcc08585ea23549ebda3598ab5ed0 ""
-  "main.aux" 1764890133 467 e42b890045928bd16d5b9a678404d0f0 "pdflatex"
+  "main.aux" 1764973518 467 4b855710524570e03994aa7f6ab4b40c "pdflatex"
   "main.bbl" 1764890130 2182 4c8ba45d38562ab690ea8ad6d88b5111 "biber main"
-  "main.out" 1764890133 278 8f7c382b25ca609ad83f545b9499e31c "pdflatex"
-  "main.run.xml" 1764890133 2311 69a4263346e1d31d3acf1c626f7d7030 "pdflatex"
-  "main.tex" 1764890127 3353 5d5102234092d4c7a7794fd0c1169f96 ""
-  "main.toc" 1764890133 151 0a2fdd9ddb1f07fa20cb7c042a459ce3 "pdflatex"
+  "main.out" 1764973518 577 7b9ad40ef7e999ddf49236266ff9b874 "pdflatex"
+  "main.run.xml" 1764973518 2311 69a4263346e1d31d3acf1c626f7d7030 "pdflatex"
+  "main.tex" 1764893343 3342 2a85cbc9bbc1dc6646960adb00857b87 ""
+  "main.toc" 1764973518 308 5b818014c3342b77bff07407067aadc7 "pdflatex"
   (generated)
   "Capitoli/cap1.aux"
   "Capitoli/frontespizio.aux"
