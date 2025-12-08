@@ -20,36 +20,55 @@
 \evensidemargin 1cm
 \oddsidemargin 1cm
 % 				VEDERE COME METTERE INTERLINEA!!!!  \linespread{1.1}
-% Pacchetti da includere per...
+
+
+
+
+% Numerazione
 
 \usepackage{amsthm}
 
-\newtheorem{theorem}{Theorem}[section]  % sec. number + seq. number
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
+% --- Teoremi numerati chapter.section.num ---
+\newtheorem{theorem}{Theorem}[section]
+
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{problem}[theorem]{Problem}
 
+% --- LEMMA + COROLLARY: sotto-contatore che dipende dal teorema/proposizione/etc ---
+\newtheorem{lemcorextra}{\!} % contatore ausiliario invisibile
 
-\renewcommand{\labelenumi}{(\alph{enumi})}
+\makeatletter
+\@addtoreset{lemcorextra}{theorem}   % si resetta quando avanza il contatore comune
+\makeatother
 
-% simboli matematici
+\renewcommand{\thelemcorextra}{\thetheorem.\arabic{lemcorextra}}
+
+\newtheorem{lemma}[lemcorextra]{Lemma}
+\newtheorem{corollary}[lemcorextra]{Corollary}
+
+
+
+
+% pacchetti comodi
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{tikz-cd}
+\usepackage{quiver}
 
+
+% simboli matematici
 \newcommand{\numberset}{\mathbb}
 \newcommand{\N}{\numberset{N}}
 \newcommand{\Z}{\numberset{Z}}
 \newcommand{\Q}{\numberset{Q}}
 
 \newcommand{\C}{\mathcal{C}}
-\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\ob}{\text{ob}}
 
 % simboli vari
@@ -155,7 +174,8 @@
 
 \pagestyle{Main}
 \include{Capitoli/cap1}
-
+\include{Capitoli/cap2}
+\include{Capitoli/cap3}
 
 
 \pagestyle{Titolo}
