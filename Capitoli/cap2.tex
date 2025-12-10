@@ -7,18 +7,18 @@ We will begin with the basic definitions.
 
 \section{Basic definitions}
 Let $\C$ be a category.
-Let $u:A\longrightarrow B$ and $u':A'\longrightarrow B$ be monomorphisms in $\text{Ar}\: \C$, we say that $u$ majorizes $u'$, written $u \leq u'$, if there exists a morphism $v:A \longrightarrow A'$ such that $u=u'\circ v$. This relation defines a preorder on the class of arrows into $B$, from which we can extract the equivalence relation $u \cong v$ if and only if $u \leq v$ and $v \leq u$. We will not worry about size issues.
+Let $u:A\longrightarrow B$ and $u':A'\longrightarrow B$ be monomorphisms in $\text{Ar}\: \C$, we say that $u$ majorizes $u'$, written $u \leq u'$, if there exists a morphism $v:A \longrightarrow A'$ such that $u=u'\circ v$. This relation defines a preorder on the class of arrows into $B$, from which we can extract the equivalence relation $u \cong v$ if and only if $u \leq v$ and $v \leq u$. We will generally not worry about size issues when taking quotients.
 
 
 
 \begin{definition}[Subobject]
-	Let $B \in \ob \: \C$, we define a subobject of $B$ to be an equivalence class of monomorphisms into $B$.
+	Let $B \in \ob \: \C$, we define a \textbf{subobject} of $B$ to be an equivalence class of monomorphisms into $B$.
 \end{definition}
 
 We can now discuss the operation we can take between subobjects; every construction that we will describe is not dependent on the representative of the equivalence class of monomorphisms.
 
 \begin{definition}[Intersection and union]
-	Let $A \longrightarrow X$ and $B\longrightarrow X$ be subobjects, we define the intersection $A \cap B$ as the following pullback (when it exists):
+	Let $A \longrightarrow X$ and $B\longrightarrow X$ be subobjects, we define the \textbf{intersection} $A \cap B$ as the following pullback (when it exists):
 
 	\[\begin{tikzcd}
 		& {A\cap B} \\
@@ -30,12 +30,12 @@ We can now discuss the operation we can take between subobjects; every construct
 		\arrow[hook, from=2-1, to=3-2]
 		\arrow[hook', from=2-3, to=3-2]
 	\end{tikzcd}\]
-	We can also define the sum $A+B$ of two subobjects as the following pushout (when it exists):
+	We can also define the \textbf{sum} $A+B$ of two subobjects as the following pushout (when it exists):
 	\[\begin{tikzcd}
 		& {A\cap B} \\
 		A && B \\
 		& {A+B} \\
-		& X.
+		& {X.}
 		\arrow[from=1-2, to=2-1]
 		\arrow[from=1-2, to=2-3]
 		\arrow[dashed, from=2-1, to=3-2]
@@ -55,12 +55,13 @@ We can now discuss the operation we can take between subobjects; every construct
 We can dualize all the previous constructions, to obtain the following definition.
 
 \begin{definition}[Quotient]
-	Let $B \in \ob \: \C$, we define a subobject of $B$ to be an equivalence class of epimorphisms from $B$.
+	Let $B \in \ob \: \C$, we define a \textbf{quotient} of $B$ to be an equivalence class of epimorphisms from $B$.
 \end{definition}
 
 
 \section{Additive categories}
 
+We start this section introducing additive categories and functors between them.
 
 \begin{definition}[Additive category]
     A \textbf{additive category} is a (locally small) category $\mathcal{C}$ such that:
@@ -71,6 +72,14 @@ We can dualize all the previous constructions, to obtain the following definitio
     \end{itemize} 
     We will refer to the identity element of $\Hom_\C(A,B)$ as the $0$-map.
 \end{definition}
+
+
+\begin{definition}[Additive functor]
+	An \textbf{additive functor} $F: \C \longrightarrow \mathcal{D}$ is a functor between additive categories such that for every pair of objects $A,B \in \ob \: \C$ the induced map
+	\[F_{A,B}:\Hom_\C(A,B) \longrightarrow \Hom_{\mathcal{D}}(FA,FB)\] 
+	is a group homomorphism.
+\end{definition}
+
 
 We will now let $\C$ be an additive category.
 
@@ -123,30 +132,85 @@ Let us now consider two objects $A,B$ in $\C$, we must have a (unique) terminal 
 
 
 
-We can easily check that every binary product $A \times B$ is also a binary coproduct, where the canonical maps $i_A$, $i_B$ are given by $(id_A, 0)$ and $(0, id_B)$.
+We can easily check that every binary product $A \times B$ is also a binary coproduct, where the canonical maps $i_1$, $i_2$ are given by $(\id_A, 0)$ and $(0, \id_B)$.
 
 \[\begin{tikzcd}
 	& A \\
 	& {A\times B} \\
 	A && B
-	\arrow["{i_A}", dashed, from=1-2, to=2-2]
+	\arrow["{i_1}", dashed, from=1-2, to=2-2]
 	\arrow["{id_A}"', from=1-2, to=3-1]
 	\arrow["0", from=1-2, to=3-3]
 	\arrow["{\pi_A}", from=2-2, to=3-1]
 	\arrow["{\pi_B}"', from=2-2, to=3-3]
 \end{tikzcd}\]
 
-We will denote the object that is both the product and the coproduct with the direct sum symbol, as an example we have $A\times B \cong A \amalg B \cong A \oplus B$.
+We will denote the object that is both the product and the coproduct with the direct sum symbol: we have $A\times B \cong A \amalg B \cong A \oplus B$, along all the standard relationships between the canonical maps.
+
+\[\begin{tikzcd}
+	A && B && A && B \\
+	& {A \oplus B} &&&& {A \oplus B} \\
+	A && B && B && A
+	\arrow["{i_1}"', from=1-1, to=2-2]
+	\arrow["{\id_A}", from=1-1, to=3-1]
+	\arrow["{i_2}", from=1-3, to=2-2]
+	\arrow["{\id_B}", from=1-3, to=3-3]
+	\arrow["{i_1}"', from=1-5, to=2-6]
+	\arrow["0", from=1-5, to=3-5]
+	\arrow["{i_2}", from=1-7, to=2-6]
+	\arrow["0", from=1-7, to=3-7]
+	\arrow["{\pi_1}", from=2-2, to=3-1]
+	\arrow["{\pi_2}"', from=2-2, to=3-3]
+	\arrow["{\pi_2}", from=2-6, to=3-5]
+	\arrow["{\pi_1}"', from=2-6, to=3-7]
+\end{tikzcd}\]
+
+We also denote the maps produced from $f,g$ (resp. $f',g'$) by the universal property of the (co)product as $(f,g)$ (resp. $f+g$), taking care to note that $f+g$ has not (yet) any relation with the sum in $\Hom(A\oplus B, B)$. 
+
+\[\begin{tikzcd}
+	& X &&& A & {A\oplus B} & B \\
+	A & {A \oplus B} & B &&& Y
+	\arrow["f"', from=1-2, to=2-1]
+	\arrow["{(f,g)}", dashed, from=1-2, to=2-2]
+	\arrow["g", from=1-2, to=2-3]
+	\arrow["{i_1}", from=1-5, to=1-6]
+	\arrow["{f'}"', from=1-5, to=2-6]
+	\arrow["{f+g}", dashed, from=1-6, to=2-6]
+	\arrow["{i_2}"', from=1-7, to=1-6]
+	\arrow["{g'}", from=1-7, to=2-6]
+	\arrow["{\pi_1}", from=2-2, to=2-1]
+	\arrow["{\pi_2}"', from=2-2, to=2-3]
+\end{tikzcd}\]
+
+We will also denote the diagonal map $(\id_A, \id_A)$ as $\Delta_A \colon A \longrightarrow A \otimes A$ and the codiagonal map $id_B + id_B$ as $\nabla_B \colon B\oplus B \longrightarrow B$.\\
+With an analogous construction we get direct sum of maps $f \oplus g$.
+
+\[\begin{tikzcd}
+	A && {} & B \\
+	& {A\oplus A'} & {B\oplus B'} \\
+	{A'} &&& {B'}
+	\arrow["f", from=1-1, to=1-4]
+	\arrow["{i_1}"', from=1-1, to=2-2]
+	\arrow["{f\oplus g}", from=2-2, to=2-3]
+	\arrow["{\pi_1}"', from=2-3, to=1-4]
+	\arrow["{\pi_2}", from=2-3, to=3-4]
+	\arrow["{i_2}", from=3-1, to=2-2]
+	\arrow["g", from=3-1, to=3-4]
+\end{tikzcd}\]
+
+\begin{remark}
+	Let us consider the map $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 i_1 + \pi_2 i_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two maps $f,g \colon A \longrightarrow B$
+\end{remark}
 
 \begin{definition}[Kernel and cokernel]
-	Let $f : A\longrightarrow B$ be an arrow of $\C$, the kernel of $f$ is the equalizer 
+	Let $f : A\longrightarrow B$ be an arrow of $\C$, the \textbf{kernel} of $f$ is the equalizer 
 	\[\begin{tikzcd}
 	Ker(f) & A & B, & {}
 	\arrow["0"', shift right=1, from=1-2, to=1-3]
 	\arrow["f", shift left=1, from=1-2, to=1-3]
 	\arrow[from=1-1, to=1-2]
 	\end{tikzcd}\]
-	while the cokernel is the coequalizer of the diagram
+	while the \textbf{cokernel} is the coequalizer of the diagram
 	\[\begin{tikzcd}
 	 A & B & Coker(f). & {}
 	\arrow["0"', shift right=1, from=1-1, to=1-2]
@@ -157,8 +221,9 @@ We will denote the object that is both the product and the coproduct with the di
 
 \end{definition}
 
+
 \begin{remark}
-	Due to the fact that every equalizer is monic (and every coequalizer is epic), it is immediate to see that the kernel of a morphism is a subobject, while the cokernel is a quotient.
+	Due to the fact that every equalizer is monic (and every coequalizer is epic), it is immediate to see that the kernel of a morphism is a subobject, while the cokernel is a quotient. This also implies that the image is a subobject while the coimage is a quotient.
 \end{remark}
 
 Applying the relevant universal properties it is easy to see that there exist a canonical morphism $Coim(f) \longrightarrow Im(f)$ such that the following diagram commutes
@@ -173,11 +238,6 @@ Applying the relevant universal properties it is easy to see that there exist a 
 	\arrow[from=2-4, to=1-4]
 \end{tikzcd}\]
 
-\begin{definition}[Additive functor]
-	An \textbf{additive functor} $F: \C \longrightarrow \mathcal{D}$ is a functor between additive categories such that for every pair of objects $A,B \in \ob \: \C$ the induced map
-	\[F_{A,B}:\Hom_\C(A,B) \longrightarrow \Hom_{\mathcal{D}}(FA,FB)\] 
-	is a group homomorphism.
-\end{definition}
 
 
 
@@ -186,7 +246,7 @@ Applying the relevant universal properties it is easy to see that there exist a 
 \section{Abelian Categories}
 
 \begin{definition}[Abelian category]
-	An abelian category is an additive category $\C$ that satisfies the following axioms:
+	An \textbf{abelian category} is an additive category $\C$ that satisfies the following axioms:
 	\begin{itemize}
   		\item[(AB1)] any morphism admits a kernel and a cokernel;
     	\item[(AB2)] for every morphism $f:A\longrightarrow B$, the canonical map $Coim(f) \longrightarrow Im(f)$ is an isomorphism.
@@ -196,31 +256,189 @@ Applying the relevant universal properties it is easy to see that there exist a 
 The existence of the kernel and the cokernel is remarkably powerful: the equalizer of $f$ and $g$ is exactly the kernel of $f-g$, while their coequalizer is its cokernel; therefore in any abelian category equalizers and coequalizers must exist. It is a well known result that it is possible to construct a finite limit using equalizers and finite products, thus every abelian category has finite limits and (dually) finite colimits. One consequence of this result is the fact that we can always take the intersection and the sum of subobjects, therefore the subobjects of a given object form a lattice where intersection and sum are meet and join.
 
 \begin{remark}
-	Let $f$ be a monomorphism, every maps that equalized $f$ and the $0$-map must necessarily be the $0$-map itself because of proposition \ref{prop:mono-equiv}; we also know that the $0$-map factors through $0$, therefore $0$ must be the kernel of $f$. Similarly the cokernel of an epimorphism must be $0$. It is also immediate that the kernel of $0 \longrightarrow B$ is $B$ (and the identity map), just like the cokernel of $A \longrightarrow 0$ is $A$ (and the identity map).
+	Let $f$ be a monomorphism, every maps that equalized $f$ and the $0$-map must necessarily be the $0$-map itself because of proposition \ref{prop:mono-equiv}; we also know that the $0$-map factors through $0$, therefore $0$ must be the kernel of $f$. Similarly the cokernel of an epimorphism must be $0$. With the 
+	 It is also immediate that the kernel of $0 \longrightarrow B$ is $B$ (and the identity map), just like the cokernel of $A \longrightarrow 0$ is $A$ (and the identity map).
 \end{remark}
 
 
-From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity map $A \longrightarrow A$), therefore by applying (AB2) we deduce every monomorphism is its image and therefore it's a kernel.
+From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity map $A \longrightarrow A$), therefore by applying (AB2) we deduce every monomorphism is its image and therefore it's the kernel of a map.
 
 \[\begin{tikzcd}
 	0 & A & B & {coker(f)} \\
 	& A & {Im(f)}
 	\arrow[from=1-1, to=1-2]
 	\arrow[from=1-2, to=1-3]
-	\arrow["{id_A}"', from=1-2, to=2-2]
+	\arrow["{\id_A}"', from=1-2, to=2-2]
 	\arrow[from=1-3, to=1-4]
 	\arrow["\sim", from=2-2, to=2-3]
 	\arrow[from=2-3, to=1-3]
 \end{tikzcd}\]
-Dually every epimorphism is its coimage and therefore it's a cokernel.
+Dually every epimorphism is its coimage and therefore it's the cokernel of a map. \\
+We continue by introducing one of the main object used in the study of abelian categories: exact sequences.
+
+\begin{definition}[Exact sequence]
+	Let $f\colon A\longrightarrow B$ and $g\colon B \longrightarrow C$ be morphisms in $\C$, we say that the sequence 
+	\[\begin{tikzcd}
+		A & B & C
+		\arrow["f", from=1-1, to=1-2]
+		\arrow["g", from=1-2, to=1-3]
+	\end{tikzcd}\]
+	is \textbf{exact} if $Im(f)$ and $Ker(g)$ are the same subobject of $B$. More generally if we have a succession of morphism 
+	\[\begin{tikzcd}
+		\cdots & {A_{k-1}} & {A_k} & {A_{k+1}} & \cdots
+		\arrow[from=1-1, to=1-2]
+		\arrow["{f_{k-1}}", from=1-2, to=1-3]
+		\arrow["{f_k}", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	we say that it is exact at $A_k$ if $A_{k-1}\longrightarrow A_k \longrightarrow A_{k+1}$ is exact; we say that it is exact if it is exact at $A_k$ for every $k$. A \textbf{short exact sequence} is a sequence of the form
+	\[\begin{tikzcd}
+		0 & A & B & C & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	that is exact at $A$, $B$ and $C$; we will often shorten the name short exact sequence as SES.
+\end{definition}
+
+
+\section{Extensions}
+In this section we will essentially follow \cite{Weibel_1994} and \cite{maclane2012homology}.
+Let $\C$ be an abelian category, let $A,B$ be objects of $\C$.
+
+\begin{definition}[Extension]
+	An \textbf{extension} $\xi$ of $A$ and $B$ is a short exact sequence of the form
+	\[\begin{tikzcd}
+		{\xi\colon} & 0 & A & X & B & {0.}
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=1-5, to=1-6]
+	\end{tikzcd}\]
+	More generally, for $n\geq 1$, an $n$-\textbf{extension} $\xi$ of $A$ and $B$ is an exact sequence 
+	\[\begin{tikzcd}[sep=small]
+		{\xi \colon} & 0 & A & {X_1} & {X_2} & \cdots & {X_n} & B & 0
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=1-5, to=1-6]
+		\arrow[from=1-6, to=1-7]
+		\arrow[from=1-7, to=1-8]
+		\arrow[from=1-8, to=1-9]
+	\end{tikzcd}\]
+\end{definition}
+
+We can now define an equivalence relation on the class of $n$-extensions as follows: we say that the extension $\xi$ and $\xi'$ are equivalent if there is a commutative diagram
+
+\[\begin{tikzcd}[sep=small]
+	{\xi \colon} & 0 & A & {X_1} & {X_2} & \cdots & {X_n} & B & 0 \\
+	& 0 & A & {X''_1} & {X''_2} & \cdots & {X''_n} & B & {0} \\
+	{\xi'\colon} & 0 & A & {X_1'} & {X_2'} & \cdots & {X'_n} & B & {0.}
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+	\arrow[from=1-6, to=1-7]
+	\arrow[from=1-7, to=1-8]
+	\arrow[from=1-8, to=1-9]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{\id_A}", from=2-3, to=1-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow["{\id_A}"', from=2-3, to=3-3]
+	\arrow[from=2-4, to=1-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=2-5, to=1-5]
+	\arrow[from=2-5, to=2-6]
+	\arrow[from=2-5, to=3-5]
+	\arrow[from=2-6, to=2-7]
+	\arrow[from=2-7, to=1-7]
+	\arrow[from=2-7, to=2-8]
+	\arrow[from=2-7, to=3-7]
+	\arrow["{\id_B}", from=2-8, to=1-8]
+	\arrow[from=2-8, to=2-9]
+	\arrow["{\id_B}"', from=2-8, to=3-8]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-4, to=3-5]
+	\arrow[from=3-5, to=3-6]
+	\arrow[from=3-6, to=3-7]
+	\arrow[from=3-7, to=3-8]
+	\arrow[from=3-8, to=3-9]
+\end{tikzcd}\]
+
+\begin{remark}
+	If $n=1$, the relation is much simpler: in the following diagram both middle maps must necessarily be isomorphism, therefore we need only to look for a map $X \to X'$ that makes the diagram commute.
+	\[\begin{tikzcd}[sep=small]
+		{\xi \colon} & 0 & A & X & B & 0 \\
+		& 0 & A & {X''} & B & 0 \\
+		{\xi'\colon} & 0 & A & {X'} & B & 0
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+		\arrow[from=1-5, to=1-6]
+		\arrow[from=2-2, to=2-3]
+		\arrow["{\id_A}", from=2-3, to=1-3]
+		\arrow[from=2-3, to=2-4]
+		\arrow["{\id_A}"', from=2-3, to=3-3]
+		\arrow[from=2-4, to=1-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow[from=2-4, to=3-4]
+		\arrow["{\id_B}", from=2-5, to=1-5]
+		\arrow[from=2-5, to=2-6]
+		\arrow["{\id_B}"', from=2-5, to=3-5]
+		\arrow[from=3-2, to=3-3]
+		\arrow[from=3-3, to=3-4]
+		\arrow[from=3-4, to=3-5]
+		\arrow[from=3-5, to=3-6]
+	\end{tikzcd}\]
+
+\end{remark}
+
+\begin{definition}[Split extensions]
+	We say that an extension of $A$ and $B$ is \textbf{split} if it is equivalent to
+	\[\begin{tikzcd}
+	0 & A & {A\oplus B} & B & 0.
+	\arrow[from=1-1, to=1-2]
+	\arrow["{i_A}", from=1-2, to=1-3]
+	\arrow["{\pi_B}", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+\end{definition}
+
+\begin{definition}[Ext]
+	We define $\Ext^n_\C(A,B)$ to be quotient of the family of all $n$-extensions by the relation of equivalence. We will also define $\Ext^0_\C(A,B)$ as $\Hom_\C(A,B)$. 
+\end{definition}
+\begin{remark}
+	$\Ext^n_\C(A,B)$ is not necessarily small (i.e. a set), see \cite[\href{https://stacks.math.columbia.edu/tag/07JS}{Section 07JS}]{stacks-project}, but it will be in the relevant cases (Grothendieck categories). From now on, in this section, we will assume it is a set.
+\end{remark}
+
+We will now introduce an operation, called the \textit{Baer sum}, on $\Ext^n_\C(A,B)$, for $n\geq 1$. Let us begin bt defining this operation on $\Ext^1_\C(A,B)$. Let us begin by consider two equivalence classes of extensions of $A$ and $B$ and taking two representatives
+
+\[\begin{tikzcd}[sep=small]
+	{\xi\colon} & 0 & A & X & B & 0 \\
+	{\xi'\colon} & 0 & A & {X'} & B & 0.
+	\arrow[from=1-2, to=1-3]
+	\arrow["f", from=1-3, to=1-4]
+	\arrow["g", from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+	\arrow[from=2-2, to=2-3]
+	\arrow["{f'}", from=2-3, to=2-4]
+	\arrow["{g'}", from=2-4, to=2-5]
+	\arrow[from=2-5, to=2-6]
+\end{tikzcd}\]
+
+We then set $X''$ as the following pullback:
 
 
 
-\section{Exact sequences}
 
-\textbf{ROBA SULLE SUCCESSIONI ESATTE}
-\newline
 
+
+
+
+\section{Grothendieck Categories}
 
 \begin{definition}
 	Any abelian category $\C$ can also satisfy the following axioms:	
@@ -231,7 +449,23 @@ Dually every epimorphism is its coimage and therefore it's a cokernel.
 	\end{itemize}
 \end{definition}
 
-\section{Grothendieck Categories}
+
+\begin{definition}
+	A generator $\mathcal{G}$ of a category $\C$ is a family of objects $\mathcal{G} \subseteq \ob \: \C$ which satisfies the following property: for every pair of distinct morphisms $f,g: A \longrightarrow B$ there is an object $G \in \mathcal{G}$ and a morphism $h: G \longrightarrow A$ such that $fh \neq gh$.
+\end{definition}
+
+
+\begin{definition}[Grothendieck category]
+	A category $\C$ is called a Grothendieck category if it is an abelian category that satisfies (AB5) and possesses a generator.
+\end{definition}
 
 
 
+
+
+
+
+\section{Monoidal categories}
+
+
+\textbf{INSERISCI COSA SERVE}
