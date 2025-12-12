@@ -183,7 +183,22 @@ We also denote the maps produced from $f,g$ (resp. $f',g'$) by the universal pro
 \end{tikzcd}\]
 
 We will also denote the diagonal map $(\id_A, \id_A)$ as $\Delta_A \colon A \longrightarrow A \otimes A$ and the codiagonal map $id_B + id_B$ as $\nabla_B \colon B\oplus B \longrightarrow B$.\\
-With an analogous construction we get direct sum of maps $f \oplus g$.
+With an analogous construction we get direct sum of maps $f \oplus g$, with all the relevant properties.
+
+
+\[\begin{tikzcd}
+	& A & B \\
+	{A\oplus A'} &&& {B\oplus B'} \\
+	& {A'} & {B'}
+	\arrow["f", from=1-2, to=1-3]
+	\arrow[from=1-3, to=2-4]
+	\arrow["{\pi_1}", from=2-1, to=1-2]
+	\arrow["{f \oplus g}", from=2-1, to=2-4]
+	\arrow["{\pi_2}"', from=2-1, to=3-2]
+	\arrow["g"', from=3-2, to=3-3]
+	\arrow[from=3-3, to=2-4]
+\end{tikzcd}\]
+
 
 \[\begin{tikzcd}
 	A && {} & B \\
@@ -198,8 +213,12 @@ With an analogous construction we get direct sum of maps $f \oplus g$.
 	\arrow["g", from=3-1, to=3-4]
 \end{tikzcd}\]
 
+
+
+
 \begin{remark}
-	Let us consider the map $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 i_1 + \pi_2 i_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two maps $f,g \colon A \longrightarrow B$
+	Let us consider the map $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 i_1 + \pi_2 i_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two maps $f,g \colon A \longrightarrow B$, we have that
+	\[f+g = \nabla_A (f \oplus g) \Delta_B.\]
 \end{remark}
 
 \begin{definition}[Kernel and cokernel]
@@ -303,6 +322,13 @@ We continue by introducing one of the main object used in the study of abelian c
 \end{definition}
 
 
+
+\section{Exact functors}
+\textbf{DECIDERE COSA SCRIVERE}
+
+
+
+
 \section{Extensions}
 In this section we will essentially follow \cite{Weibel_1994} and \cite{maclane2012homology}.
 Let $\C$ be an abelian category, let $A,B$ be objects of $\C$.
@@ -310,7 +336,7 @@ Let $\C$ be an abelian category, let $A,B$ be objects of $\C$.
 \begin{definition}[Extension]
 	An \textbf{extension} $\xi$ of $A$ and $B$ is a short exact sequence of the form
 	\[\begin{tikzcd}
-		{\xi\colon} & 0 & A & X & B & {0.}
+		{\xi\colon} & 0 & B & X & A & {0.}
 		\arrow[from=1-2, to=1-3]
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
@@ -318,7 +344,7 @@ Let $\C$ be an abelian category, let $A,B$ be objects of $\C$.
 	\end{tikzcd}\]
 	More generally, for $n\geq 1$, an $n$-\textbf{extension} $\xi$ of $A$ and $B$ is an exact sequence 
 	\[\begin{tikzcd}[sep=small]
-		{\xi \colon} & 0 & A & {X_1} & {X_2} & \cdots & {X_n} & B & 0
+		{\xi \colon} & 0 & B & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & A & 0
 		\arrow[from=1-2, to=1-3]
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
@@ -332,9 +358,9 @@ Let $\C$ be an abelian category, let $A,B$ be objects of $\C$.
 We can now define an equivalence relation on the class of $n$-extensions as follows: we say that the extension $\xi$ and $\xi'$ are equivalent if there is a commutative diagram
 
 \[\begin{tikzcd}[sep=small]
-	{\xi \colon} & 0 & A & {X_1} & {X_2} & \cdots & {X_n} & B & 0 \\
-	& 0 & A & {X''_1} & {X''_2} & \cdots & {X''_n} & B & {0} \\
-	{\xi'\colon} & 0 & A & {X_1'} & {X_2'} & \cdots & {X'_n} & B & {0.}
+	{\xi \colon} & 0 & B & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & A & 0 \\
+	& 0 & B & {X''_{n-1}} & {X''_{n-2}} & \cdots & {X''_0} & A & {0} \\
+	{\xi'\colon} & 0 & A & {X_{n-1}'} & {X_{n-2}'} & \cdots & {X'_0} & B & {0.}
 	\arrow[from=1-2, to=1-3]
 	\arrow[from=1-3, to=1-4]
 	\arrow[from=1-4, to=1-5]
@@ -343,9 +369,9 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 	\arrow[from=1-7, to=1-8]
 	\arrow[from=1-8, to=1-9]
 	\arrow[from=2-2, to=2-3]
-	\arrow["{\id_A}", from=2-3, to=1-3]
+	\arrow["{\id_B}", from=2-3, to=1-3]
 	\arrow[from=2-3, to=2-4]
-	\arrow["{\id_A}"', from=2-3, to=3-3]
+	\arrow["{\id_B}"', from=2-3, to=3-3]
 	\arrow[from=2-4, to=1-4]
 	\arrow[from=2-4, to=2-5]
 	\arrow[from=2-4, to=3-4]
@@ -356,9 +382,9 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 	\arrow[from=2-7, to=1-7]
 	\arrow[from=2-7, to=2-8]
 	\arrow[from=2-7, to=3-7]
-	\arrow["{\id_B}", from=2-8, to=1-8]
+	\arrow["{\id_A}", from=2-8, to=1-8]
 	\arrow[from=2-8, to=2-9]
-	\arrow["{\id_B}"', from=2-8, to=3-8]
+	\arrow["{\id_A}"', from=2-8, to=3-8]
 	\arrow[from=3-2, to=3-3]
 	\arrow[from=3-3, to=3-4]
 	\arrow[from=3-4, to=3-5]
@@ -369,29 +395,21 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 \end{tikzcd}\]
 
 \begin{remark}
-	If $n=1$, the relation is much simpler: in the following diagram both middle maps must necessarily be isomorphism, therefore we need only to look for a map $X \to X'$ that makes the diagram commute.
+	If $n=1$, the relation is much simpler: in the following diagram both middle maps must necessarily be isomorphism, therefore we need only to look for a map $X \to X'$ that makes the following diagram commute.
 	\[\begin{tikzcd}[sep=small]
-		{\xi \colon} & 0 & A & X & B & 0 \\
-		& 0 & A & {X''} & B & 0 \\
-		{\xi'\colon} & 0 & A & {X'} & B & 0
+		{\xi \colon} & 0 & B & X & A & 0 \\
+		{\xi'\colon} & 0 & B & {X'} & A & 0
 		\arrow[from=1-2, to=1-3]
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 		\arrow[from=1-5, to=1-6]
 		\arrow[from=2-2, to=2-3]
-		\arrow["{\id_A}", from=2-3, to=1-3]
+		\arrow["{\id_B}", from=1-3, to=2-3]
 		\arrow[from=2-3, to=2-4]
-		\arrow["{\id_A}"', from=2-3, to=3-3]
-		\arrow[from=2-4, to=1-4]
+		\arrow[from=1-4, to=2-4]
 		\arrow[from=2-4, to=2-5]
-		\arrow[from=2-4, to=3-4]
-		\arrow["{\id_B}", from=2-5, to=1-5]
+		\arrow["{\id_A}", from=1-5, to=2-5]
 		\arrow[from=2-5, to=2-6]
-		\arrow["{\id_B}"', from=2-5, to=3-5]
-		\arrow[from=3-2, to=3-3]
-		\arrow[from=3-3, to=3-4]
-		\arrow[from=3-4, to=3-5]
-		\arrow[from=3-5, to=3-6]
 	\end{tikzcd}\]
 
 \end{remark}
@@ -399,7 +417,7 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 \begin{definition}[Split extensions]
 	We say that an extension of $A$ and $B$ is \textbf{split} if it is equivalent to
 	\[\begin{tikzcd}
-	0 & A & {A\oplus B} & B & 0.
+	0 & B & {B\oplus A} & A & 0.
 	\arrow[from=1-1, to=1-2]
 	\arrow["{i_A}", from=1-2, to=1-3]
 	\arrow["{\pi_B}", from=1-3, to=1-4]
@@ -411,31 +429,70 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 	We define $\Ext^n_\C(A,B)$ to be quotient of the family of all $n$-extensions by the relation of equivalence. We will also define $\Ext^0_\C(A,B)$ as $\Hom_\C(A,B)$. 
 \end{definition}
 \begin{remark}
-	$\Ext^n_\C(A,B)$ is not necessarily small (i.e. a set), see \cite[\href{https://stacks.math.columbia.edu/tag/07JS}{Section 07JS}]{stacks-project}, but it will be in the relevant cases (Grothendieck categories). From now on, in this section, we will assume it is a set.
+	$\Ext^n_\C(A,B)$ is not necessarily small (i.e. a set), see \cite[\href{https://stacks.math.columbia.edu/tag/07JS}{Section 07JS}]{stacks-project}, but it will be in the relevant cases (Grothendieck categories). From now on, in this section, we will assume it is a set. 
 \end{remark}
 
-We will now introduce an operation, called the \textit{Baer sum}, on $\Ext^n_\C(A,B)$, for $n\geq 1$. Let us begin bt defining this operation on $\Ext^1_\C(A,B)$. Let us begin by consider two equivalence classes of extensions of $A$ and $B$ and taking two representatives
+We will show that $\Ext$ is actually a functor from $\C\op \times \C$ to $\cat{Set}$, in the case $n=1$ (for the general case see \cite{maclane2012homology}). 
+If we are given an extension 
+\[0 \longrightarrow B \longrightarrow X \longrightarrow A \longrightarrow 0 \]
+and $h\colon B\longrightarrow B'$ we can take the pushout ${B'\times_B X}$; then, applying the relevant universal property to the maps $0\colon B' \longrightarrow A$ and $g \colon X \longrightarrow A$, we get a commuting diagrams with exact lines:
+
+
+\[\begin{tikzcd}
+	0 & B & X & A & 0 \\
+	0 & {B'} & {B'\times_B X} & A & {0.}
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["h", from=1-2, to=2-2]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["{\id_A}", from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{f'}", from=2-2, to=2-3]
+	\arrow["{g'}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+Therefore, by passing to the quotient, we get a morphism of sets \[h_{*}\colon \Ext^1(A,B) \longrightarrow \Ext(A,B').\] 
+Similarly, given a map $k:A'\longrightarrow A$, we get a function 
+\[k_* \colon \Ext^1_\C(A, B) \longrightarrow \Ext^1_\C(A',B).\] 
+
+We will now introduce an operation, called the \textit{Baer sum}, on $\Ext^n_\C(A,B)$: given two elements in $\Ext^n_\C(A,B)$ with representatives
 
 \[\begin{tikzcd}[sep=small]
-	{\xi\colon} & 0 & A & X & B & 0 \\
-	{\xi'\colon} & 0 & A & {X'} & B & 0.
+	{\xi \colon} & 0 & B & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & A & 0 \\
+	{\xi' \colon} & 0 & B & {X'_{n-1}} & {X'_{n-2}} & \cdots & {X'_0} & A & 0
 	\arrow[from=1-2, to=1-3]
-	\arrow["f", from=1-3, to=1-4]
-	\arrow["g", from=1-4, to=1-5]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
 	\arrow[from=1-5, to=1-6]
+	\arrow[from=1-6, to=1-7]
+	\arrow[from=1-7, to=1-8]
+	\arrow[from=1-8, to=1-9]
 	\arrow[from=2-2, to=2-3]
-	\arrow["{f'}", from=2-3, to=2-4]
-	\arrow["{g'}", from=2-4, to=2-5]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
 	\arrow[from=2-5, to=2-6]
+	\arrow[from=2-6, to=2-7]
+	\arrow[from=2-7, to=2-8]
+	\arrow[from=2-8, to=2-9]
 \end{tikzcd}\]
+and define their direct sum as 
 
-We then set $X''$ as the following pullback:
+\[\begin{tikzcd}[sep=tiny]
+	{\xi \oplus \xi'\colon} & 0 & {B\oplus B} & {X_{n-1} \oplus X'_{n-1}} & \cdots & {X_0\oplus X_0} & {A \oplus A} & {0;}
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+	\arrow[from=1-6, to=1-7]
+	\arrow[from=1-7, to=1-8]
+\end{tikzcd}\]
+then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \Delta_A \right)^* (\xi \oplus \xi')] $.
 
-
-
-
-
-
+\begin{theorem}
+	
+\end{theorem}
 
 
 \section{Grothendieck Categories}
@@ -468,4 +525,4 @@ We then set $X''$ as the following pullback:
 \section{Monoidal categories}
 
 
-\textbf{INSERISCI COSA SERVE}
+\textbf{DECIDERE SE/COSA SCRIVERE}
