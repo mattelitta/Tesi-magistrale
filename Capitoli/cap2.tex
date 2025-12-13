@@ -27,8 +27,8 @@ We can now discuss the operation we can take between subobjects; every construct
 		\arrow[dashed, from=1-2, to=2-1]
 		\arrow[dashed, from=1-2, to=2-3]
 		\arrow[dashed, from=1-2, to=3-2]
-		\arrow[hook, from=2-1, to=3-2]
-		\arrow[hook', from=2-3, to=3-2]
+		\arrow[from=2-1, to=3-2]
+		\arrow[from=2-3, to=3-2]
 	\end{tikzcd}\]
 	We can also define the \textbf{sum} $A+B$ of two subobjects as the following pushout (when it exists):
 	\[\begin{tikzcd}
@@ -289,7 +289,7 @@ From the previous remark follows that the coimage of the monomorphism $f: A \lon
 	\arrow[from=1-2, to=1-3]
 	\arrow["{\id_A}"', from=1-2, to=2-2]
 	\arrow[from=1-3, to=1-4]
-	\arrow["\sim", from=2-2, to=2-3]
+	\arrow["\cong", from=2-2, to=2-3]
 	\arrow[from=2-3, to=1-3]
 \end{tikzcd}\]
 Dually every epimorphism is its coimage and therefore it's the cokernel of a map. \\
@@ -323,8 +323,7 @@ We continue by introducing one of the main object used in the study of abelian c
 
 
 
-\section{Exact functors}
-\textbf{DECIDERE COSA SCRIVERE}
+
 
 
 
@@ -491,11 +490,32 @@ and define their direct sum as
 then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \Delta_A \right)^* (\xi \oplus \xi')] $.
 
 \begin{theorem}
-	
+	Aasdasdad
 \end{theorem}
 
 
+
+
+
+
+
+
+
+\section{Injective and projective objects}
+\textbf{DECIDERE COSA SCRIVERE}
+
+\section{Exact functors}
+\textbf{DECIDERE COSA SCRIVERE}
+
 \section{Grothendieck Categories}
+
+
+
+
+
+
+
+
 
 \begin{definition}
 	Any abelian category $\C$ can also satisfy the following axioms:	
@@ -517,7 +537,9 @@ then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \De
 \end{definition}
 
 
-
+\begin{theorem}
+	Every Grothendieck category has enough injectives.
+\end{theorem}
 
 
 
