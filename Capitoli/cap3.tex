@@ -112,22 +112,42 @@ Let us consider a triple $(W, \fibT, \cofT)$ of subclasses of $\ar(\C)$, called 
 	
 \end{remark}
 
-We will from now on use $\C$ to refer to a model category.\\
-Given that the category is complete it must necessarily have a terminal object $*$, therefore for any object $X\in\ob(\C)$ we have a terminal map $X\longrightarrow *$ which can be factored through (\textbf{MC4}) to obtain a weak equivalence $f\colon X \we Y$. Applying then (\textbf{MC1}) to the triple $f, \id_X,f\id_X=f$ we get that $\id_X$ must always be a weak equivalence.
+We will from now on use $\C$ to refer to a model category.
 
 \begin{proposition}
-	In a model category, the cofibrations (resp. trivial cofibrations) are exactly the maps that have the LLP with respect to all trivial fibrations (resp. fibrations). Dually the fibrations (resp. trivial fibrations) are exactly the maps that have the LLP with respect to all trivial cofibrations (resp. cofibratons).
+	In a model category, the cofibrations (resp. trivial cofibrations) are exactly the maps that have the LLP with respect to all trivial fibrations (resp. fibrations). Dually the fibrations (resp. trivial fibrations) are exactly the maps that have the RLP with respect to all trivial cofibrations (resp. cofibrations).
 \end{proposition}
 \begin{proof}
 	We will only show the characterization of cofibrations, the other are analogous. By (\textbf{MC3}) cofibrations must have such property, therefore we need only to show the converse: let $f: A\longrightarrow \C$ be a map that has the LLP with respect to all trivial fibrations, by applying (\textbf{MC4}) we can obtain a factorization $f=pi$ where $p$ is a trivial fibration and $i$ is a cofibration; by applying the retract argument and using (\textbf{MC2}) we conclude.
 \end{proof}
 
 \begin{corollary}
-	Every isomorphism is both a trivial fibration and a trivial cofibration. 
+	Every isomorphism is both a trivial fibration and a trivial cofibration. This in particular is true for the identity maps.
 \end{corollary}
 \begin{proof}
 	The corollary follows immediately from the proposition by using the inverse morphism to construct lifts.
 \end{proof}
+
+\begin{corollary}
+	The class of weak equivalences, fibrations and cofibrations is closed under composition.
+\end{corollary}
+\begin{proof}
+	The case of weak equivalences is a consequence of (\textbf{MC1}), we will prove the case of fibrations (the other is dual).
+	Using the proposition, we need only to show that the composition of two fibrations $p$, $p'$ has the RLP with respect to any acyclic fibration $i$. To do so, it is sufficient to apply (\textbf{MC3}) twice as in the diagram below, first to get $f$ and then again in the new square to obtain $g$.
+	\[\begin{tikzcd}
+		A && X \\
+		&& Y \\
+		B && Z
+		\arrow[from=1-1, to=1-3]
+		\arrow["i", "\sim"', hook', from=1-1, to=3-1]
+		\arrow["p", two heads, from=1-3, to=2-3]
+		\arrow["{p'}", two heads, from=2-3, to=3-3]
+		\arrow["g", dashed, from=3-1, to=1-3]
+		\arrow["f"', dashed, from=3-1, to=2-3]
+		\arrow[from=3-1, to=3-3]
+	\end{tikzcd}\]
+\end{proof}
+
 \begin{corollary}
 	Being a fibration (resp. cofibration) is a property that is invariant with respect to taking pullbacks (resp. pushouts). The same is true for acyclic (co)fibrations.
 \end{corollary}
@@ -148,6 +168,29 @@ Given that the category is complete it must necessarily have a terminal object $
 	\end{tikzcd}\]
 \end{proof}
 
+\begin{definition}[Fibrant and cofibrant objects]
+	An object $A$ is said to be \textbf{fibrant} if the terminal map $A \longrightarrow *$ is a fibration; an object $B$ is said to be \textbf{cofibrant} if the initial map $\emptyset \longrightarrow B$ is a cofibration.
+\end{definition}
+
+\begin{remark}
+	Let $B$ be a cofibrant object, given that the coproduct $A \amalg A$ can be seen as the pushout with respect to the initial object, we deduce that both $\inn_1$ and $\inn_2$ must be cofibrations.
+	\[\begin{tikzcd}
+		\emptyset & B \\
+		B & {B\amalg B}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow["{\inn_1}", from=1-2, to=2-2]
+		\arrow["{\inn_2}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	The dual result is also true: if $A$ is fibrant then both projections
+	\[\pi_1,\pi_2 \colon A\times A \longrightarrow A\]
+	must be fibrations.
+\end{remark}
+
+
+\begin{definition}[Abelian model categories]
+	
+\end{definition}
 
 
 \section{Homotopy relations}
@@ -176,18 +219,49 @@ Given that the category is complete it must necessarily have a terminal object $
 		A \\
 		& {A \amalg A} & {A\wedge I.} \\
 		A
-		\arrow["{\inn_0}"', from=1-1, to=2-2]
+		\arrow["{\inn_1}"', from=1-1, to=2-2]
 		\arrow["{i_1}"', curve={height=-18pt}, from=1-1, to=2-3]
 		\arrow["i", from=2-2, to=2-3]
-		\arrow["{\inn_1}", from=3-1, to=2-2]
+		\arrow["{\inn_2}", from=3-1, to=2-2]
 		\arrow["{i_2}", curve={height=18pt}, from=3-1, to=2-3]
 	\end{tikzcd}\]
 \end{definition}
 
-It is important to observe that for every object $A$ a very good cylinder object exists always: we only need to apply (\textbf{MC4}) to $\nabla_A \colon A \amalg A \longrightarrow A$. \\
-We must also remark that, given a cylinder $A\wedge I$, we know that $q \circ i_1 = q \circ i \circ\inn_1 = \nabla_A \circ \inn_1 = \id_A$ and both $\id_A$ and $q$ are weak equivalences, therefore by (\textbf{MC1}) $i_1$ must also be a weak equivalence (and the same can be said for $i_2$).
+It is important to observe that for every object $A$ a very good cylinder object exists always: we only need to apply (\textbf{MC4}) to $\nabla_A \colon A \amalg A \longrightarrow A$. 
 
-\begin{definition}
-	An object $A$ is said to be \textbf{fibrant} if the terminal map
+\begin{remark}
+	Given a cylinder $A\wedge I$, we know that $q \circ i_1 = q \circ i \circ\inn_1 = \nabla_A \circ \inn_1 = \id_A$ and both $\id_A$ and $q$ are weak equivalences, therefore by (\textbf{MC1}) we assert that $i_1$ must also be a weak equivalence (and the same can be said for $i_2$). 
+	\[\begin{tikzcd}
+		A \\
+		{A \amalg A} & {A \wedge I} & A \\
+		A
+		\arrow["{\inn_1}"', from=1-1, to=2-1]
+		\arrow["{i_1}", from=1-1, to=2-2]
+		\arrow["{\id_A}", curve={height=-12pt}, from=1-1, to=2-3]
+		\arrow["i", from=2-1, to=2-2]
+		\arrow["q", "\sim"', from=2-2, to=2-3]
+		\arrow["{\inn_2}", from=3-1, to=2-1]
+		\arrow["{i_2}"', from=3-1, to=2-2]
+		\arrow["{\id_A}"', curve={height=12pt}, from=3-1, to=2-3]
+	\end{tikzcd}\]
+	If $A \wedge I$ is a good cylinder and $A$ is cofibrant then $i_1= i \circ \inn_1$ is the composition of cofibrations, therefore $i_1$ (and $i_2$) must be acyclic cofibrations.
+\end{remark}
+
+\begin{definition}[Homotopies]
+	Two morphisms $f\colon A \longrightarrow B$ are said to be \textbf{homotopic} if there exist a cylinder $A\wedge I$ and a map $H\colon A\wedge I \longrightarrow B$ such that
+	\[\begin{tikzcd}
+		A \\
+		& {A \wedge I} && B \\
+		A
+		\arrow["{i_1}"', from=1-1, to=2-2]
+		\arrow["f", curve={height=-12pt}, from=1-1, to=2-4]
+		\arrow["H", from=2-2, to=2-4]
+		\arrow["{i_2}", from=3-1, to=2-2]
+		\arrow["g"', curve={height=12pt}, from=3-1, to=2-4]
+	\end{tikzcd}\]
+	commutes. We will refer to the diagram as an \textbf{homotopy}. \\
+	An homotopy is said to be \textbf{good} (resp. \textbf{very good}) if the cylinder is good (resp. very good).
 \end{definition}
+
+
 
