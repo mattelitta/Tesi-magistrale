@@ -37,18 +37,18 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{problem}[theorem]{Problem}
+\newtheorem{lemma}[theorem]{Lemma}
 
 % --- LEMMA + COROLLARY: sotto-contatore che dipende dal teorema/proposizione/etc ---
-\newtheorem{lemcorextra}{\!} % contatore ausiliario invisibile
+\newtheorem{corextra}{\!} % contatore ausiliario invisibile
 
 \makeatletter
-\@addtoreset{lemcorextra}{theorem}   % si resetta quando avanza il contatore comune
+\@addtoreset{corextra}{theorem}   % si resetta quando avanza il contatore comune
 \makeatother
 
-\renewcommand{\thelemcorextra}{\thetheorem.\arabic{lemcorextra}}
+\renewcommand{\thecorextra}{\thetheorem.\arabic{corextra}}
 
-\newtheorem{lemma}[lemcorextra]{Lemma}
-\newtheorem{corollary}[lemcorextra]{Corollary}
+\newtheorem{corollary}[corextra]{Corollary}
 
 
 

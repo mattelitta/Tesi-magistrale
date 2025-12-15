@@ -2,12 +2,12 @@
 \chapter{Abelian categories}
 
 
-This first chapter will serve as an introduction to the basics of Abelian Categories, first introduced by Alexander Grothendieck in his seminal "Tohoku Paper" \cite{Tohoku}.
-We will begin with the basic definitions. For a nice introduction see \cite{murfet2006abelian}.
+This first chapter will serve as an introduction to the basics of Abelian Categories, first introduced by Alexander Grothendieck in his seminal "Tohoku Paper" \cite{Tohoku}; for a nice introduction see \cite{murfet2006abelian}.
 
 \section{Basic definitions}
 Let $\C$ be a category.
-Let $u:A\longrightarrow B$ and $u':A'\longrightarrow B$ be monomorphisms in $\text{Ar}\: \C$, we say that $u$ majorizes $u'$, written $u \leq u'$, if there exists a morphism $v:A \longrightarrow A'$ such that $u=u'\circ v$. This relation defines a preorder on the class of arrows into $B$, from which we can extract the equivalence relation $u \cong v$ if and only if $u \leq v$ and $v \leq u$. We will generally not worry about size issues when taking quotients.
+Let $u\colon A\longrightarrow B$ and $u'\colon A'\longrightarrow B$ be monomorphisms in $\text{Ar}\: \C$. We say that $u$ majorizes $u'$, written $u \leq u'$, if there exists a morphism $v:A \longrightarrow A'$ such that $u=u'\circ v$.\\
+ This relation defines a preorder on the class of arrows into $B$, from which we can extract an equivalence relation: $u \cong v$ if and only if $u \leq v$ and $v \leq u$. 
 
 
 
@@ -16,7 +16,11 @@ Let $u:A\longrightarrow B$ and $u':A'\longrightarrow B$ be monomorphisms in $\te
 \end{definition}
 
 \begin{remark}
-	Let $A,B$ be representatives of the same subobject of $X$, then we have a diagram
+	While taking a quotient, we could run into size issues when $\Hom_\C(A,B)$ is a proper class; we will generally avoid discussing set-theoretic issues.
+\end{remark}
+
+\begin{remark}
+	Let $A$ and $B$ be representatives of the same subobject of $X$, then we have a diagram
 	\[\begin{tikzcd}
 		& X \\
 		A & {B.}
@@ -25,7 +29,7 @@ Let $u:A\longrightarrow B$ and $u':A'\longrightarrow B$ be monomorphisms in $\te
 		\arrow["b"', hook', from=2-2, to=1-2]
 		\arrow["v", shift left, from=2-2, to=2-1]
 	\end{tikzcd}\]
-	By applying the definition of monomorphism, it is easy to see that $vu = \id_A$ and $uv = \id_B$ (also: $u$ and $v$ are unique), therefore $A$ and $B$ are isomorphic. This implies that being the same subobject is equivalent to being isomorphic in the coslice category $X/\C$.
+	By applying the definition of monomorphism, it is easy to see that $vu = \id_A$ and $uv = \id_B$ (also: $u$ and $v$ are unique), therefore $A$ and $B$ are isomorphic. This implies that being the same subobject is equivalent to being isomorphic in the slice category $\C / X$.
 \end{remark}
 
 We can now discuss the operation we can take between subobjects; every construction that we will describe is not dependent on the representative of the equivalence class of monomorphisms.
@@ -71,6 +75,7 @@ We can dualize all the previous constructions, to obtain the following definitio
 	Let $B \in \ob \: \C$, we define a \textbf{quotient} of $B$ to be an equivalence class of epimorphisms from $B$.
 \end{definition}
 
+All the dual results obviously hold.
 
 \section{Additive categories}
 
@@ -83,12 +88,12 @@ We start this section introducing additive categories and functors between them.
         \item $\C$ has binary products.
         \item $\C$ has a zero object, that is an object that is both initial and terminal.
     \end{itemize} 
-    We will refer to the identity element of $\Hom_\C(A,B)$ as the $0$-map.
+    We will refer to the identity element of $\Hom_\C(A,B)$ as the $0$-morphism.
 \end{definition}
 
 
 \begin{definition}[Additive functor]
-	An \textbf{additive functor} $F: \C \longrightarrow \mathcal{D}$ is a functor between additive categories such that for every pair of objects $A,B \in \ob \: \C$ the induced map
+	An \textbf{additive functor} $F: \C \longrightarrow \mathcal{D}$ is a functor between additive categories such that for every pair of objects $A,B \in \ob \: \C$ the induced morphism
 	\[F_{A,B}:\Hom_\C(A,B) \longrightarrow \Hom_{\mathcal{D}}(FA,FB)\] 
 	is a group homomorphism.
 \end{definition}
@@ -102,7 +107,7 @@ We will now let $\C$ be an additive category.
 		\Hom_\C(A,B) \otimes \Hom_\C(B,C) & \longrightarrow \Hom_\C(A, C) \\
 		f \otimes g & \mapsto gf.
 	\end{align}
-	An immediate consequence of this fact is that the composition of $0$-maps is the $0$-map.
+	An immediate consequence of this fact is that the composition of $0$-morphisms is the $0$-morphism.
 \end{remark}
 
 
@@ -117,7 +122,7 @@ We will now let $\C$ be an additive category.
 
 
 \begin{proof}
-	Recall that the monomorphisms between two objects $A,B$ are exactly the maps $f$ such that for every morphism $h:C \longrightarrow B$ we have at most one map $g:C \longrightarrow B$ such that the following diagram commutes:
+	Recall that the monomorphisms between two objects $A,B$ are exactly the morphisms $f$ such that for every morphism $h:C \longrightarrow B$ we have at most one morphism $g:C \longrightarrow B$ such that the following diagram commutes:
 
 	\[\begin{tikzcd}
 		A & B \\
@@ -126,7 +131,7 @@ We will now let $\C$ be an additive category.
 		\arrow["g", from=2-1, to=1-1]
 		\arrow["h"', from=2-1, to=1-2]
 	\end{tikzcd}\]
-	Let $g_1,g_2$ be two such maps, then the commutativity of the diagram above is equivalent to requiring that $fg_1 = h = fg_2$, which implies $f(g_1 - g_2) = 0$. Given that $h$ can vary between al maps that factor through $f$, we can set $g = g_1 - g_2$ and get the thesis.
+	Let $g_1,g_2$ be two such morphisms, then the commutativity of the diagram above is equivalent to requiring that $fg_1 = h = fg_2$, which implies $f(g_1 - g_2) = 0$. Given that $h$ can vary between al morphisms that factor through $f$, we can set $g = g_1 - g_2$ and get the thesis.
 
 \end{proof}
 
@@ -141,11 +146,11 @@ The dual of the above proposition is also true.
 \end{proposition}
 
 
-Let us now consider two objects $A,B$ in $\C$, we must have a (unique) terminal map $A \longrightarrow 0$ and a (unique) initial map $0 \longrightarrow B$; by uniqueness they must both be $0$-maps, so their composition is the zero map. We have shown that the $0$-map is the unique map that factors through the zero object.
+Suppose that $A,B$ are two objects in $\C$, we must have a (unique) terminal morphism $A \longrightarrow 0$ and a (unique) initial morphism $0 \longrightarrow B$; by uniqueness they must both be $0$-morphisms, so their composition is the zero morphism. We have shown that the $0$-morphism is the unique morphism that factors through the zero object.
 
 
 
-We can easily check that every binary product $A \times B$ is also a binary coproduct, where the canonical maps $\inn_1$, $\inn_2$ are given by $(\id_A, 0)$ and $(0, \id_B)$.
+We can easily check that every binary product $A \times B$ is also a binary coproduct, where the canonical morphisms $\inn_1$, $\inn_2$ are given by $(\id_A, 0)$ and $(0, \id_B)$.
 
 
 \[\begin{tikzcd}
@@ -159,7 +164,7 @@ We can easily check that every binary product $A \times B$ is also a binary copr
 	\arrow["{\pi_B}"', from=2-2, to=3-3]
 \end{tikzcd}\]
 
-We will denote the object that is both the product and the coproduct with the direct sum symbol: we have $A\times B \cong A \amalg B \cong A \oplus B$, along all the standard relationships between the canonical maps.
+We will denote the object that is both the product and the coproduct with the direct sum symbol: we have $A\times B \cong A \amalg B \cong A \oplus B$, along all the standard relationships between the canonical morphisms.
 
 \[\begin{tikzcd}
 	A && B && A && B \\
@@ -179,7 +184,7 @@ We will denote the object that is both the product and the coproduct with the di
 	\arrow["{\pi_1}"', from=2-6, to=3-7]
 \end{tikzcd}\]
 
-We also denote the maps produced from $f,g$ (resp. $f',g'$) by the universal property of the (co)product as $(f,g)$ (resp. $f+g$), taking care to note that $f+g$ has not (yet) any relation with the sum in $\Hom(A\oplus B, B)$. 
+We also denote the morphisms produced from $f,g$ (resp. $f',g'$) by the universal property of the (co)product as $(f,g)$ (resp. $f+g$), taking care to note that $f+g$ has not (yet) any relation with the sum in $\Hom(A\oplus B, B)$. 
 
 \[\begin{tikzcd}
 	& X &&& A & {A\oplus B} & B \\
@@ -196,8 +201,8 @@ We also denote the maps produced from $f,g$ (resp. $f',g'$) by the universal pro
 	\arrow["{\pi_2}"', from=2-2, to=2-3]
 \end{tikzcd}\]
 
-We will also denote the diagonal map $(\id_A, \id_A)$ as $\Delta_A \colon A \longrightarrow A \otimes A$ and the codiagonal map $id_B + id_B$ as $\nabla_B \colon B\oplus B \longrightarrow B$.\\
-With an analogous construction we get direct sum of maps $f \oplus g$, with all the relevant properties.
+We will also denote the diagonal morphism $(\id_A, \id_A)$ as $\Delta_A \colon A \longrightarrow A \otimes A$ and the codiagonal morphism $id_B + id_B$ as $\nabla_B \colon B\oplus B \longrightarrow B$.\\
+With an analogous construction we get direct sum of morphisms $f \oplus g$, with all the relevant properties.
 
 
 \[\begin{tikzcd}
@@ -231,7 +236,7 @@ With an analogous construction we get direct sum of maps $f \oplus g$, with all 
 
 
 \begin{remark}
-	Let us consider the map $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 \inn_1 + \pi_2 \inn_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two maps $f,g \colon A \longrightarrow B$, we have that
+	Let us consider the morphism $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 \inn_1 + \pi_2 \inn_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two morphisms $f,g \colon A \longrightarrow B$, we have that
 	\[f+g = \nabla_A (f \oplus g) \Delta_B.\]
 \end{remark}
 
@@ -259,10 +264,10 @@ With an analogous construction we get direct sum of maps $f \oplus g$, with all 
 	Due to the fact that every equalizer is monic (and every coequalizer is epic), it is immediate to see that the kernel of a morphism is a subobject, while the cokernel is a quotient. This also implies that the image is a subobject while the coimage is a quotient.
 \end{remark}
 
-Applying the relevant universal properties it is easy to see that there exist a canonical morphism $\coim(f) \longrightarrow \im(f)$ such that the following diagram commutes
+Applying the relevant universal properties it is easy to see that there exist a canonical morphism $\coim(f) \longrightarrow \im(f)$ such 
 \[\begin{tikzcd}
 	{\ker(f)} & A && B & {\coker(f)} \\
-	& {Coim(f)} && {Im(f).}
+	& {Coim(f)} && {Im(f)}
 	\arrow[from=1-1, to=1-2]
 	\arrow["f", from=1-2, to=1-4]
 	\arrow[from=1-2, to=2-2]
@@ -270,7 +275,7 @@ Applying the relevant universal properties it is easy to see that there exist a 
 	\arrow[from=2-2, to=2-4]
 	\arrow[from=2-4, to=1-4]
 \end{tikzcd}\]
-
+commutes.
 
 
 
@@ -282,23 +287,23 @@ Applying the relevant universal properties it is easy to see that there exist a 
 	An \textbf{abelian category} is an additive category $\C$ that satisfies the following axioms:
 	\begin{itemize}
   		\item[(AB1)] any morphism admits a kernel and a cokernel;
-    	\item[(AB2)] for every morphism $f:A\longrightarrow B$, the canonical map $\coim(f) \longrightarrow \im(f)$ is an isomorphism.
+    	\item[(AB2)] for every morphism $f:A\longrightarrow B$, the canonical morphism $\coim(f) \longrightarrow \im(f)$ is an isomorphism.
 	\end{itemize}
 \end{definition}
 
 The existence of the kernel and the cokernel is remarkably powerful: the equalizer of $f$ and $g$ is exactly the kernel of $f-g$, while their coequalizer is its cokernel; therefore in any abelian category equalizers and coequalizers must exist. It is a well known result that it is possible to construct a finite limit using equalizers and finite products, thus every abelian category has finite limits and (dually) finite colimits. One consequence of this result is the fact that we can always take the intersection and the sum of subobjects, therefore the subobjects of a given object form a lattice where intersection and sum are meet and join.
 
 \begin{example}
-	let $0\colon A \longrightarrow B$ be the $0$ map, then $\ker(0) = A$ and $\coker(0) = B$.
+	let $0\colon A \longrightarrow B$ be the $0$ morphism, then $\ker(0) = A$ and $\coker(0) = B$.
 \end{example}
 
 \begin{remark}
-	Let $f$ be a monomorphism, because of proposition \ref{prop:mono-equiv} every maps that equalizes $f$ and the $0$-map must necessarily be the $0$-map itself; given that we also know that the $0$-map factors through $0$, we conclude that the kernel of $f$ must be $0$, and that this is a sufficient condition for $f$ to be monic.\\
+	Let $f$ be a monomorphism, because of proposition \ref{prop:mono-equiv} every morphisms that equalizes $f$ and the $0$-morphism must necessarily be the $0$-morphism itself; given that we also know that the $0$-morphism factors through $0$, we conclude that the kernel of $f$ must be $0$, and that this is a sufficient condition for $f$ to be monic.\\
 	The same can be said for the cokernel of an epimorphism. 
 \end{remark}
 
 
-From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity map $A \longrightarrow A$), therefore by applying (AB2) we deduce every monomorphism is its image and therefore it's the kernel of a map.
+From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity morphism $A \longrightarrow A$), therefore by applying (AB2) we deduce every monomorphism is its image and therefore it's the kernel of a morphism.
 
 \[\begin{tikzcd}
 	0 & A & B & {\coker(f)} \\
@@ -310,7 +315,7 @@ From the previous remark follows that the coimage of the monomorphism $f: A \lon
 	\arrow["\cong", from=2-2, to=2-3]
 	\arrow[from=2-3, to=1-3]
 \end{tikzcd}\]
-Dually every epimorphism is its coimage and therefore it's the cokernel of a map. \\
+Dually every epimorphism is its coimage and therefore it's the cokernel of a morphism. \\
 We continue by introducing one of the main object used in the study of abelian categories: exact sequences.
 
 
@@ -480,7 +485,7 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 \end{tikzcd}\]
 
 \begin{remark}
-	If $n=1$, the relation is much simpler: in the following diagram both middle maps must necessarily be isomorphism, therefore we need only to look for a map $X \to X'$ that makes the following diagram commute.
+	If $n=1$, the relation is much simpler: in the following diagram both middle morphisms must necessarily be isomorphism, therefore we need only to look for a morphism $X \to X'$ that makes sure that the following diagram commutes.
 	\[\begin{tikzcd}[sep=small]
 		{\xi \colon} & 0 & B & X & A & 0 \\
 		{\xi'\colon} & 0 & B & {X'} & A & 0
@@ -538,7 +543,7 @@ commutes. From this formulation follows that an extension is split if and only i
 We will show that $\Ext$ is actually a functor from $\C\op \times \C$ to $\cat{Set}$, in the case $n=1$ (for the general case see \cite{maclane2012homology}). 
 If we are given an extension 
 \[0 \longrightarrow B \longrightarrow X \longrightarrow A \longrightarrow 0 \]
-and $h\colon B\longrightarrow B'$ we can take the pushout ${B'\times_B X}$; then, applying the relevant universal property to the maps $0\colon B' \longrightarrow A$ and $g \colon X \longrightarrow A$, we get a commuting diagrams with exact lines:
+and $h\colon B\longrightarrow B'$ we can take the pushout ${B'\times_B X}$; then, applying the relevant universal property to the morphisms $0\colon B' \longrightarrow A$ and $g \colon X \longrightarrow A$, we get a commuting diagrams with exact lines:
 
 
 \[\begin{tikzcd}
@@ -557,7 +562,7 @@ and $h\colon B\longrightarrow B'$ we can take the pushout ${B'\times_B X}$; then
 	\arrow[from=2-4, to=2-5]
 \end{tikzcd}\]
 Therefore, by passing to the quotient, we get a morphism of sets \[h_{*}\colon \Ext^1(A,B) \longrightarrow \Ext(A,B').\] 
-Similarly, given a map $k:A'\longrightarrow A$, we get a function 
+Similarly, given a morphism $k:A'\longrightarrow A$, we get a function 
 \[k_* \colon \Ext^1_\C(A, B) \longrightarrow \Ext^1_\C(A',B).\] 
 
 We will now introduce an operation, called the \textit{Baer sum}, on $\Ext^n_\C(A,B)$: given two elements in $\Ext^n_\C(A,B)$ with representatives
