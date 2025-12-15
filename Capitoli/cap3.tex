@@ -108,9 +108,7 @@ Let us consider a triple $(W, \fibT, \cofT)$ of subclasses of $\ar(\C)$, called 
 	Sometimes in the definition of model category it is required that the factorization be functorial; we will not make such demand.
 \end{remark}
 
-\begin{remark}
-	
-\end{remark}
+
 
 We will from now on use $\C$ to refer to a model category.
 
@@ -188,8 +186,17 @@ We will from now on use $\C$ to refer to a model category.
 \end{remark}
 
 
+\begin{example}
+	We will now study the example of the category of topological spaces.\\
+	\textbf{DECIDERE COSA SCRIVERE}
+\end{example}
+
 \begin{definition}[Abelian model categories]
-	
+	Let $\C$ be a model category where the underlying category is abelian; we will refer to $\C$ as an \textbf{abelian model category} if the following hold:
+	\begin{itemize}
+		\item A map is a cofibration if and only if it is a monomorphism with cofibrant cokernel.
+		\item A map is a fibration if and only if it is an epimorphism with fibrant kernel.
+	\end{itemize}
 \end{definition}
 
 
@@ -248,7 +255,7 @@ It is important to observe that for every object $A$ a very good cylinder object
 \end{remark}
 
 \begin{definition}[Homotopies]
-	Two morphisms $f\colon A \longrightarrow B$ are said to be \textbf{homotopic} if there exist a cylinder $A\wedge I$ and a map $H\colon A\wedge I \longrightarrow B$ such that
+	Two morphisms $f,g\colon A \longrightarrow B$ are said to be \textbf{left homotopic} (denoted $f \lsim g$) if there exist a cylinder $A\wedge I$ and a map $H\colon A\wedge I \longrightarrow B$ such that
 	\[\begin{tikzcd}
 		A \\
 		& {A \wedge I} && B \\
@@ -259,7 +266,7 @@ It is important to observe that for every object $A$ a very good cylinder object
 		\arrow["{i_2}", from=3-1, to=2-2]
 		\arrow["g"', curve={height=12pt}, from=3-1, to=2-4]
 	\end{tikzcd}\]
-	commutes. We will refer to the diagram as an \textbf{homotopy}. \\
+	commutes. We will refer to the diagram as a \textbf{left homotopy}. \\
 	An homotopy is said to be \textbf{good} (resp. \textbf{very good}) if the cylinder is good (resp. very good).
 \end{definition}
 

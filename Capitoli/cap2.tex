@@ -3,7 +3,7 @@
 
 
 This first chapter will serve as an introduction to the basics of Abelian Categories, first introduced by Alexander Grothendieck in his seminal "Tohoku Paper" \cite{Tohoku}.
-We will begin with the basic definitions.
+We will begin with the basic definitions. For a nice introduction see \cite{murfet2006abelian}.
 
 \section{Basic definitions}
 Let $\C$ be a category.
@@ -14,6 +14,19 @@ Let $u:A\longrightarrow B$ and $u':A'\longrightarrow B$ be monomorphisms in $\te
 \begin{definition}[Subobject]
 	Let $B \in \ob \: \C$, we define a \textbf{subobject} of $B$ to be an equivalence class of monomorphisms into $B$.
 \end{definition}
+
+\begin{remark}
+	Let $A,B$ be representatives of the same subobject of $X$, then we have a diagram
+	\[\begin{tikzcd}
+		& X \\
+		A & {B.}
+		\arrow["a", hook, from=2-1, to=1-2]
+		\arrow["u", shift left, from=2-1, to=2-2]
+		\arrow["b"', hook', from=2-2, to=1-2]
+		\arrow["v", shift left, from=2-2, to=2-1]
+	\end{tikzcd}\]
+	By applying the definition of monomorphism, it is easy to see that $vu = \id_A$ and $uv = \id_B$ (also: $u$ and $v$ are unique), therefore $A$ and $B$ are isomorphic. This implies that being the same subobject is equivalent to being isomorphic in the coslice category $X/\C$.
+\end{remark}
 
 We can now discuss the operation we can take between subobjects; every construction that we will describe is not dependent on the representative of the equivalence class of monomorphisms.
 
@@ -134,6 +147,7 @@ Let us now consider two objects $A,B$ in $\C$, we must have a (unique) terminal 
 
 We can easily check that every binary product $A \times B$ is also a binary coproduct, where the canonical maps $\inn_1$, $\inn_2$ are given by $(\id_A, 0)$ and $(0, \id_B)$.
 
+
 \[\begin{tikzcd}
 	& A \\
 	& {A\times B} \\
@@ -224,19 +238,19 @@ With an analogous construction we get direct sum of maps $f \oplus g$, with all 
 \begin{definition}[Kernel and cokernel]
 	Let $f : A\longrightarrow B$ be an arrow of $\C$, the \textbf{kernel} of $f$ is the equalizer 
 	\[\begin{tikzcd}
-	Ker(f) & A & B, & {}
+	\ker(f) & A & B, & {}
 	\arrow["0"', shift right=1, from=1-2, to=1-3]
 	\arrow["f", shift left=1, from=1-2, to=1-3]
 	\arrow[from=1-1, to=1-2]
 	\end{tikzcd}\]
 	while the \textbf{cokernel} is the coequalizer of the diagram
 	\[\begin{tikzcd}
-	 A & B & Coker(f). & {}
+	 A & B & \coker(f). & {}
 	\arrow["0"', shift right=1, from=1-1, to=1-2]
 	\arrow["f", shift left=1, from=1-1, to=1-2]
 	\arrow[from=1-2, to=1-3]
 	\end{tikzcd}\]
-	We will often refer to both the object and the arrow of the coequalizer as the kernel. We also define the image of $f$, denoted $Im f$, as $Ker(Coker(f))$ and the coimage of $f$, denoted $Coim(f)$, as $Coker(Ker(f))$.
+	We will often refer to both the object and the arrow of the coequalizer as the kernel. We also define the image of $f$, denoted $Im f$, as $\ker(\coker(f))$ and the coimage of $f$, denoted $\coim(f)$, as $\coker(\ker(f))$.
 
 \end{definition}
 
@@ -245,9 +259,9 @@ With an analogous construction we get direct sum of maps $f \oplus g$, with all 
 	Due to the fact that every equalizer is monic (and every coequalizer is epic), it is immediate to see that the kernel of a morphism is a subobject, while the cokernel is a quotient. This also implies that the image is a subobject while the coimage is a quotient.
 \end{remark}
 
-Applying the relevant universal properties it is easy to see that there exist a canonical morphism $Coim(f) \longrightarrow Im(f)$ such that the following diagram commutes
+Applying the relevant universal properties it is easy to see that there exist a canonical morphism $\coim(f) \longrightarrow \im(f)$ such that the following diagram commutes
 \[\begin{tikzcd}
-	{Ker(f)} & A && B & {Coker(f)} \\
+	{\ker(f)} & A && B & {\coker(f)} \\
 	& {Coim(f)} && {Im(f).}
 	\arrow[from=1-1, to=1-2]
 	\arrow["f", from=1-2, to=1-4]
@@ -268,23 +282,27 @@ Applying the relevant universal properties it is easy to see that there exist a 
 	An \textbf{abelian category} is an additive category $\C$ that satisfies the following axioms:
 	\begin{itemize}
   		\item[(AB1)] any morphism admits a kernel and a cokernel;
-    	\item[(AB2)] for every morphism $f:A\longrightarrow B$, the canonical map $Coim(f) \longrightarrow Im(f)$ is an isomorphism.
+    	\item[(AB2)] for every morphism $f:A\longrightarrow B$, the canonical map $\coim(f) \longrightarrow \im(f)$ is an isomorphism.
 	\end{itemize}
 \end{definition}
 
 The existence of the kernel and the cokernel is remarkably powerful: the equalizer of $f$ and $g$ is exactly the kernel of $f-g$, while their coequalizer is its cokernel; therefore in any abelian category equalizers and coequalizers must exist. It is a well known result that it is possible to construct a finite limit using equalizers and finite products, thus every abelian category has finite limits and (dually) finite colimits. One consequence of this result is the fact that we can always take the intersection and the sum of subobjects, therefore the subobjects of a given object form a lattice where intersection and sum are meet and join.
 
+\begin{example}
+	let $0\colon A \longrightarrow B$ be the $0$ map, then $\ker(0) = A$ and $\coker(0) = B$.
+\end{example}
+
 \begin{remark}
-	Let $f$ be a monomorphism, every maps that equalized $f$ and the $0$-map must necessarily be the $0$-map itself because of proposition \ref{prop:mono-equiv}; we also know that the $0$-map factors through $0$, therefore $0$ must be the kernel of $f$. Similarly the cokernel of an epimorphism must be $0$. With the 
-	 It is also immediate that the kernel of $0 \longrightarrow B$ is $B$ (and the identity map), just like the cokernel of $A \longrightarrow 0$ is $A$ (and the identity map).
+	Let $f$ be a monomorphism, because of proposition \ref{prop:mono-equiv} every maps that equalizes $f$ and the $0$-map must necessarily be the $0$-map itself; given that we also know that the $0$-map factors through $0$, we conclude that the kernel of $f$ must be $0$, and that this is a sufficient condition for $f$ to be monic.\\
+	The same can be said for the cokernel of an epimorphism. 
 \end{remark}
 
 
 From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity map $A \longrightarrow A$), therefore by applying (AB2) we deduce every monomorphism is its image and therefore it's the kernel of a map.
 
 \[\begin{tikzcd}
-	0 & A & B & {coker(f)} \\
-	& A & {Im(f)}
+	0 & A & B & {\coker(f)} \\
+	& A & {\im(f)}
 	\arrow[from=1-1, to=1-2]
 	\arrow[from=1-2, to=1-3]
 	\arrow["{\id_A}"', from=1-2, to=2-2]
@@ -295,6 +313,52 @@ From the previous remark follows that the coimage of the monomorphism $f: A \lon
 Dually every epimorphism is its coimage and therefore it's the cokernel of a map. \\
 We continue by introducing one of the main object used in the study of abelian categories: exact sequences.
 
+
+\begin{lemma}
+	Let us consider the following commutative diagram:
+	\[\begin{tikzcd}
+		W & Y & {} \\
+		X & {Z.}
+		\arrow["g", from=1-1, to=1-2]
+		\arrow["f"', from=1-1, to=2-1]
+		\arrow["k", from=1-2, to=2-2]
+		\arrow["h"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	The following is true:
+	\begin{enumerate}
+		\item The diagram is a pullback diagram if and only if
+		\[\begin{tikzcd}
+			0 & W & {X\oplus Y} & Z
+			\arrow[from=1-1, to=1-2]
+			\arrow["{(f,g)}", from=1-2, to=1-3]
+			\arrow["{h-k}", from=1-3, to=1-4]
+		\end{tikzcd}\]
+		is exact.
+		\item The diagram is a pushout diagram if and only if
+		\[\begin{tikzcd}
+			W & {X\oplus Y} & Z & 0
+			\arrow["{(f,-g)}", from=1-1, to=1-2]
+			\arrow["{h+k}", from=1-2, to=1-3]
+			\arrow[from=1-3, to=1-4]
+		\end{tikzcd}\]
+		is exact.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+	\textbf{DA FARE}
+\end{proof}
+
+\begin{proposition}
+	\label{prop:epi-pull}
+	Epimorphism are stable under pullback (and correspond to pushouts), while monomorphisms are stable under pushout (and correspond to pullbacks).
+\end{proposition}
+\begin{proof}
+	\textbf{DA FARE}
+\end{proof}
+
+
+
 \begin{definition}[Exact sequence]
 	Let $f\colon A\longrightarrow B$ and $g\colon B \longrightarrow C$ be morphisms in $\C$, we say that the sequence 
 	\[\begin{tikzcd}
@@ -302,7 +366,7 @@ We continue by introducing one of the main object used in the study of abelian c
 		\arrow["f", from=1-1, to=1-2]
 		\arrow["g", from=1-2, to=1-3]
 	\end{tikzcd}\]
-	is \textbf{exact} if $Im(f)$ and $Ker(g)$ are the same subobject of $B$. More generally if we have a succession of morphism 
+	is \textbf{exact} if $Im(f)$ and $\ker(g)$ are the same subobject of $B$. More generally if we have a succession of morphism 
 	\[\begin{tikzcd}
 		\cdots & {A_{k-1}} & {A_k} & {A_{k+1}} & \cdots
 		\arrow[from=1-1, to=1-2]
@@ -321,9 +385,31 @@ We continue by introducing one of the main object used in the study of abelian c
 	that is exact at $A$, $B$ and $C$; we will often shorten the name short exact sequence as SES.
 \end{definition}
 
-
-
-
+Let us now consider a SES
+\[\begin{tikzcd}
+	0 & A & B & C & {0;}
+	\arrow[from=1-1, to=1-2]
+	\arrow["i", from=1-2, to=1-3]
+	\arrow["p", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+exactness in $A$ implies that $\ker(i) = \im(0) = 0$, therefore $i$ is monic; similarly $p$ is epic. \\
+If we take a monomorphism $i\colon A \longleftarrow B$, we can obtain a SES 
+\[\begin{tikzcd}
+	0 & A & B & {\coker(i)} & {0.}
+	\arrow[from=1-1, to=1-2]
+	\arrow["i", from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+Similarly for an epimorphism $p$ we get
+\[\begin{tikzcd}
+	0 & {\ker(p)} & B & C & {0.}
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow["p", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
 
 
 
@@ -424,6 +510,21 @@ We can now define an equivalence relation on the class of $n$-extensions as foll
 \end{tikzcd}\]
 \end{definition}
 
+
+It is easy to see that an extension $B\longrightarrow X \longrightarrow A$ is split if and only if there exists an isomorphism $f \colon X \longrightarrow B \oplus A$ such that
+\[\begin{tikzcd}
+	0 & B & X & A & 0 \\
+	&& {B \oplus A}
+	\arrow[from=1-1, to=1-2]
+	\arrow["i", from=1-2, to=1-3]
+	\arrow["{\inn_1}"', from=1-2, to=2-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow["\cong", "f"', from=1-3, to=2-3]
+	\arrow["p", from=1-4, to=1-5]
+	\arrow["{\pi_2}"', from=2-3, to=1-4]
+\end{tikzcd}\]
+commutes. From this formulation follows that an extension is split if and only if there exists a retraction of $i$ (i.e. a morphism $q\colon X \longrightarrow B$ such that $qi = \id_B$) or a section of $p$ (i.e. a morphism $j\colon A \longrightarrow X$ such that $pj = \id_A$).
+
 \begin{definition}[Ext]
 	We define $\Ext^n_\C(A,B)$ to be quotient of the family of all $n$-extensions by the relation of equivalence. We will also define $\Ext^0_\C(A,B)$ as $\Hom_\C(A,B)$. 
 \end{definition}
@@ -493,7 +594,7 @@ and define their direct sum as
 then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \Delta_A \right)^* (\xi \oplus \xi')] $.
 
 \begin{theorem}
-	Baer sum makes the sets $\Ext^n_\C$ (for $n\geq 1$) abelian groups, where the identity is given by the class of a split extension for $n=1$ and otherwise by the complex
+	Baer sum makes the sets $\Ext^n_\C$ (for $n\geq 1$) into abelian groups, where the identity is given by the class of a split extension for $n=1$ and otherwise by the complex
 	\[\begin{tikzcd}
 		0 & B & B & 0 & \cdots & 0 & A & A & {0.}
 		\arrow[from=1-1, to=1-2]
@@ -516,10 +617,61 @@ then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \De
 
 
 \section{Injective and projective objects}
-\textbf{DECIDERE COSA SCRIVERE}
+
+\begin{definition}[Injective and projective objects]
+	Let $\mathcal{H}$ be a subclass of $\ob(\C)$. We say that an object $B$ is $\mathcal{H}$-\textbf{injective} if for every $A\in \mathcal{H}$ we have
+	\[\Ext^1_\C(A,B) = 0.\]
+	Dually we say that object $A$ is said to be $\mathcal{H}$-\textbf{projective} if for every $B\in \mathcal{H}$ we have
+	\[\Ext^1_\C(A,B) = 0.\]
+	If $\mathcal{H}= \ob(\C)$ the $\mathcal{H}$-injectives objects are simply called injective objects and the $\mathcal{H}$-prohective objects are simply called projective objects. 
+\end{definition}
 
 
+From the definition it follows immediately that an object $B$ is $\mathcal{H}$-injective if and only if for every $A\in \mathcal{H}$ every sequence 
+\[\begin{tikzcd}
+	0 & B & X & A & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+splits. The dual result is similar.
 
+
+\begin{proposition}
+	An object $P$ is projective if and only if for every epimorphism $e\colon E\longrightarrow X$ and every morphism $f\colon P \longrightarrow X$ there exists a morphism $\bar{f} \colon P \longrightarrow E$ such that 
+	\[\begin{tikzcd}
+		& E \\
+		P & X
+		\arrow["e", from=1-2, to=2-2]
+		\arrow["{\bar{f}}", dashed, from=2-1, to=1-2]
+		\arrow["f"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	commutes.
+\end{proposition}
+
+\begin{proof}
+	($\Rightarrow $) Let $P$ be a projective object and let $e\colon E\longrightarrow X$ be an epimorphism and $f\colon P \longrightarrow X$ be a morphism; by taking a pullback
+	\[\begin{tikzcd}
+		{P\times_X E} & E \\
+		P & {X,}
+		\arrow["f'", from=1-1, to=1-2]
+		\arrow["{e'}"', from=1-1, to=2-1]
+		\arrow["e", from=1-2, to=2-2]
+		\arrow["f"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	we get an epimorphism $e'\colon {P\times_X E} \longrightarrow P$ (see proposition \ref{prop:epi-pull}). By considering the exact sequence associated to it
+	\[\begin{tikzcd}
+		0 & {\ker(e')} & {P\times_X E} & P & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["{e'}", from=1-3, to=1-4]
+		\arrow["g"', curve={height=-24pt}, from=1-4, to=1-3]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	we get a section $g\colon P \longrightarrow {P\times_X E}$ , then $\bar{f} = f'g$.\\
+	($\Leftarrow $) 
+\end{proof}
 
 
 \section{Exact functors}
@@ -531,6 +683,9 @@ then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \De
 
 
 \section{Grothendieck Categories}
+
+
+
 
 \begin{definition}
 	Any abelian category $\C$ can also satisfy the following axioms:	
@@ -555,8 +710,14 @@ then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \De
 \begin{theorem}
 	Every Grothendieck category has enough injectives.
 \end{theorem}
+\begin{proof}
+	See \cite{Tohoku}.
+\end{proof}
 
-
+\begin{example}
+	Modules/sheaves.
+	\textbf{DECIDERE COSA SCRIVERE}
+\end{example}
 
 
 \section{Monoidal categories}
