@@ -236,7 +236,7 @@ With an analogous construction we get direct sum of morphisms $f \oplus g$, with
 
 
 \begin{remark}
-	Let us consider the morphism $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 \inn_1 + \pi_2 \inn_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two morphisms $f,g \colon A \longrightarrow B$, we have that
+	Let us consider the morphism $\pi_1+\pi_2\colon B\oplus B \longrightarrow B$ given by the additive structure on $\Hom(B\oplus B, B)$; we have that $(\pi_1 +\pi_2)i_1 = \pi_1 \inn_1 + \pi_2 \inn_1 = \id_B + 0 =\id_B $ and that $(\pi_1 +\pi_2)i_2 =\id_B $, therefore we can write $\nabla_B = \pi_1+\pi_2$. A consequence of this result is that, given two morphisms $f,g \colon A \longrightarrow B$, we have
 	\[f+g = \nabla_A (f \oplus g) \Delta_B.\]
 \end{remark}
 
@@ -258,6 +258,10 @@ With an analogous construction we get direct sum of morphisms $f \oplus g$, with
 	We will often refer to both the object and the arrow of the coequalizer as the kernel. We also define the image of $f$, denoted $Im f$, as $\ker(\coker(f))$ and the coimage of $f$, denoted $\coim(f)$, as $\coker(\ker(f))$.
 
 \end{definition}
+
+\begin{example}
+	let $0\colon A \longrightarrow B$ be the $0$ morphism, then $\ker(0) = A$ and $\coker(0) = B$ (with the identity morphism).
+\end{example}
 
 
 \begin{remark}
@@ -291,19 +295,16 @@ commutes.
 	\end{itemize}
 \end{definition}
 
-The existence of the kernel and the cokernel is remarkably powerful: the equalizer of $f$ and $g$ is exactly the kernel of $f-g$, while their coequalizer is its cokernel; therefore in any abelian category equalizers and coequalizers must exist. It is a well known result that it is possible to construct a finite limit using equalizers and finite products, thus every abelian category has finite limits and (dually) finite colimits. One consequence of this result is the fact that we can always take the intersection and the sum of subobjects, therefore the subobjects of a given object form a lattice where intersection and sum are meet and join.
+The existence of the kernel and the cokernel is remarkably powerful: the equalizer of $f$ and $g$ is exactly the kernel of $f-g$, while their coequalizer is its cokernel; therefore in any abelian category equalizers and coequalizers must exist. It is a well known result that it is possible to construct a finite limit using equalizers and finite products, thus every abelian category has finite limits and (dually) finite colimits. One consequence of this result is the fact that we can always take the intersection and the sum of subobjects, therefore the subobjects of a given object form a lattice.
 
-\begin{example}
-	let $0\colon A \longrightarrow B$ be the $0$ morphism, then $\ker(0) = A$ and $\coker(0) = B$.
-\end{example}
 
 \begin{remark}
-	Let $f$ be a monomorphism, because of proposition \ref{prop:mono-equiv} every morphisms that equalizes $f$ and the $0$-morphism must necessarily be the $0$-morphism itself; given that we also know that the $0$-morphism factors through $0$, we conclude that the kernel of $f$ must be $0$, and that this is a sufficient condition for $f$ to be monic.\\
+	Let $f$ be a monomorphism, because of proposition \ref{prop:mono-equiv} every morphisms that equalizes $f$ and the $0$-morphism must be the $0$-morphism itself; given that we also know that the $0$-morphism factors through the $0$-object, we conclude that the kernel of $f$ must be $0$, and that this is a sufficient condition for $f$ to be monic.\\
 	The same can be said for the cokernel of an epimorphism. 
 \end{remark}
 
 
-From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity morphism $A \longrightarrow A$), therefore by applying (AB2) we deduce every monomorphism is its image and therefore it's the kernel of a morphism.
+From the previous remark follows that the coimage of the monomorphism $f: A \longrightarrow B $ is exactly $A$ (or more precisely the identity morphism $A \longrightarrow A$), therefore by applying (AB2) we deduce that every monomorphism is its image and therefore that it is a kernel (as a subobject).
 
 \[\begin{tikzcd}
 	0 & A & B & {\coker(f)} \\
@@ -315,7 +316,7 @@ From the previous remark follows that the coimage of the monomorphism $f: A \lon
 	\arrow["\cong", from=2-2, to=2-3]
 	\arrow[from=2-3, to=1-3]
 \end{tikzcd}\]
-Dually every epimorphism is its coimage and therefore it's the cokernel of a morphism. \\
+Dually every epimorphism is its coimage and therefore it is a cokernel. \\
 We continue by introducing one of the main object used in the study of abelian categories: exact sequences.
 
 
