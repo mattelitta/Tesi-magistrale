@@ -362,6 +362,7 @@ It is important to observe that for every object $A$ a very good cylinder object
 We will now state some preliminary lemmas, each contains a statement and its dual, so we will only prove one of them.  
 
 \begin{lemma}
+	\label{lem:weak-closed-hom}
 	If $f \lsim g$ (or $f \rsim g$) and $f$ is a weak equivalence then $g$ is also a weak equivalence. 
 \end{lemma}
 \begin{proof}
@@ -382,6 +383,7 @@ We will now state some preliminary lemmas, each contains a statement and its dua
 
 
 \begin{lemma}
+	\label{lem:good-hom}
 	Let $f,g \colon A \longrightarrow B$ then:
 	\begin{enumerate}
 		\item If $f \lsim g$ then there exists a good left homotopy from $f$ to $g$.
@@ -484,7 +486,7 @@ Let us consider a morphism $p \colon X \longrightarrow Y$ and take $f,g \colon A
 	\arrow[from=1-1, to=2-2]
 	\arrow["f", curve={height=-12pt}, from=1-1, to=2-3]
 	\arrow["H", from=2-2, to=2-3]
-	\arrow["p", from=2-3, to=2-4]
+	\arrow["p", "\sim"', from=2-3, to=2-4]
 	\arrow[from=3-1, to=2-2]
 	\arrow["g"', curve={height=12pt}, from=3-1, to=2-3]
 \end{tikzcd}\]
@@ -500,9 +502,235 @@ By duality, given $i\colon A \longrightarrow B$, we get a map
 \end{align*}
 
 \begin{lemma}
+	\label{lem:bij}
 	If $A$ is cofibrant and $p\colon X \longrightarrow Y$ is an acyclic fibration, then $p_*\colon \pi^l(A,X) \longrightarrow \pi^l(A,Y)$ is a bijection. 
 	If $X$ is fibrant and $i\colon A \longrightarrow B$ is an acyclic cofibration, then $p_*\colon \pi^l(A,X) \longrightarrow \pi^l(A,Y)$ is a bijection.
 \end{lemma}
 \begin{proof}
-	ADASDSDA
+	Let $A$ be cofibrant and let $p\colon X \longrightarrow Y$ be an acyclic fibration. Now let $[f] \in \pi^l(A,Y)$ be a (left) homotopy class of morphisms between $A$ and $Y$. Then the hypotheses we have are exactly the ones needed to show that there exists a lift in the following square.
+	\[\begin{tikzcd}
+		\emptyset & X \\
+		A & Y
+		\arrow[from=1-1, to=1-2]
+		\arrow[hook', from=1-1, to=2-1]
+		\arrow["p", two heads, from=1-2, to=2-2]
+		\arrow["g", dashed, from=2-1, to=1-2]
+		\arrow["f"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	Given that $p_*([g]) = [f]$ we have that $p_*$ is surgective. \\
+	To prove injectivity, we consider $[f],[g]\in \pi^l(A,X)$ such that $[pf]=[pg]$, therefore, using lemma \ref{lem:good-hom}, we have a good left homotopy $H\colon A \wedge I \longrightarrow X$ between $pf$ and $pg$. We have defined a diagram where a lift exists by (\textbf{MC3}).
+	\[\begin{tikzcd}
+		{A \amalg A} & X \\
+		{A\wedge I} & {Y,}
+		\arrow["{f+g}", from=1-1, to=1-2]
+		\arrow["i", hook', from=1-1, to=2-1]
+		\arrow["p", two heads, from=1-2, to=2-2]
+		\arrow["K"', dashed, from=2-1, to=1-2]
+		\arrow["H"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	$K$ is exactly a left homotopy between $f$ and $g$, therefore $[f] = [g]$.
+
 \end{proof}
+
+\begin{lemma}
+	Let $f,g \colon  A \longrightarrow B$ be morphisms, then:
+	\begin{itemize}
+		\item If $B$ is fibrant and $h\colon A' \longrightarrow A$ is a morphism then $f \lsim g$ implies $fh \lsim gh$.
+		\item If $A$ is cofibrant and $h \colon B \longrightarrow B'$ is a morphism then $f \rsim g$ implies $hf \rsim hg$.
+	\end{itemize}
+\end{lemma}
+\begin{proof}
+	By lemma \ref{lem:good-hom} we can assume the existence of a very good homotopy $H \colon A \wedge I \longrightarrow B$ between $f$ and $g$. We then take a good cylinder object $A'\wedge I$ of $A'$:
+	\[\begin{tikzcd}
+		{A'\amalg A'} & {A'\wedge I} & {A'.}
+		\arrow["{i'}", from=1-1, to=1-2]
+		\arrow["{q'}", "\sim"', two heads, from=1-2, to=1-3]
+	\end{tikzcd}\]
+	Using the fact that the following diagram commutes,
+	\[\begin{tikzcd}
+		{A'\amalg A'} & {A\amalg A} \\
+		{A'} & A
+		\arrow["{\inn_1h+\inn_2h}"', from=1-1, to=1-2]
+		\arrow["{\nabla_{A'}}"', from=1-1, to=2-1]
+		\arrow["{\nabla_A}", from=1-2, to=2-2]
+		\arrow["h", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	we get a diagram
+	\[\begin{tikzcd}
+		{A'\amalg A'} & {A\amalg A} & {A\wedge  I} \\
+		{A'\wedge I} & {A'} & A
+		\arrow["{\inn_1h+\inn_2h}"', from=1-1, to=1-2]
+		\arrow["{i'}", hook', from=1-1, to=2-1]
+		\arrow["i"', hook, from=1-2, to=1-3]
+		\arrow["q", "\sim"', two heads, from=1-3, to=2-3]
+		\arrow["{q'}"', "\sim", from=2-1, to=2-2]
+		\arrow["h"', from=2-2, to=2-3]
+	\end{tikzcd}\]
+	which admits a lift $K \colon A'\wedge I \longrightarrow A \wedge I $ by (\textbf{MC3}). The left homotopy we are looking for is no other than $HK$. 
+	\[\begin{tikzcd}
+		{A'} & A \\
+		{A'\amalg A'} & {A\amalg A} & {A\wedge  I} & B \\
+		{A'} & A
+		\arrow["h"', from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=1-2, to=2-2]
+		\arrow["{i_1}", from=1-2, to=2-3]
+		\arrow["f", curve={height=-12pt}, from=1-2, to=2-4]
+		\arrow["{\inn_1h+\inn_2h}"', from=2-1, to=2-2]
+		\arrow["K", from=2-2, to=2-3]
+		\arrow["H", from=2-3, to=2-4]
+		\arrow[from=3-1, to=2-1]
+		\arrow["h", from=3-1, to=3-2]
+		\arrow[from=3-2, to=2-2]
+		\arrow["{i_2}"', from=3-2, to=2-3]
+		\arrow["g"', curve={height=12pt}, from=3-2, to=2-4]
+	\end{tikzcd}\]
+\end{proof}
+
+We would now like to see when composition between morphisms is well defined in the homotopy groups.
+
+\begin{lemma}
+	If $C$ is fibrant, then morphism composition defines a function
+	\begin{align*}
+		\pi^l(A,B) \times  \pi^l(B,C) &\longrightarrow \pi^l(A,C)  \\
+		([f],[g]) & \mapsto [gf].
+	\end{align*}
+	If $A$ is cofibrant, then morphism composition defines a function
+	\begin{align*}
+		\pi^r(A,B) \times  \pi^r(B,C) &\longrightarrow \pi^r(A,C)  \\
+		([f],[g]) & \mapsto [gf].
+	\end{align*}
+\end{lemma}
+\begin{proof}
+	We assume that $C$ is fibrant. To check that a map between quotient sets is well defined we only need to show that it is well defined for the generating relation. Let $f\lsim f'$ and $g \lsim g'$; we have already shown that $gf \lsim gf'$ and the previous lemma implies that $g'f' \lsim gf'$, thereofre $gf \lsim g'f'$.
+\end{proof}
+
+This previous results can be morally summarized as: "When all objects are fibrant and cofibrant morphism composition is well behaved with respect to homotopy".
+
+\begin{proposition}
+	Let $f,g \colon A \longrightarrow B$ be morphism, then:
+	\begin{itemize}
+		\item If $A$ is cofibrant and $f\lsim g$, then $f \rsim g$.
+		\item If $B$ is fibrant and $f\rsim g$, then $f \lsim g$.
+	\end{itemize}
+\end{proposition}
+
+\begin{proof}
+	Let $H \colon A \wedge I \longrightarrow B$ be a good left homotopy between $f$ and $g$ and let 
+	\[\begin{tikzcd}
+		B & {B^I} & {B\times B}
+		\arrow["j", from=1-1, to=1-2]
+		\arrow["p", from=1-2, to=1-3]
+	\end{tikzcd}\]
+	be a good path object for $B$. Given that $A$ is cofibrant, we know that the morphism $i_0\colon A \longrightarrow A\wedge I$ must be an acyclic cofibration.
+	By composing with the projections $\pi_1,\pi_2 \colon B \times B \longrightarrow B$ and observing that we get $f$, we can check that the following diagram commutes (where $i,p$ are the maps of the cylinder $A\wedge I$).
+	\[\begin{tikzcd}
+		A & {B^I} \\
+		{A\wedge I} & {B \times B}
+		\arrow["jf", from=1-1, to=1-2]
+		\arrow["{i_0}", "\sim"', hook, from=1-1, to=2-1]
+		\arrow["p", two heads, from=1-2, to=2-2]
+		\arrow["{(fq,H)}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	By (\textbf{MC3}) this diagram admits a lift, let $k$ be such a lift. By remembering that $qi_1 = \id_A$ we see that the following diagram commutes
+	\[\begin{tikzcd}
+		&&& B \\
+		A & {A\wedge I} & {B^I} & {B \times B} \\
+		&&& B
+		\arrow["f", curve={height=-18pt}, from=2-1, to=1-4]
+		\arrow["{i_1}", from=2-1, to=2-2]
+		\arrow["g"', curve={height=18pt}, from=2-1, to=3-4]
+		\arrow["fq"', curve={height=-6pt}, from=2-2, to=1-4]
+		\arrow["k", from=2-2, to=2-3]
+		\arrow["H", curve={height=6pt}, from=2-2, to=3-4]
+		\arrow["p", from=2-3, to=2-4]
+		\arrow["{\pi_1}"', from=2-4, to=1-4]
+		\arrow["{\pi_2}", from=2-4, to=3-4]
+	\end{tikzcd}\]
+	and therefore $ki_1$ is a right homotopy between $f$ and $g$.
+\end{proof}
+
+It is important to remark that when the hypothesis of this proposition are satisfied the relation $\lsim $, $\rsim$ (which are the same) are an equivalence relation, which we will simply denote as $\sim$.
+
+\begin{corollary}
+	Let $f,g \colon A  \longrightarrow B$ be morphisms between a cofibrant and a fibrant object and let $A\wedge I$ be a cylinder object for $A$. If $f \sim g$ then there is a left homotopy between $f$ and $g$ through $A\wedge I$. Similarly if $B^I$ is a path object for $B$ and $f \sim g$ then there is a right homotopy between $f$ and $g$ through $B^I$.
+\end{corollary}
+\begin{proof}
+	It immediately follows form the fact that in the proof of the proposition we are free to chose which cylinder/path object to use.
+\end{proof}
+
+
+\begin{theorem}
+	Let $f\colon A \longrightarrow B$ be a morphism between objects that are both cofibrant and fibrant. We have that $f$ is a weak equivalence if and only if there exists a morphism $g\colon B \longrightarrow A$ such that $gf \sim \id_A$ and $fg \sim \id_B$, which we will call an homotopy inverse of $f$.
+\end{theorem}
+\begin{proof}
+	($\Rightarrow $) Let $f$ be a weak equivalence. By (\textbf{MC4}) we can factor it as
+	\[\begin{tikzcd}
+		A & C & {B,}
+		\arrow["i", hook, from=1-1, to=1-2]
+		\arrow["f", shift left, curve={height=-12pt}, from=1-1, to=1-3]
+		\arrow["p", two heads, from=1-2, to=1-3]
+	\end{tikzcd}\]
+	where both $i$ and $p$ are weak equivalences (given that $f$ is one). We can find a left inverse $r$ for $i$ by finding a lift in the following diagram.
+	\[\begin{tikzcd}
+		A & A \\
+		C & \bullet
+		\arrow["{\id_A}", from=1-1, to=1-2]
+		\arrow["i"', "\sim", hook, from=1-1, to=2-1]
+		\arrow[two heads, from=1-2, to=2-2]
+		\arrow["r"', dashed, from=2-1, to=1-2]
+		\arrow[from=2-1, to=2-2]
+	\end{tikzcd}\]
+	We can now observe that $i^*([ir]) = [iri] = [i] =i^*([\id_C]) $; given that  lemma \ref{lem:bij} shows that $i^*$ must be a bijection we deduce that $ir \sim \id_C$.
+	By a similar argument we can find a morphism $s$ to use as a homotopy inverse of $p$, therefore we conclude by setting $g=rs$ and checking that it must be an homotopy inverse of $f$. \\
+	($\Leftarrow $) Let $f$ be a morphism that admits a homotopy inverse $g$. By invoking (\textbf{MC4}) we can find a factorization of $f$ as follows.
+	\[\begin{tikzcd}
+		\emptyset & A & C & B & \bullet
+		\arrow[hook, from=1-1, to=1-2]
+		\arrow["i", "\sim"', hook, from=1-2, to=1-3]
+		\arrow["f", curve={height=-18pt}, from=1-2, to=1-4]
+		\arrow["p", two heads, from=1-3, to=1-4]
+		\arrow[two heads, from=1-4, to=1-5]
+	\end{tikzcd}\]
+	It is immediate to see that $C$ must be both fibrant and cofibrant; to prove that $f$ is a weak equivalence we only need to show that p is one. Let now $H \colon B \wedge I \longrightarrow B$ be a good (left) homotopy between $fg$ and $\id_B$. We can find a lift in the following commutative diagram.
+	\[\begin{tikzcd}
+		B & C \\
+		{B\wedge I} & B
+		\arrow["ig", from=1-1, to=1-2]
+		\arrow["{i_1}"', "\sim", hook, from=1-1, to=2-1]
+		\arrow["p", two heads, from=1-2, to=2-2]
+		\arrow["{H'}"', dashed, from=2-1, to=1-2]
+		\arrow["H"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	Setting $s=H'i_1$ we get that $ps = \id_X$. Given that $i$ must be a weak equivalence it must admit a homotopy inverse $r$ by the previous case of this theorem. It is clear from the following diagram that $H'$ is an homotopy between $s$ and $ig$,
+	\[\begin{tikzcd}
+		B \\
+		{B\wedge I} & C \\
+		B
+		\arrow["{i_1}"', from=1-1, to=2-1]
+		\arrow["ig", from=1-1, to=2-2]
+		\arrow["{H'}", from=2-1, to=2-2]
+		\arrow["{i_1}", from=3-1, to=2-1]
+		\arrow["s"', from=3-1, to=2-2]
+	\end{tikzcd}\]
+	therefore, using the fact that all objects involved are fibrant and cofibrant, we have
+	\[
+	sp \sim igp \sim \sim igfr \sim ir \sim \id_C.
+	\]
+	Given that $\id_C$ is a weak equivalence, we have that $sp$ must also be a weak equivalence. Given that $p$ is a retract of $sp$ we have proven thesis.
+	\[\begin{tikzcd}
+		C & C & C \\
+		B & C & B
+		\arrow["{\id_C}", from=1-1, to=1-2]
+		\arrow["p", from=1-1, to=2-1]
+		\arrow["{\id_C}", from=1-2, to=1-3]
+		\arrow["sp", from=1-2, to=2-2]
+		\arrow["p"', from=1-3, to=2-3]
+		\arrow["s", from=2-1, to=2-2]
+		\arrow["p", from=2-2, to=2-3]
+	\end{tikzcd}\]
+\end{proof}
+
+
+
+\section{Homotopy categories}
