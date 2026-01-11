@@ -590,6 +590,7 @@ By duality, given $i\colon A \longrightarrow B$, we get a map
 We would now like to see when composition between morphisms is well defined in the homotopy groups.
 
 \begin{lemma}
+	\label{lem:model-composition}
 	If $C$ is fibrant, then morphism composition defines a function
 	\begin{align*}
 		\pi^l(A,B) \times  \pi^l(B,C) &\longrightarrow \pi^l(A,C)  \\
@@ -608,6 +609,7 @@ We would now like to see when composition between morphisms is well defined in t
 This previous results can be morally summarized as: "When all objects are fibrant and cofibrant morphism composition is well behaved with respect to homotopy".
 
 \begin{proposition}
+	\label{prop:right-left}
 	Let $f,g \colon A \longrightarrow B$ be morphism, then:
 	\begin{itemize}
 		\item If $A$ is cofibrant and $f\lsim g$, then $f \rsim g$.
@@ -661,6 +663,7 @@ It is important to remark that when the hypothesis of this proposition are satis
 
 
 \begin{theorem}
+	\label{thm:weak-homotopy}
 	Let $f\colon A \longrightarrow B$ be a morphism between objects that are both cofibrant and fibrant. We have that $f$ is a weak equivalence if and only if there exists a morphism $g\colon B \longrightarrow A$ such that $gf \sim \id_A$ and $fg \sim \id_B$, which we will call an homotopy inverse of $f$.
 \end{theorem}
 \begin{proof}
@@ -715,7 +718,7 @@ It is important to remark that when the hypothesis of this proposition are satis
 	\end{tikzcd}\]
 	therefore, using the fact that all objects involved are fibrant and cofibrant, we have
 	\[
-	sp \sim igp \sim \sim igfr \sim ir \sim \id_C.
+	sp \sim igp \sim igfr \sim ir \sim \id_C.
 	\]
 	Given that $\id_C$ is a weak equivalence, we have that $sp$ must also be a weak equivalence. Given that $p$ is a retract of $sp$ we have proven thesis.
 	\[\begin{tikzcd}
@@ -734,3 +737,122 @@ It is important to remark that when the hypothesis of this proposition are satis
 
 
 \section{Homotopy categories}
+
+Our objective in this section is to use the model structure on a category to build another category where weak equivalences are invertible.
+
+\begin{definition}
+	Let $\C$ be a category and let $W$ be a collection of morphisms of $\C$. A localization of $\C$ at $W$ is  a couple $(\C[W^{-1}], Q)$, where $\C[W^{-1}]$ is a category and $Q$ is a functor between $\C$ and $\C[W^{-1}]$, that satisfies the following:
+	\begin{itemize}
+		\item For all $w \in W$, $Q(w)$ is an isomorphism.
+		\item For any category $A$ and any functor $F \colon \C \longrightarrow A$ such that $F(w)$ is an iso for all $w \in W$, there exists a functor $F_W \colon \C[W^{-1}] \longrightarrow A$ and a natural isomorphism $F \cong F_W \circ Q$.
+		\item The map between functor categories \[ (-) \circ Q \colon \funct(C[W^{-1}], A) \longrightarrow \funct(C,A) \] is full and faithfull for every category $A$.
+	\end{itemize}
+\end{definition}
+
+From now on, $\C$ will be a model category and $W$ will be $W(\C)$.
+To construct $\C[W^{-1}]$ will need to define the following categories:
+\begin{itemize}
+	\item $\C_c$ - the full subategory of $\C$ where the objects are the cofibrant objects of $\C$.
+	\item $\C_f$ - the full subategory of $\C$ where the objects are the fibrant objects of $\C$.
+	\item $\C_{cf}$ - the full subategory of $\C$ where the objects are the objects of $\C$ which are both fibrant and cofibrant.
+	\item $\pi \C_c$ - the category whose objects are cofibrant objects of $\C$ and whose morphisms are right homotopy classes of morphisms. 
+	\item $\pi \C_f$ - the category whose objects are fibrant objects of $\C$ and whose morphisms are left homotopy classes of morphisms. 
+	\item $\pi \C_{cf}$ - the category whose objects are the objects of $\C$ which are both fibrant and cofibrant and whose morphisms are homotopy classes of morphisms. 
+\end{itemize}
+It is important to observe that these categories are well defined by lemma \ref{lem:model-composition} and proposition \ref{prop:right-left}. It is also important to note that theorem \ref{thm:weak-homotopy} states that weak equivalence in $\C_{cf}$ are exactly morphism that admit an homotopy inverse.
+
+\begin{remark}
+	Given an object $A$ of $\C$, we can apply (\textbf{MC4}) to the initial morphism $\emptyset \longrightarrow A$ to get a diagram as follows
+	\[\begin{tikzcd}
+		\emptyset & QA & {A,}
+		\arrow[hook, from=1-1, to=1-2]
+		\arrow["{p_A}", "\sim"', two heads, from=1-2, to=1-3]
+	\end{tikzcd}\]
+	where $p_A$ is an acyclic fibration and $QA$ is cofibrant. Similarly we can do the same with the terminal map $A \longrightarrow \bullet$ to get a diagram as below,
+	\[\begin{tikzcd}
+		A & RA & \bullet
+		\arrow["{i_A}", "\sim"', hook, from=1-1, to=1-2]
+		\arrow[two heads, from=1-2, to=1-3]
+	\end{tikzcd}\]
+	where $i_A$ is an acyclic cofibration and $RA$ is fibrant.
+	
+\end{remark}
+
+
+\begin{proposition}
+	Given a morphism $f \colon A \longrightarrow B$ in $\C$ there exists a morphism $\tilde{f} \colon QA \longrightarrow QB$ such that the diagram
+	\[\begin{tikzcd}
+		QA & QB \\
+		A & B
+		\arrow["\tilde{f}", from=1-1, to=1-2]
+		\arrow["{p_A}", two heads, from=1-1, to=2-1]
+		\arrow["{p_B}"', two heads, from=1-2, to=2-2]
+		\arrow["f", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	commutes. The map $\tilde{f}$ depends up to left homotopy or up to right homotopy only on $f$, and
+	is a weak equivalence if and only if $f$ is. If $B$ is fibrant, then $\tilde{f}$ depends up to left
+	homotopy or up to right homotopy only on the left homotopy class of $f$. 
+\end{proposition}
+\begin{proof}
+	We find $\tilde{f}$ by finding a lift in the following diagram.
+	\[\begin{tikzcd}
+		\emptyset & QB \\
+		QA & B
+		\arrow[hook, from=1-1, to=1-2]
+		\arrow[hook', from=1-1, to=2-1]
+		\arrow["{p_B}", "\sim"', two heads, from=1-2, to=2-2]
+		\arrow["{\tilde{f}}", dashed, from=2-1, to=1-2]
+		\arrow["{f\circ p_A}"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	We now observe that $[f \circ p_X] = (p_Y)_*([\tilde{f}])$ (where brackets indicate left homotopy), therefore by lemma \ref{lem:bij} we have that $[\tilde{f}]$ depends only on $f$. The statement for right homotopies follows from proposition \ref{prop:right-left}. The weak  equivalence condition follows from observing that $f$ is a weak equivalence if and only if the induced morphism $QA \longrightarrow B$ is. The final statement follows from lemma \ref{lem:model-composition}.
+\end{proof}
+
+There dual of the previous lemma is as follows.
+
+\begin{proposition}
+	Given a morphism $f \colon A \longrightarrow B$ in $\C$ there exists a morphism $\bar{f} \colon RA \longrightarrow RB$ such that the diagram
+	\[\begin{tikzcd}
+		A & B \\
+		RA & RB
+		\arrow["f", from=1-1, to=1-2]
+		\arrow["{i_A}"', hook, from=1-1, to=2-1]
+		\arrow["{i_B}", hook, from=1-2, to=2-2]
+		\arrow["{\bar{f}}", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	commutes. The map $\bar{f}$ depends up to left homotopy or up to right homotopy only on $f$, and
+	is a weak equivalence if and only if $f$ is. If $A$ is cofibrant, then $\bar{f}$ depends up to left
+	homotopy or up to right homotopy only on the right homotopy class of $f$. 
+\end{proposition}
+
+\begin{remark}
+	The previous two propositions imply that $Q$ and $R$ are actually functors:
+	\begin{align*}
+		Q \colon \C &\longrightarrow  \pi \C_c \\
+		A &\longmapsto QA \\
+		(f \colon A \to B) &\longmapsto [\tilde f \colon QA \to QB],
+	\end{align*}
+	\begin{align*}
+		R \colon \C &\longrightarrow \pi \C_f \\
+		A &\longmapsto RA \\
+		(f \colon A \to B) &\longmapsto [\bar{f} \colon RA \to RB].
+	\end{align*}
+	They will respectively be called cofibrant replacement and fibrant replecement. 
+	The last statement of the previous proposition also implies that there are also the following functors:
+	\begin{align*}
+		Q' \colon \pi \C_f &\longrightarrow \pi \C_{cf} \\
+		A &\longmapsto QA \\
+		[f \colon A \to B] &\longmapsto [\tilde f \colon QA \to QB],
+	\end{align*}
+	\begin{align*}
+		R \colon \pi \C_c &\longrightarrow \pi \C_{cf} \\
+		A &\longmapsto RA \\
+		[f \colon A \to B] &\longmapsto [\bar{f} \colon RA \to RB].
+	\end{align*}
+\end{remark}
+
+We now introduce the category that will be the candidate for the localization we are looking for.
+
+\begin{definition}
+	The homotopy category $\ho(\C)$ of a model category $\C$ is the (locally small) category whose objects are the objects of $\C$ and whose homsets are
+	\[\Hom_{\ho(\C)}(A,B) = \Hom_{\pi \C_{cf}}(R'QA, R'QB).\]
+\end{definition}
