@@ -59,6 +59,7 @@
 \usepackage{amsfonts}
 \usepackage{tikz-cd}
 \usepackage{quiver}
+\usepackage{mathtools}
 
 
 % simboli matematici
@@ -69,12 +70,16 @@
 
 \newcommand{\C}{\mathcal{C}}
 \newcommand{\D}{\mathcal{D}}
+\newcommand{\E}{\mathcal{E}}
+
+\newcommand{\lperp}[1]{\prescript{\perp}{}{#1}}
+\newcommand{\rperp}[1]{{#1}^\perp}
 
 %Testo
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\funct}{\mathrm{Funct}}
 \newcommand{\Ext}{\mathrm{Ext}}
-\newcommand{\ob}{\mathrm{Ob}}
+\newcommand{\ob}{\mathrm{ob}}
 \newcommand{\ho}{\mathrm{Ho}}
 \newcommand{\ar}{\mathrm{Ar}}
 \newcommand{\id}{\mathrm{id}}
@@ -83,6 +88,10 @@
 \newcommand{\cat}[1]{\underline{\textrm{#1}}}
 \newcommand{\fibT}{\mathrm{Fib}}
 \newcommand{\cofT}{\mathrm{Cofib}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\inj}{\mathrm{inj}}
+\newcommand{\colim}{\operatornamewithlimits{colim}}
+
 
 
 \DeclareMathOperator{\coker}{coker}
@@ -121,10 +130,6 @@
 \usepackage{array}
 
 
-%Graffa a destra
-\newenvironment{rcases}
-  {\left.\begin{aligned}}
-  {\end{aligned}\right\rbrace}
 
   
 % Stile della pagina

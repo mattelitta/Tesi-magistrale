@@ -1,1 +1,97 @@
-\chapter{Cotorsion pairs}
+\chapter{Cotorsion pairs and model categories}
+The main objective in this chapter will be obtaining a method to define model structures on abelian categories, by identifying the objects that we want to be fibrant/cofibrant. The reason we do so is to have more control on (co)fibrant replacement.
+An in-depth treatment of the subject can be found in \cite{bullones2016introduction}.
+
+\section{Small object argument}
+One of the most common tools used to build a model structure on a given category is known as \virgolette{Quillen's small object argument}; it provides a tool to obtain a (functorial) factoriziation as required in (\textbf{MC4}). We will not provide a complete proof, to see the full result an excellent resource is chapter 2 of \cite{hovey2007model}.\\
+Let $\C$ be a category.
+
+\begin{definition}[Injective and projective morphisms]
+	Let $I$ be a class of morphisms of $\C$. 
+	\begin{itemize}
+		\item A morphism is said to be $I$\textbf{-injective} if it has the RLP with respect to every morphism in $I$. The class of $I$-injective morphisms is denoted $I$-inj.
+		\item A morphism is said to be $I$\textbf{-projective} if it has the LLP with respect to every morphism in $I$. The class of $I$-projective morphisms is denoted $I$-proj.
+		\item A morphism is said to be $I$\textbf{-cofibration} if it has the LLP with respect to every morphism in $I$-inj. The class of $I$-cofibrations is ($I$-inj)-proj and is denoted $I$-cof.
+		\item A morphism is said to be $I$\textbf{-fibration} if it has the RLP with respect to every morphism in $I$-proj. The class of $I$-cofibrations is ($I$-proj)-inj and is denoted $I$-fib.
+	\end{itemize}
+\end{definition}
+
+As an example, if $\C$ is a model category and $I = \cofT(\C)$, proposition \ref{prop:LLP-RLP} says that $I$-inj is exactly the class of acyclic fibrations of $\C$ and that $I$-cof is exactly $I$. Dually, if $I = \fibT(\C)$, $I$-proj is exactly the class of acyclic cofibrations of $\C$ and that $I$-fib is exactly $I$.
+
+\begin{remark}
+	In definition \ref{def:inj-proj}, we have defined injective and projective objects in an abelian category: if we let $I$ be the class of monomorphisms of $\C$, then an object $Y$ is injective if and only if the terminal map $Y \longrightarrow 0$ is in $I$-inj. Dually if we let $I$ be the class of epimorphisms of $\C$, then an object $X$ is projective if and only if the initial map $0 \longrightarrow X$ is in $I$-proj.
+\end{remark}
+
+It is easy to verify that $I \subseteq I\text{-cof}$ and $I \subseteq I\text{-fib}$; as a consequence we have that $(I\text{-cof})\text{-inj} = I \text{-inj}$; furthermore it is also clear that if $I \subseteq J$ we have that $J \text{-inj} 	\subseteq I \text{-inj}$ and $J \text{-proj} 	\subseteq I \text{-proj}$. From these two results follows that $(I\text{-cof})\text{-inj} = I \text{-inj}$ and $(I\text{-fib})\text{-proj} = I \text{-proj}$.  
+
+\begin{definition}[$\lambda$-sequences]
+	Let us assume that $\C$ has all (small) colimits and let $\lambda$ be an ordinal. A $\lambda$\textbf{-sequence} in $\C$ is a colimit preserving functor $X \colon \lambda \longrightarrow \C$ (where $\lambda$ is seen as a partial order); it is commonly written as
+	\[\begin{tikzcd}
+		{X_0} & {X_1} & \cdots & {X_\beta} & {\cdots.}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+\end{definition}
+Given that for every limit ordinal $\beta$ we know that $\colim_{\alpha < \beta} (\alpha) = \beta$, for every $\lambda$-sequence $X$ and for every limit ordinal $\beta < \lambda$ the canonical map
+\[\colim_{\alpha < \beta} X \longrightarrow X_\beta,\]
+is an isomorphism.
+
+\section{Cotorsion pairs}
+Let $\C$ be an abelian category.
+
+\begin{definition}[orthogonal complement]
+	Let $\D$ be a class of objects of $\C$. We define the \textbf{left orthogonal complement} of $\D$ as the class
+	\[ \lperp{\D} = \left\{ E \: : \:  \Ext^1(E,D) = 0, \text{ for every } D \in \D\right\}.\]
+	Dually, we define the \textbf{right orthogonal complement} of $\D$ as the class
+	\[ \rperp{\D} = \left\{ E \: : \:  \Ext^1(D,E) = 0, \text{ for every } D \in \D\right\}.\]
+\end{definition}
+The easiest example of orthogonal complements is the following: if $\D = \ob(\C)$, then $\lperp{\D}$ is the class of projective objects of $\C$, while $\rperp{\D}$ is the class of injective objects.
+
+\begin{definition}[Cotorsion pair]
+	Let $(\D$, $\E)$ be a pair of classes of objects of $\C$, they are said to be a \textbf{cotorsion pair} if $\D = \lperp{\E}$ and $\E = \rperp{\D}$.
+\end{definition}
+
+The example above allows us to construct two examples of cotorsion pairs: $(\proj(\C), \ob(\C))$ and $(\ob(\C),\inj(\C))$. Given these examples, we would like to generalize the concept of \virgolette{enough injectives} and \virgolette{enough projectives} to cotorsion pairs.
+
+\begin{definition}[Complete cotorsion pair]
+	A cotorsion pair $(\D, \E)$ is said to \textbf{have enough injectives} if for every $X \in \ob(\C)$ there exists an an exact sequence
+	\[\begin{tikzcd}
+		0 & X & E & D & {0,}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	where $E\in \E$ and $D \in \D$. Dually, a cotorsion pair $(\D, \E)$ is said to \textbf{have enough projectives} if for every $X \in \ob(\C)$ there exists an an exact sequence
+	\[\begin{tikzcd}
+		0 & E & D & X & {0,}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	where $E\in \E$ and $D \in \D$. A cotorsion pair that has both enough injectives and enough projectives is said to be \textbf{complete}.
+\end{definition}
+
+\begin{definition}[Small cotorsion pair]
+	
+\end{definition}
+
+
+\section{Abelian model categories and Hovey triples}
+
+\begin{definition}[Abelian model categories]
+	Let $\C$ be a model category where the underlying category is abelian; we will refer to $\C$ as an \textbf{abelian model category} if the following hold:
+	\begin{itemize}
+		\item A morphism is a cofibration if and only if it is a monomorphism with cofibrant cokernel.
+		\item A morphism is a fibration if and only if it is an epimorphism with fibrant kernel.
+	\end{itemize}
+\end{definition}
+
+
+
+\begin{definition}
+	
+\end{definition}

@@ -625,11 +625,12 @@ then the sum $[\xi] + [\xi']$ is given by $[\left( \nabla_B \right)_* \left( \De
 \section{Injective and projective objects}
 
 \begin{definition}[Injective and projective objects]
+	\label{def:inj-proj}
 	Let $\mathcal{H}$ be a subclass of $\ob(\C)$. We say that an object $B$ is $\mathcal{H}$-\textbf{injective} if for every $A\in \mathcal{H}$ we have
 	\[\Ext^1_\C(A,B) = 0.\]
 	Dually we say that object $A$ is said to be $\mathcal{H}$-\textbf{projective} if for every $B\in \mathcal{H}$ we have
 	\[\Ext^1_\C(A,B) = 0.\]
-	If $\mathcal{H}= \ob(\C)$ the $\mathcal{H}$-injectives objects are simply called injective objects and the $\mathcal{H}$-prohective objects are simply called projective objects. 
+	If $\mathcal{H}= \ob(\C)$ the $\mathcal{H}$-injectives objects are simply called injective objects and the $\mathcal{H}$-projective objects are simply called projective objects. We will denote the class of injective objects of $\C$ as $\inj(\C)$ and the class of projective objects as $\proj(\C)$.
 \end{definition}
 
 
@@ -694,6 +695,19 @@ splits. The dual result is similar.
 	\end{tikzcd}\]
 \end{proof}
 
+The dual result is also true.
+
+\begin{proposition}
+	An object $I$ is injective if and only if for every monomorphism $e \colon X\longrightarrow E$ and every morphism $f\colon X \longrightarrow I$ there exists a morphism $\bar{f} \colon P \longrightarrow E$ such that 
+	\[\begin{tikzcd}
+		X & I \\
+		E
+		\arrow["f", from=1-1, to=1-2]
+		\arrow["e"', from=1-1, to=2-1]
+		\arrow["{\bar f}"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+	commutes.
+\end{proposition}
 
 \section{Exact functors}
 \textbf{DECIDERE COSA SCRIVERE}
