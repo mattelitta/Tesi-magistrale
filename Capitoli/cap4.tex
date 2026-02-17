@@ -3,7 +3,7 @@ The main objective in this chapter will be obtaining a method to define model st
 An in-depth treatment of the subject can be found in \cite{bullones2016introduction}.
 
 \section{Small object argument}
-One of the most common tools used to build a model structure on a given category is known as \virgolette{Quillen's small object argument}; it provides a tool to obtain a (functorial) factoriziation as required in (\textbf{MC4}). We will not provide a complete proof, to see the full result an excellent resource is chapter 2 of \cite{hovey2007model}.\\
+One of the most common tools used to build a model structure on a given category is known as \virgolette{Quillen's small object argument}; it provides a tool to obtain a (functorial) factoriziation as required in (\textbf{MC4}). We will not provide a proof, to see the full result an excellent resource is chapter 2 of \cite{hovey2007model}.\\
 Let $\C$ be a category.
 
 \begin{definition}[Injective and projective morphisms]
@@ -19,13 +19,14 @@ Let $\C$ be a category.
 As an example, if $\C$ is a model category and $I = \cofT(\C)$, proposition \ref{prop:LLP-RLP} says that $I$-inj is exactly the class of acyclic fibrations of $\C$ and that $I$-cof is exactly $I$. Dually, if $I = \fibT(\C)$, $I$-proj is exactly the class of acyclic cofibrations of $\C$ and that $I$-fib is exactly $I$.
 
 \begin{remark}
-	In definition \ref{def:inj-proj}, we have defined injective and projective objects in an abelian category: if we let $I$ be the class of monomorphisms of $\C$, then an object $Y$ is injective if and only if the terminal map $Y \longrightarrow 0$ is in $I$-inj. Dually if we let $I$ be the class of epimorphisms of $\C$, then an object $X$ is projective if and only if the initial map $0 \longrightarrow X$ is in $I$-proj.
+	In definition \ref{def:inj-proj}, we have defined injective and projective objects in an abelian category: if we let $I$ be the class of monomorphisms of $\C$, then an object $Y$ is injective if and only if the terminal morphism $Y \longrightarrow 0$ is in $I$-inj. Dually if we let $I$ be the class of epimorphisms of $\C$, then an object $X$ is projective if and only if the initial morphism $0 \longrightarrow X$ is in $I$-proj.
 \end{remark}
 
-It is easy to verify that $I \subseteq I\text{-cof}$ and $I \subseteq I\text{-fib}$; as a consequence we have that $(I\text{-cof})\text{-inj} = I \text{-inj}$; furthermore it is also clear that if $I \subseteq J$ we have that $J \text{-inj} 	\subseteq I \text{-inj}$ and $J \text{-proj} 	\subseteq I \text{-proj}$. From these two results follows that $(I\text{-cof})\text{-inj} = I \text{-inj}$ and $(I\text{-fib})\text{-proj} = I \text{-proj}$.  
+It is easy to verify that $I \subseteq I\text{-cof}$ and $I \subseteq I\text{-fib}$; as a consequence we have that $(I\text{-cof})\text{-inj} = I \text{-inj}$; furthermore it is also clear that if $I \subseteq J$ we have that $J \text{-inj} 	\subseteq I \text{-inj}$ and $J \text{-proj} 	\subseteq I \text{-proj}$. From these two results follows that $(I\text{-cof})\text{-inj} = I \text{-inj}$ and $(I\text{-fib})\text{-proj} = I \text{-proj}$.  \\
+Let us assume from now that $\C$ has all (small) colimits.
 
 \begin{definition}[$\lambda$-sequences]
-	Let us assume that $\C$ has all (small) colimits and let $\lambda$ be an ordinal. A $\lambda$\textbf{-sequence} in $\C$ is a colimit preserving functor $X \colon \lambda \longrightarrow \C$ (where $\lambda$ is seen as a partial order); it is commonly written as
+	Let $\lambda$ be an ordinal. A $\lambda$\textbf{-sequence} in $\C$ is a colimit preserving functor $X \colon \lambda \longrightarrow \C$ (where $\lambda$ is seen as a partial order); it is commonly written as
 	\[\begin{tikzcd}
 		{X_0} & {X_1} & \cdots & {X_\beta} & {\cdots.}
 		\arrow[from=1-1, to=1-2]
@@ -33,10 +34,92 @@ It is easy to verify that $I \subseteq I\text{-cof}$ and $I \subseteq I\text{-fi
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
+	We refer to the colimit morphism $X_0 \longrightarrow \colim_{\beta < \lambda}(X_\beta)$ as the \textbf{transifinite compositions} of the morphisms $X_\beta \longrightarrow X_{\beta +1}$.
 \end{definition}
-Given that for every limit ordinal $\beta$ we know that $\colim_{\alpha < \beta} (\alpha) = \beta$, for every $\lambda$-sequence $X$ and for every limit ordinal $\beta < \lambda$ the canonical map
+Given that for every limit ordinal $\beta$ we know that $\colim_{\alpha < \beta} (\alpha) = \beta$, for every $\lambda$-sequence $X$ and for every limit ordinal $\beta < \lambda$ the canonical morphism
 \[\colim_{\alpha < \beta} X \longrightarrow X_\beta,\]
 is an isomorphism.
+
+\begin{definition}[Filtered ordinal]
+	Let $\gamma$ be a cardinal; an ordinal $\alpha$ is said to be $\gamma$\textbf{-filtered} if for every $A\subseteq \alpha$ such that $|A| \leq \gamma$ we have $\text{sup} \: A < \alpha$.
+\end{definition}
+
+\begin{definition}[Small objects]
+	Let $I$ be a class of morphisms of $\C$, $A$ an object of $\C$ and $\kappa$ a cardinal. We say that $A$ is $\kappa$\textbf{-small relative} to $I$ if, for all $\kappa$-filtered ordinals $\lambda$ and all $\lambda$ sequences $X_\beta$ such that $X_\beta \longrightarrow X_{\beta+1}$ is in $I$ for $\beta < \lambda$, the canonical map 
+	\[\colim_{\beta< \lambda} \Hom_\C(A, X_\beta) \longrightarrow \Hom_{\C}(A, \colim_{\beta < \lambda} X_\beta)\]
+	is bijective. We say that $A$ is \textbf{small relative} $I$ if it is $\kappa$-small relative to $I$ for some $\kappa$. We say that $A$ is \textbf{small} if it is small relative to the class of morphisms of $\C$.
+\end{definition}
+
+\begin{definition}[Relative cell complex]
+	Let $I$ be a set of morphisms. A \textbf{relative} $I$\textbf{-cell complex} is a transifinite composition of pushouts of elements of $I$. We denote the class of relative $I$-cell complexes as $I$-cell. We say that an object $A\in \C$ is a $I$\textbf{-cell complex} if the initial morphism $\emptyset \longrightarrow A$ is a relative $I$-cell complex.
+\end{definition}
+
+\begin{lemma}
+	Let $I$ be a class of morphisms in $\C$. We have $I\text{-cell} \subseteq I\text{-cof}$.
+\end{lemma}
+\begin{proof}
+	We already know that $I \subseteq I\text{-cof}$; given that $I$-cof is defined by a lifting property it is easy to show that $I$-cof is closed under finite compositions and pushouts, by proceeding as we did in corollary \ref{cor:closed-comp} and \ref{cor:closed-push-pull}. It reamains only to show that $I$-cof is closed under transifinite composition, to prove that it is as such we will argue by transifinite induction: let $\lambda$ be an ordinal and let $X_\beta$ be a $\lambda$ sequence such that $X_\beta \longrightarrow X_{\beta+1}$ is in $I$-cof. Let $\beta+1 \leq \lambda$ be a successor ordinal, if we assume that $X_0 \longrightarrow X_\beta$ is in $I$-cof then $X_0 \longrightarrow X_{\beta+1}$ must also be in $I$-cof (given that $I$-cof is closed under finite composition). Let now $\beta \leq \lambda$ be a limit ordinal and let's assume that for every $\alpha < \beta$ we have that $X_0 \longrightarrow X_\alpha$ is in $I$-cof; let $A\longrightarrow B$ be in $I$-inj, we want to show that $X_0 \longrightarrow X_\beta$ has the LLP with respect to it, but this follows from the universal property of the colimit.
+	\[\begin{tikzcd}
+		{X_0} & A \\
+		{X_\alpha} \\
+		{X_\beta \cong \colim_{\beta<\alpha}X_\alpha} & B
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=1-2, to=3-2]
+		\arrow[dashed, from=2-1, to=1-2]
+		\arrow[from=2-1, to=3-1]
+		\arrow[dashed, from=3-1, to=1-2]
+		\arrow[from=3-1, to=3-2]
+	\end{tikzcd}\]
+	
+\end{proof}
+
+The following theorem, due to Quillen, is one of the main tools used to obtain (functorial) factorizations of a morphism (i.e. a method to prove (\textbf{MC4})), which is usually the hardest part of defining a model structure on a category.
+
+\begin{theorem}[The small object argument]
+	Let $\C$ be a category with small colimits amd let $I$ be a set of morphisms of $\C$. If the domains of the elements of $I$ are small with respect to $I$-cell, then there exists a (functorial) factorization $(\gamma, \delta)$ such that, for every morphism $f$, $\gamma(f)$ is in $I$-cell and $\delta(f)$ is in $I$-inj.
+\end{theorem}
+
+Model categories constructed through the small object argument enjoy peculiar properties, we will collect them in the following definition.
+
+\begin{definition}[Cofibrantly generated model categories]
+	Let $\C$ be a model category. $\C$ is \textbf{cofibrantly generated} if there are sets $I,J$ of morphisms of $\C$ such that:
+	\begin{enumerate}
+		\item The domains of the morphisms in $I$ are small relative to $I$-cell.
+		\item The domains of the morphisms in $J$ are small relative to $J$-cell.
+		\item The class of fibrations of $\C$ is $J$-inj.
+		\item The class of acyclic fibrations of $\C$ is $I$-inj. 
+	\end{enumerate}
+	We will refer to $I$ as the set of generating cofibrations and to $J$ as the set of generating acyclic cofibraions.
+\end{definition}
+
+The main properties of cofibrantly generated model categories are stated in the following proposition.
+
+\begin{proposition}
+	Let $\C$ be cofibrantly generated model category, with generating cofibrations $I$ and generating cofibrations $J$. The following holds:
+	\begin{enumerate}
+		\item The cofibrations are the class $I$-cof.
+		\item Every cofibration is a retract of a relative $I$-cell complex.
+		\item The domains of morphisms in $I$ are small relative with respect to the cofibrations.
+		\item The trivial cofibrations are the class $J$-cof.
+		\item Every  trivial cofibration is a retract of a relative $J$-cell complex.
+		\item The domains of morphisms in $J$ are small relative with respect to the trivial cofibrations.
+	\end{enumerate}
+\end{proposition}
+
+The theorem below gives us a method to build cofibrantly generated model categories through the small object argument.
+
+\begin{theorem}
+	Let $\C$ be a category with (small) limits and colimits, let $W$ be a class of maps of $\C$ and let $I,J$ be sets of maps of $\C$. Then there is a cofibrantly generated model structure on $\C$ with $I$ as the set of generating cofibrations, $J$ as the set of generating trivial cofibrations, and $W$ as the subcategory of weak equivalences if and only if the following conditions are satisfied:
+	\begin{enumerate}
+		\item The class $W$ satisfy the two-out-of-three property (\textbf{MC1}) and is closed under retracts.
+		\item The domains of $I$ are small relative to $I$-cell.
+		\item The domains of $J$ are small relative to $J$-cell.
+		\item $J\text{-cell} \subseteq W \cap I\text{-cof}$.
+		\item $I\text{-inj} \subseteq W \cap J\text{-inj}$.
+		\item Either $W \cap I\text{-cof} \subseteq $ or $ W \cap J\text{-inj} \subseteq I\text{-inj} $.
+	\end{enumerate}
+\end{theorem}
 
 \section{Cotorsion pairs}
 Let $\C$ be an abelian category.
@@ -49,11 +132,19 @@ Let $\C$ be an abelian category.
 \end{definition}
 The easiest example of orthogonal complements is the following: if $\D = \ob(\C)$, then $\lperp{\D}$ is the class of projective objects of $\C$, while $\rperp{\D}$ is the class of injective objects.
 
+\begin{remark}
+	Given a class of objects $\D$, it is clear that $\D\subseteq \lperp{(\rperp{\D})}$ and $\D\subseteq \rperp{(\lperp{\D})}$. Also if $\D\subseteq \D'$ we have $\lperp \D' \subseteq \lperp \D$ and $\lperp \D' \subseteq \lperp \D$, therefore $\rperp{(\lperp{(\rperp{\D})})} = \rperp{\D}$ and $\lperp{(\rperp{(\lperp{\D})})} = \lperp{\D}$.
+\end{remark}
+
+One common way to define a cotorsion pair is to cogenerate it from a set, i.e. to choose a set $\D'$ and let $\E = \rperp{\D'}$ and $\D = \lperp{\E}$; the above remark proves that it is actually a cotorsion pair. The dual notion, generating the cotorsion pair from a set $\E' \subseteq \E$, does not commonly arise in practice, due to the asimmetryu of certain theorems that we will state later.
+
 \begin{definition}[Cotorsion pair]
 	Let $(\D$, $\E)$ be a pair of classes of objects of $\C$, they are said to be a \textbf{cotorsion pair} if $\D = \lperp{\E}$ and $\E = \rperp{\D}$.
 \end{definition}
 
 The example above allows us to construct two examples of cotorsion pairs: $(\proj(\C), \ob(\C))$ and $(\ob(\C),\inj(\C))$. Given these examples, we would like to generalize the concept of \virgolette{enough injectives} and \virgolette{enough projectives} to cotorsion pairs.
+
+
 
 \begin{definition}[Complete cotorsion pair]
 	A cotorsion pair $(\D, \E)$ is said to \textbf{have enough injectives} if for every $X \in \ob(\C)$ there exists an an exact sequence
@@ -75,12 +166,13 @@ The example above allows us to construct two examples of cotorsion pairs: $(\pro
 	where $E\in \E$ and $D \in \D$. A cotorsion pair that has both enough injectives and enough projectives is said to be \textbf{complete}.
 \end{definition}
 
-\begin{definition}[Small cotorsion pair]
-	
-\end{definition}
 
 
-\section{Abelian model categories and Hovey triples}
+
+\section{Hovey correspondence}
+
+We would like to use cotorsion pairs to define model structures on abelian categories, in a way that makes such structure compatible with the usual tools we use to study abelian categories. To do so we must fist make explicit these compatibility conditions.
+
 
 \begin{definition}[Abelian model categories]
 	Let $\C$ be a model category where the underlying category is abelian; we will refer to $\C$ as an \textbf{abelian model category} if the following hold:
@@ -89,6 +181,202 @@ The example above allows us to construct two examples of cotorsion pairs: $(\pro
 		\item A morphism is a fibration if and only if it is an epimorphism with fibrant kernel.
 	\end{itemize}
 \end{definition}
+
+In an abelian model category we can give the following definition.
+
+\begin{definition}[Acyclic object]
+	An object $A$ is said to be \textbf{acyclic} if either zero map $A \longrightarrow 0$ or $0 \longrightarrow A$ is a weak equivalence. 
+\end{definition}
+
+\begin{lemma}
+	\label{lem:ext-model}
+	If $\C$ is an abelian model category, $C$ its cofibrant objects, $F$ its fibrant objects and $W$ its acyclic objects, then $\Ext^1(A,B) = 0$ when $A\in C$ and $B \in F\cap W$ or $A\in C\cap W$ and $B\in F$
+\end{lemma}
+
+\begin{proof}
+	Let us consider $A \in C$ and $B \in F\cap W$, we want to show that $\Ext^1(A,B) = 0$. An element of $\Ext^1(A,B)$ is the equivalence class of a short exact sequence
+	\[\begin{tikzcd}
+		0 & B & X & A & {0.}
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow["g", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	Given that $A$ is cofibrant and is the cokernel of $f$, $f$ is a cofibration. We can therefore find a lift in the following diagram,
+	\[\begin{tikzcd}
+		B & B \\
+		X & {0}
+		\arrow["{\id_B}", from=1-1, to=1-2]
+		\arrow["f"', hook, from=1-1, to=2-1]
+		\arrow["\sim", two heads, from=1-2, to=2-2]
+		\arrow[dashed, from=2-1, to=1-2]
+		\arrow[from=2-1, to=2-2]
+	\end{tikzcd}\]
+	which is a retraction of $f$; therefore the exact sequence must split and $\Ext^1(A,B) = 0$. The other case is analogous.
+\end{proof}
+
+The following proposition charcterizes acyclic fibrations/cofibrations in an abelian model category more explicitly.
+
+\begin{proposition}
+	\label{prop:acyc-in-ab}
+	Let $\C$ be both an abelian category and an abelian category (not necessarily an abelian model category!) where every cofibration is a monomorphisms and every fibration is an epimorphism, the following two results hold: fibrations coincide with epimorphisms with fibrant kernels if and only if acyclic cofibrations coincide with monomorphisms with acyclic cofibrant cokernels; similarly, acyclic fibrations coincide with epimorphisms with acyclic fibrant kernels if and only if cofibrations
+	coincide with monomorphisms with cofibrant cokernels.
+\end{proposition}
+
+\begin{proof}
+	We will only consider the case where we assume that acyclic fibrations coincide with epimorphisms with acyclic fibrant kernels and we prove that cofibrations
+	coincide with monomorphisms with cofibrant cokernels; the other three implications are analogous.
+	We will proceed by considering a monomorphism $f\colon A \longrightarrow B$ and we will assume that $C = \coker(f)$ is cofibrant, therefore obtaining a ses as follows.
+	\[\begin{tikzcd}
+		0 & A & B & C & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	We can now consider a commutative diagram
+	\[\begin{tikzcd}
+		A & X \\
+		B & {Y,}
+		\arrow["\alpha", from=1-1, to=1-2]
+		\arrow["f", from=1-1, to=2-1]
+		\arrow["g", "\sim"', two heads, from=1-2, to=2-2]
+		\arrow["\beta", from=2-1, to=2-2]
+	\end{tikzcd}\]
+	where $g\colon X \longrightarrow Y$ is an acyclic fibration; our objective will be finding a lift in this diagram. If we set $Z = \ker(g)$ (and remember that it must be an acyclic fibrant object) we get another SES
+	\[\begin{tikzcd}
+		0 & Z & X & Y & {0.}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["g", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+
+	By carefully applying the functor $\Hom({-},{-})$ to the exact sequences above, we get the following commuting diagram with exact rows and columns.
+
+	\[\begin{tikzcd}
+		{\Hom(C,Z)} & {\Hom(C,X)} & {\Hom(C,Y)} & {\Ext^1(C,Z)} \\
+		{\Hom(B,Z)} & {\Hom(B,X)} & {\Hom(B,Y)} & {\Ext^1(C,X)} \\
+		{\Hom(A,Z)} & {\Hom(A,X)} & {\Hom(A,Y)} & {\Ext^1(A,Z)} \\
+		{\Ext^1(C,Z)} & {\Ext^1(C,X)} & {\Ext^1(C,Y)} & \cdots
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow["{g_*}", from=1-2, to=1-3]
+		\arrow[from=1-2, to=2-2]
+		\arrow["\delta", from=1-3, to=1-4]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=1-4, to=2-4]
+		\arrow[from=2-1, to=2-2]
+		\arrow["{f^*}", from=2-1, to=3-1]
+		\arrow["{g_*}", from=2-2, to=2-3]
+		\arrow["{f^*}", from=2-2, to=3-2]
+		\arrow["\delta", from=2-3, to=2-4]
+		\arrow["{f^*}", from=2-3, to=3-3]
+		\arrow["{f^*}", from=2-4, to=3-4]
+		\arrow[from=3-1, to=3-2]
+		\arrow["\delta", from=3-1, to=4-1]
+		\arrow["{g_*}", from=3-2, to=3-3]
+		\arrow["\delta", from=3-2, to=4-2]
+		\arrow["\delta", from=3-3, to=3-4]
+		\arrow["\delta", from=3-3, to=4-3]
+		\arrow[from=3-4, to=4-4]
+		\arrow[from=4-1, to=4-2]
+		\arrow["{g_*}", from=4-2, to=4-3]
+		\arrow[from=4-3, to=4-4]
+	\end{tikzcd}\]
+	Our current objective is finding $\gamma\in \Hom(B,X)$ such that $f^* \gamma = \alpha$ and $g_* \gamma = \beta$, we will do so through some diagram chasing. We begin by noticing that \[g_*\delta \alpha = \delta g_* \alpha = \delta f^* \beta = 0. \] By lemma \ref{lem:ext-model} we know that ${\Ext^1(C,Z)} = 0$, therefore $g_* \colon{\Ext^1(C,X)} \longrightarrow {\Ext^1(C,Y)}$ is injective, thus $\delta \alpha = 0$ and by the exactness of the column we know that there exists $\gamma'\in \Hom(B,X)$ such that $f^* \gamma' = \alpha$. Given that $f^*(\beta - g_*\gamma')= f^*\beta -g_* \alpha = 0$, the morphism $\beta - g_*\gamma'$ must have a preimage $F$ in ${\Hom(C,Y)}$; using again lemma \ref{lem:ext-model}, we know that $g_*\colon {\Hom(C,X)} \longrightarrow  {\Hom(C,Y)}$ is surjective, and as a result there must be a morphism $G\in {\Hom(C,X)}$ such that $g_* G = F$. If we denote as $G'$ the image of $G$ in $\Hom(B,X)$, it is easy to check that $\gamma = \gamma' - G'$ is the morphism we are looking for.
+
+\end{proof}
+
+
+
+The objective of this section will be to prove \virgolette{Hovey’s Correspondence theeorem} (see section 2 of \cite{Hovey2002}), that shows a correspondence between abelian model structures and certain couples of cotorsion pairs. We will fix an abelian category $\C$ 
+
+\begin{definition}[Thick class]
+	A class of objects $W$ of $\C$ is said to be \textbf{thick} if it closed under retracts and whenever two out of three objects in a SES are in $W$ the third also is. 
+\end{definition}
+
+\begin{definition}[Hovey triple]
+	Let $(C,W,F)$ be a triple of classes of objects in $\C$. We say that $(C,W,F)$ is an \textbf{Hovey triple} if $W$ is thick and $(C\cap W, F)$ and $(C, F\cap W)$ are complete cotorsion pairs.
+\end{definition}
+
+
+
+\begin{theorem}[Hovey's Correspondence - Part 1]
+	If $\C$ is an abelian model category, $C$ its cofibrant objects, $F$ its fibrant objects and $W$ its acyclic objects, then $(C,W,F)$ is an Hovey triple.
+\end{theorem}
+
+\begin{proof}
+	We begin by showing that $(C, F\cap W)$ is a complete cotorsion pair, given that proving it for $(C\cap W, F)$ is analogous. From lemma \ref{lem:ext-model}, it is immediate that $F\cap W \subseteq \rperp{C}$ and $C \subseteq \lperp{(F\cap W)}$, therefore to conclude the proof that $(C, F\cap W)$ is a cotorsion pair, we will also need to show that $\rperp{C} \subseteq  F\cap W$ and $\lperp{(F\cap W)} \subseteq C$; we will only prove the first of these two results (the other is dual). Let us now consider an object $B$ such that  $\Ext^1(A,B) = 0$ for every $A\in C$; then if we take any cofibration $f\colon X \longrightarrow Y$ we get an exact sequence
+	\[\begin{tikzcd}
+		0 & X & Y & {\coker(f)} & {0,}
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	where $\coker(f)$ must be a cofibrant object. Using the long exact sequence associated to the functor $\Hom({-},B)$ and the SES above, we get
+	\[\begin{tikzcd}
+		\cdots & {\Hom(X,B)} & {\Hom(Y,B)} & {\Ext^1(\coker(f),B)} & {\cdots;}
+		\arrow[from=1-1, to=1-2]
+		\arrow["{f^*}", from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	given that $\Ext^1(\coker(f),B)$ must be $0$, $f^*$ is surjective and therefore, by lemma \ref{lem:fib-to-surj}, $B$ must be in $F\cap W$. The last step we need is showing that this cotorsion pair is actually complete, but this is simply a consequence of (\textbf{MC4}): to show that $(C, F\cap W)$ has enough projectives, we can factor any initial map $0\longrightarrow X$ using an acyclic fibration $B \longrightarrow X$, where $B$ is cofibrant; taking the kernel of this map defines the exact sequence we need. Since the proof that shows that our cotorsion pair has enough injectives is identical, it must be complete.\\
+	The last step that we need to complete this proof, is verifying that $W$ is a thick class. We know from axiom (\textbf{MC2}) that $W$ is closed under retracts, so we will only check the condition on SESes. 
+	We begin by considering a SES as follows,
+	\[\begin{tikzcd}
+		0 & A & B & C & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow["g", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	then
+	then we set
+
+
+	\[\begin{tikzcd}
+		0 & A & B & C & 0 \\
+		0 & {A'} & {B'} & C & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow["i", from=1-2, to=2-2]
+		\arrow["g", from=1-3, to=1-4]
+		\arrow["j", from=1-3, to=2-3]
+		\arrow[from=1-4, to=1-5]
+		\arrow["{\id_C}", from=1-4, to=2-4]
+		\arrow[from=2-1, to=2-2]
+		\arrow["{f'}", from=2-2, to=2-3]
+		\arrow["{g'}", from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+	\end{tikzcd}\]
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{theorem}[Hovey's Correspondence - Part 2]
+	If $\C$ is an abelian model category and $(C,W,F)$ is an Hovey triple, then there exists an abelian model structure on $\C$ where $C$ are the cofibrant objects, $F$ are the fibrant objects and $W$ are the acyclic objects.
+\end{theorem}
+
+
+
+
+
+
+
+
+\begin{definition}[Small cotorsion pair]
+	
+\end{definition}
+
+
 
 
 

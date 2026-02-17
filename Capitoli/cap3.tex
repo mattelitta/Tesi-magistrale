@@ -31,7 +31,7 @@ Let $\C$ be a category.
 
 
 \begin{definition}[Retract]
-    Let $X,Y$ be objects in $\C$, we say that $X$ is a retract of $Y$ if there exists arrows $f,g$ such that $gf = \id_X$.    
+    Let $X,Y$ be objects in $\C$, we say that $X$ is a retract of $Y$ if there exists arrows $f\colon X \longrightarrow Y$ and $g \colon Y \longrightarrow X$ such that $gf = \id_X$. In such cases we say that $f$ is a \textbf{section} and $g$ is a \textbf{retraction}.  
 \end{definition}
 
 
@@ -93,7 +93,7 @@ Let us consider a triple $(W, \fibT, \cofT)$ of subclasses of $\ar(\C)$, called 
 \begin{definition}[Model structure]
 	They are said to form a \textbf{model structure} on $\C$ if they satisfy the following axioms:
 	\begin{itemize}
-		\item[(\textbf{MC1})] If $f$ and $g$ are composable morphisms of $\C$ and two out three between $f,g,gf$ are weak equavalences then also the this is.
+		\item[(\textbf{MC1})] If $f$ and $g$ are composable morphisms of $\C$ and two out three between $f,g,gf$ are weak equavalences then also the third is.
 		\item[(\textbf{MC2})] $W$, $\fibT$ and $\cofT$ are closed under retractions.
 		\item[(\textbf{MC3})] Trivial cofibrations have the LLP with respect to the fibrations, while the trivial fibrations have the RLP with the respect to the cofibrations.
 		\item[(\textbf{MC4})] Every arrow $f$ admits both of the following factorizations: (1) $f=pi$ where $i$ is an acyclic cofibration and $p$ is a fibration, and (2) $f=pi$ where $i$ is a cofibration and $p$ is an acyclic fibration.
@@ -128,6 +128,7 @@ We will from now on use $\C$ to refer to a model category.
 \end{proof}
 
 \begin{corollary}
+	\label{cor:closed-comp}
 	The class of weak equivalences, fibrations and cofibrations is closed under composition.
 \end{corollary}
 \begin{proof}
@@ -151,6 +152,7 @@ We will from now on use $\C$ to refer to a model category.
 	Being a fibration (resp. cofibration) is a property that is invariant with respect to taking pullbacks (resp. pushouts). The same is true for acyclic (co)fibrations.
 \end{corollary}
 \begin{proof}
+	\label{cor:closed-push-pull}
 	Let us only show the case with fibrations: let $p\colon A \fib B$ be a fibration, then the universal property of the pullback implies that if $p$ has the RLP with respect to a morphism, then we can say the same for the pushout (see the diagram below).
 	\[\begin{tikzcd}
 		X & {A\times_{B'}B} & A \\
@@ -201,6 +203,23 @@ We will from now on use $\C$ to refer to a model category.
 	Dually, if $F$ takes acyclic fibrations between fibrant objects to weak equivalences, then it takes weak equivalences between fibrant objects to weak equivalences.
 \end{lemma}
 
+\begin{lemma}
+	\label{lem:fib-to-surj}
+	Let $A$ be an object of $\C$. If the functor $\Hom_\C(A,{-})$ takes acyclic fibrations to surjections, $A$ is cofibrant; if the functor $\Hom_\C({-},A)$ takes acyclic cofibrations to surjections, $A$ is fibrant. \\
+	If instead the functor $\Hom_\C(A,{-})$ takes fibrations to surjections, $A$ is cofibrant and the initial map is a weak equivalence; if the functor $\Hom_\C({-},A)$ takes cofibrations to surjections, $A$ is fibrant and the terminal map is a weak equivalence.
+\end{lemma}
+\begin{proof}
+	Let us assume that the functor $\Hom_\C(A,{-})$ takes acyclic fibrations to surjections and let $f\colon X \longrightarrow Y$ be an acyclic fibration. If we consider a square as follows
+	\[\begin{tikzcd}
+		0 & X \\
+		A & Y
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow["f", "\sim"', two heads, from=1-2, to=2-2]
+		\arrow["h"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	we see $h \in \Hom(A,Y)$. Given that $\Hom(A,f)\colon \Hom(A,X) \longrightarrow \Hom(A,Y)$ must be surjective, we have deduced that $\Hom(A,X)$ must be non-empty, therefore a lift exists in such a diagram. We conclude by proposition \ref{prop:LLP-RLP} that $\emptyset \longrightarrow A$ is a cofibration. The other cases are analogous.
+\end{proof}
 
 \begin{proof}
 	We will only prove the case for acyclic cofibrations; the other case is dual.
@@ -936,4 +955,8 @@ We are now ready the prove the main result of this section.
 
 \section{Derived functors}
 
-\textbf{DA SCRIVERE}
+Let $\C$ be a model category and let $F\colon \C \longrightarrow \D$ be a functor.
+
+\begin{definition}
+	\textbf{DA SCRIVERE}
+\end{definition}
