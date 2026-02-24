@@ -40,6 +40,13 @@ Given that for every limit ordinal $\beta$ we know that $\colim_{\alpha < \beta}
 \[\colim_{\alpha < \beta} X \longrightarrow X_\beta,\]
 is an isomorphism.
 
+
+\begin{remark}
+	One important result about (AB5) categories is the fact that monomorphism are closed under transifinite composition; it can be proven by transifinite induction and the only non trivial step is the one for limit ordinals: if $X$ is a $\lambda$-sequence made up of monomorphisms and $\beta$ is a limit ordinal, using the fact that ordinals are filtered and colimits are exact in (AB5) categories, we have that 
+	\[\ker(X_0 \longrightarrow X_\beta) = \colim_{\alpha< \beta} \ker(X_0 \longrightarrow X_\alpha) =  \colim_{\alpha< \beta} 0 = 0.\]
+\end{remark}
+
+
 \begin{definition}[Filtered ordinal]
 	Let $\gamma$ be a cardinal; an ordinal $\alpha$ is said to be $\gamma$\textbf{-filtered} if for every $A\subseteq \alpha$ such that $|A| \leq \gamma$ we have $\text{sup} \: A < \alpha$.
 \end{definition}
@@ -49,6 +56,18 @@ is an isomorphism.
 	\[\colim_{\beta< \lambda} \Hom_\C(A, X_\beta) \longrightarrow \Hom_{\C}(A, \colim_{\beta < \lambda} X_\beta)\]
 	is bijective. We say that $A$ is \textbf{small relative} $I$ if it is $\kappa$-small relative to $I$ for some $\kappa$. We say that $A$ is \textbf{small} if it is small relative to the class of morphisms of $\C$.
 \end{definition}
+
+
+
+
+To avoid dealing with set-theoretic issues, our seetting will often be that of Grothendieck categories, due to the proposition below.
+
+\begin{proposition}
+	Every object in a Grothendieck category is small.
+\end{proposition}
+\begin{proof}
+	See proposition 1.2 of \cite{HoveySheaves1999}.
+\end{proof}
 
 \begin{definition}[Relative cell complex]
 	Let $I$ be a set of morphisms. A \textbf{relative} $I$\textbf{-cell complex} is a transifinite composition of pushouts of elements of $I$. We denote the class of relative $I$-cell complexes as $I$-cell. We say that an object $A\in \C$ is a $I$\textbf{-cell complex} if the initial morphism $\emptyset \longrightarrow A$ is a relative $I$-cell complex.
@@ -110,7 +129,7 @@ The main properties of cofibrantly generated model categories are stated in the 
 The theorem below gives us a method to build cofibrantly generated model categories through the small object argument.
 
 \begin{theorem}
-	Let $\C$ be a category with (small) limits and colimits, let $W$ be a class of maps of $\C$ and let $I,J$ be sets of maps of $\C$. Then there is a cofibrantly generated model structure on $\C$ with $I$ as the set of generating cofibrations, $J$ as the set of generating trivial cofibrations, and $W$ as the subcategory of weak equivalences if and only if the following conditions are satisfied:
+	Let $\C$ be a category with (small) limits and colimits, let $W$ be a class of morphism of $\C$ and let $I,J$ be sets of morphism of $\C$. Then there is a cofibrantly generated model structure on $\C$ with $I$ as the set of generating cofibrations, $J$ as the set of generating trivial cofibrations, and $W$ as the subcategory of weak equivalences if and only if the following conditions are satisfied:
 	\begin{enumerate}
 		\item The class $W$ satisfy the two-out-of-three property (\textbf{MC1}) and is closed under retracts.
 		\item The domains of $I$ are small relative to $I$-cell.
@@ -136,13 +155,16 @@ The easiest example of orthogonal complements is the following: if $\D = \ob(\C)
 	Given a class of objects $\D$, it is clear that $\D\subseteq \lperp{(\rperp{\D})}$ and $\D\subseteq \rperp{(\lperp{\D})}$. Also if $\D\subseteq \D'$ we have $\lperp \D' \subseteq \lperp \D$ and $\lperp \D' \subseteq \lperp \D$, therefore $\rperp{(\lperp{(\rperp{\D})})} = \rperp{\D}$ and $\lperp{(\rperp{(\lperp{\D})})} = \lperp{\D}$.
 \end{remark}
 
-One common way to define a cotorsion pair is to cogenerate it from a set, i.e. to choose a set $\D'$ and let $\E = \rperp{\D'}$ and $\D = \lperp{\E}$; the above remark proves that it is actually a cotorsion pair. The dual notion, generating the cotorsion pair from a set $\E' \subseteq \E$, does not commonly arise in practice, due to the asimmetryu of certain theorems that we will state later.
 
 \begin{definition}[Cotorsion pair]
 	Let $(\D$, $\E)$ be a pair of classes of objects of $\C$, they are said to be a \textbf{cotorsion pair} if $\D = \lperp{\E}$ and $\E = \rperp{\D}$.
 \end{definition}
 
-The example above allows us to construct two examples of cotorsion pairs: $(\proj(\C), \ob(\C))$ and $(\ob(\C),\inj(\C))$. Given these examples, we would like to generalize the concept of \virgolette{enough injectives} and \virgolette{enough projectives} to cotorsion pairs.
+
+One common way to define a cotorsion pair is to cogenerate it from a set, i.e. to choose a set $\D'$ and let $\E = \rperp{\D'}$ and $\D = \lperp{\E}$; the above remark proves that it is actually a cotorsion pair. The dual notion, generating the cotorsion pair from a set $\E' \subseteq \E$, does not commonly arise in practice, due to the asimmetry of certain theorems that we will need later. \\
+
+
+The example we used earlier allows us to construct two examples of cotorsion pairs: $(\proj(\C), \ob(\C))$ and $(\ob(\C),\inj(\C))$. Given these examples, we would like to generalize the concept of \virgolette{enough injectives} and \virgolette{enough projectives} to cotorsion pairs.
 
 
 
@@ -168,6 +190,83 @@ The example above allows us to construct two examples of cotorsion pairs: $(\pro
 
 
 
+\begin{definition}
+	Let $\D$ be a class of objects in $\C$, let $\lambda$ be an ordinal and let $X\colon \lambda \longrightarrow \C$ be a $\lambda$-sequence. If for any $\beta < \lambda$ the morphism $X_\beta \longrightarrow X_{\beta +1}$ is monic and its cokernel is in $\D$, we say that $X_0\longrightarrow \colim_{\beta < \lambda} X$ is a \textbf{transifinite extension} of $X_0$ by $\D$. If it is also true that $X_0 \in \D$, we simply refer to $\colim_{\beta < \lambda} X$ as a transifinite extension of $\D$.
+\end{definition}
+
+\begin{lemma}
+	\label{lem:cotorsion-trans}
+	Let us assume that $\C$ has all (small) limits and colimits; if $(\D, \E)$ is a cotorsion pair then $\D$ is closed under retracts and transifinite extensions.
+\end{lemma}
+\begin{proof}
+	The statement about retract is obvious: given that $\Ext^1({-},Y)$ is an additive functor, if $X$ is a retract of $X'$ then $\Ext^1(X,Y)$ is a retract of $\Ext^1(X',Y)$.
+	We will now prove that for any $Y \in \ob(\C)$, the class of objects $X$ such that $\Ext^1(X,Y)=0$ is closed under transifinite composition. Let $\lambda$ be an ordinal and let us consider a $\lambda$-sequence $X\colon \lambda \longrightarrow \C$ such that $\Ext^1(X_{\beta +1} / X_\beta,Y) = 0$ and $i_\alpha \colon X_\beta \longrightarrow X_ {\beta+1}$ is monic for any $\beta < \lambda$. We will now use transifinite induction to prove that $\Ext^1(X_\beta, Y) = 0$ for any $\beta \leq \lambda$, where we define $X_\lambda := \colim_{\beta < \lambda} X$. The base step $X_0$ is trivial. If $\beta := \alpha+1$ is a successor ordinal, we  have the exact sequence
+	\[\begin{tikzcd}
+		0 & {X_\alpha} & {X_{\alpha +1}} & {X_{\alpha+1}/ X_\alpha} & {0,}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	that induces
+	\[\begin{tikzcd}
+		{0 \cong\Ext^1(X_{\alpha+1}/ X_\alpha, Y)} & {\Ext^1(X_{\alpha +1}, Y)} & {\Ext^1( X_\alpha, Y) \cong 0.}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+	\end{tikzcd}\]
+	The case where $\beta$ is a successor ordinal is a little more involved: we want to show that all exact sequences of the form
+	\[\begin{tikzcd}
+		0 & Y & A & {X_\beta} & 0
+		\arrow[from=1-1, to=1-2]
+		\arrow["f", from=1-2, to=1-3]
+		\arrow["g", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	are splitting. By pulling back the extensions along the morphisms $X_\alpha \longrightarrow X_\beta $ and by setting $A_\alpha := A \times_{X_\beta} X_\alpha$, we get a family of compatible short exact sequences as follows.
+	\[\begin{tikzcd}[sep=small]
+		& 0 && Y && {A_\alpha} && {X_\alpha} && 0 \\
+		0 && Y && {A_{\alpha+1}} && {X_{\alpha+1}} && 0 \\
+		& 0 && Y && A && {X_\beta} && 0
+		\arrow[from=1-2, to=1-4]
+		\arrow["{{f_\alpha}}", from=1-4, to=1-6]
+		\arrow["{\id_Y}"', from=1-4, to=2-3]
+		\arrow["{\id_Y}"{pos=0.8}, from=1-4, to=3-4]
+		\arrow["{{g_\alpha}}", from=1-6, to=1-8]
+		\arrow["{{j_\alpha}}"', from=1-6, to=2-5]
+		\arrow[from=1-6, to=3-6]
+		\arrow[from=1-8, to=1-10]
+		\arrow["{{i_\alpha}}"', from=1-8, to=2-7]
+		\arrow[from=1-8, to=3-8]
+		\arrow[from=2-1, to=2-3]
+		\arrow["{{f_{\alpha+1}}}"{pos=0.75}, from=2-3, to=2-5]
+		\arrow["{\id_Y}"', from=2-3, to=3-4]
+		\arrow["{{g_{\alpha+1}}}"{pos=0.75}, from=2-5, to=2-7]
+		\arrow[from=2-5, to=3-6]
+		\arrow[from=2-7, to=2-9]
+		\arrow[from=2-7, to=3-8]
+		\arrow[from=3-2, to=3-4]
+		\arrow["f", from=3-4, to=3-6]
+		\arrow["g", from=3-6, to=3-8]
+		\arrow[from=3-8, to=3-10]
+	\end{tikzcd}\]
+	We know by inductive hypothesis that all of these sequences (except possibly the last) must split; we will now use another transfinite induction to show that we can choose all of the sections $s_\alpha \colon X_{\alpha} \longrightarrow A_\alpha$ in a compatible way (i.e. $j_{\alpha} s_\alpha = i_\alpha s_{\alpha+1}$), obtaining at last a splitting of the desired exact sequence. Given that there is no compatibility condition for $\alpha+1 = 0$, we are free to choose any section for $s_0$, so the base step of the induction is trivial. If $\alpha$ is a limit ordinal, thee section $s_\alpha$ will simply be the following colimit morphism.
+	\[\begin{tikzcd}
+		{X_{\alpha'}} & {A_{\alpha'}} & A \\
+		& {\colim_{\alpha'<\alpha}X \cong X_\alpha}
+		\arrow["{s_{\alpha'}}", from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["{s_\alpha}", dashed, from=2-2, to=1-3]
+	\end{tikzcd}\]
+	We now only need to show the successor step: given a section $s_\alpha \colon X_\alpha \longrightarrow A_\alpha$ of $g_\alpha$, we want to find a section $s_{\alpha +1} \colon X_{\alpha+1} \longrightarrow A_{\alpha+1} $ such that $j_\alpha s_\alpha = s_{\alpha+1}i_{\alpha}$. Given that we already know that the sequence ending in $X_{\alpha+1}$ must split, there exists a section $t_{\alpha+1}$ of $g_{\alpha+1}$. Given that
+	\[g_{\alpha+1}(j_\alpha s_\alpha - t_{\alpha+1} i_\alpha) = i_\alpha-i_\alpha = 0\]
+	and that $Y$ is the kernel of $g_{\alpha+1}$, there is $h\colon X_\alpha\longrightarrow Y$ that satisfies $f_{\alpha+1} h = j_\alpha s_\alpha -t_{\alpha+1} i_{\alpha}$. The fact that $\Ext^1(X_{\alpha+1}/X_\alpha, Y) = 0$ implies that the map \[\Hom(X_{\alpha+1}, Y) \longrightarrow \Hom(X_{\alpha}, Y)\] is surjective, therefore there exists $k \colon X_{\alpha+1} \longrightarrow Y$ such that $ki_\alpha = h$. It is easy to check that $s_{\alpha+1} := t_{\alpha+1} +f_{\alpha+1}k$ is the section we are looking for.
+\end{proof}
+
+
+
+
+
 
 \section{Hovey correspondence}
 
@@ -185,7 +284,7 @@ We would like to use cotorsion pairs to define model structures on abelian categ
 In an abelian model category we can give the following definition.
 
 \begin{definition}[Acyclic object]
-	An object $A$ is said to be \textbf{acyclic} if either zero map $A \longrightarrow 0$ or $0 \longrightarrow A$ is a weak equivalence. 
+	An object $A$ is said to be \textbf{acyclic} if either zero morphism $A \longrightarrow 0$ or $0 \longrightarrow A$ is a weak equivalence. 
 \end{definition}
 
 \begin{lemma}
@@ -323,7 +422,7 @@ The objective of this section will be to prove \virgolette{Hovey’s Corresponde
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
-	given that $\Ext^1(\coker(f),B)$ must be $0$, $f^*$ is surjective and therefore, by lemma \ref{lem:fib-to-surj}, $B$ must be in $F\cap W$. The last step we need is showing that this cotorsion pair is actually complete, but this is simply a consequence of (\textbf{MC4}): to show that $(C, F\cap W)$ has enough projectives, we can factor any initial map $0\longrightarrow X$ using an acyclic fibration $B \longrightarrow X$, where $B$ is cofibrant; taking the kernel of this map defines the exact sequence we need. Since the proof that shows that our cotorsion pair has enough injectives is identical, it must be complete.\\
+	given that $\Ext^1(\coker(f),B)$ must be $0$, $f^*$ is surjective and therefore, by lemma \ref{lem:fib-to-surj}, $B$ must be in $F\cap W$. The last step we need is showing that this cotorsion pair is actually complete, but this is simply a consequence of (\textbf{MC4}): to show that $(C, F\cap W)$ has enough projectives, we can factor any initial morphism $0\longrightarrow X$ using an acyclic fibration $B \longrightarrow X$, where $B$ is cofibrant; taking the kernel of this morphism defines the exact sequence we need. Since the proof that shows that our cotorsion pair has enough injectives is identical, it must be complete.\\
 	The last step that we need to complete this proof, is verifying that $W$ is a thick class. We know from axiom (\textbf{MC2}) that $W$ is closed under retracts, so we will only check the condition on SESes. 
 	We begin by considering a SES as follows,
 	\[\begin{tikzcd}
@@ -333,25 +432,29 @@ The objective of this section will be to prove \virgolette{Hovey’s Corresponde
 		\arrow["g", from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
-	then
-	then we set
-
-
+	then we can factor $g$ as 
+	\[\begin{tikzcd}
+		B & {B'} & C
+		\arrow["j", "\sim"', hook, from=1-1, to=1-2]
+		\arrow["{g'}", two heads, from=1-2, to=1-3]
+	\end{tikzcd}\]
+	to get a commuting diagram with exact rows as follows
 	\[\begin{tikzcd}
 		0 & A & B & C & 0 \\
-		0 & {A'} & {B'} & C & 0
+		0 & {A'} & {B'} & C & {0,}
 		\arrow[from=1-1, to=1-2]
 		\arrow["f", from=1-2, to=1-3]
 		\arrow["i", from=1-2, to=2-2]
 		\arrow["g", from=1-3, to=1-4]
-		\arrow["j", from=1-3, to=2-3]
+		\arrow["j", hook, from=1-3, to=2-3]
 		\arrow[from=1-4, to=1-5]
-		\arrow["{\id_C}", from=1-4, to=2-4]
+		\arrow["{{\id_C}}", from=1-4, to=2-4]
 		\arrow[from=2-1, to=2-2]
-		\arrow["{f'}", from=2-2, to=2-3]
-		\arrow["{g'}", from=2-3, to=2-4]
+		\arrow["{{f'}}", from=2-2, to=2-3]
+		\arrow["{{g'}}", two heads, from=2-3, to=2-4]
 		\arrow[from=2-4, to=2-5]
 	\end{tikzcd}\]
+	where $A' = \coker(g')$ and $i$ is the morphism induced by the cokernel functor. By the snake lemma $\coker(i) = \coker{j}$ and so it is cofibrant, therefore $i$ is also a acyclic cofibration by proposition \ref{prop:acyc-in-ab}; we can also observe that $A'$ must be fibrant, given that it is the kernel of a fibration. If we now assume that $A \in W$ it is immediate that $A' \in W$, thus $g'$ must be a trivial fibration; by (\textbf{MC1}) $g$ must be a weak equivalence, therefore $B\in W$ if and only if $C\in W$. The remaining case ($B,C \in W$ implies $A\in W$) is simply the same argument in reverse. 
 \end{proof}
 
 
@@ -362,24 +465,57 @@ The objective of this section will be to prove \virgolette{Hovey’s Corresponde
 
 
 \begin{theorem}[Hovey's Correspondence - Part 2]
-	If $\C$ is an abelian model category and $(C,W,F)$ is an Hovey triple, then there exists an abelian model structure on $\C$ where $C$ are the cofibrant objects, $F$ are the fibrant objects and $W$ are the acyclic objects.
+	If $\C$ is an abelian model category and $(C,W,F)$ is an Hovey triple, then there exists a unique abelian model structure on $\C$ where $C$ are the cofibrant objects, $F$ are the fibrant objects and $W$ are the acyclic objects.
 \end{theorem}
 
 
 
 
 
+\section{Small cotorsion pairs}
 
-
+The main obstacle in proving that certain classes form a Hovey triple, which we need if we want to use Hovey's correspondence theorem, is proving the completeness of the cotorsion pairs. This section will show that, if we are operating under certain hypothesis, this condition is free; in these particular cases we will also see that the model structure induced by the Hovey triple is cofibrantly generated.
 
 \begin{definition}[Small cotorsion pair]
-	
+	Let $\C$ be an abelian category that has all (small) limits and colimits, let $(\D, \E)$ be a cotorsion pair of $\C$. We say that $(\D, \E)$ is \textbf{small} if all the following properties are satisfied.
+	\begin{enumerate}
+		\itemsep0em 
+		\item $\D$ contains a family of generators $\G$.
+		\item $(\D, \E)$ is cogenerated by a set  $\U$.
+		\item for each $U \in \U$, there is a monomorphism $i_U\colon B_U \longrightarrow A_U$ with cokernel $U$ such that, if $i_U^*\colon \Hom(B_U, X) \longrightarrow \Hom(A_U, X)$ is surjective for all $U\in \U$, then $X \in \E$.
+	\end{enumerate}
+	We refer to the set $I$ containing all of the morphisms $i_U$ for $U \in \U$ and all of the initial morphisms $0 \longrightarrow G$ for $G \in \G$ as the \textbf{generating monomorphisms} of the cotorsion pair.
 \end{definition}
 
+It is important to remark that if $(\D, \E)$ is a small cotorsion pair, the converse of condition $3$ always holds: if $X \in \E$, then for all $U\in \U$ we have $\Ext^1(U, X) = 0$ and therefore by the long exact sequence associated to $\Ext$ we have that $i_U^*$ is surjective. We can use this fact to recover from the set $I$ of generating monomorphism the entire cotorsion pair: $\E$ is exactly the class of all objects $X$ such that $i^* = \Hom(i, X)$ is surjective for all $i\in I$ (the condition is trivial for morphisms of the form $0 \longrightarrow G$), while $\D = \lperp{\E}$. \\
+From now on we will let $\C$ be a Grothendieck category.
 
+\begin{theorem}
+	Let $I$ be a set of monomorphisms of $\C$, then $I$ is the set of generating monomorphisms of a small cotorsion pair $(\D, \E)$ if and only if the following conditions hold:
+	\begin{enumerate}
+		\itemsep0em 
+		\item $I$ contains the morphisms $0 \longrightarrow G_i$ for a generating set $\G = \{G_i\}$ of $\C$.
+		\item For every $E \in \ob(\C)$ such that $i^*= \Hom(i, E)$ is surjective for all $i\in I$ and for every $j \in I$, we have $\Ext^1(\coker(j), E) = 0$  
+	\end{enumerate}
+	In this case, $\E$ is the class of all objects $E$ such that $i^*$ (as above) is surjective for all $i \in I$, while $\D$ is the smallest class closed under summands and transfinite extensions that contains all the cokernels of morphism in $I$. Furthermore $(\D, \E)$ is complete.
+\end{theorem}
 
+\begin{proof}
+	If $I$ is a set of generating monomorphisms both conditions are easily verified. We will now prove that, given a set $I$ that satisfies both condition, the pair $(\D, \E)$ as in the statement of the theorem is a complete cotorsion pair.\\
+	We begin by showing that this pair has enough injectives: by applying the small object argument to $X \longrightarrow 0$ we get a factorization of the form
+	$\begin{tikzcd}[sep=small]
+		X & Y & {0,}
+		\arrow["f", from=1-1, to=1-2]
+		\arrow["g", from=1-2, to=1-3]
+	\end{tikzcd}$
+	where $f$ is in $I$-cell and $g$ is in $I$-inj. This last result implies that $\Hom(i,Y)$ is surjective for all $i \in I$, therefore $Y \in \E$. Since monomorphisms are closed under pushouts and transifinite composition (we are in a Grothendieck category, which is AB3), we only need to show that $\coker(f)$ is in $\D$; it follows from the fact that $\coker(f)$ is a transfinite extension of cokernels of morphisms in $I$ (pushouts preserve cokernels) and the definition of $\D$. \\
+	We will continue by showing that $(\D, \E)$ has enough injectives: this time we factor $0\longrightarrow X$ as 
+	$\begin{tikzcd}[sep=small]
+		0 & Z & {X,}
+		\arrow["h", from=1-1, to=1-2]
+		\arrow["k", from=1-2, to=1-3]
+	\end{tikzcd}$
+	where $h$ is in $I$-cell and $k$ is in $I$-inj. By proceeding as we did above, we get that $\coker(h) \cong Z$ must be in $\D$. Given that $0\longrightarrow G_i$ for $G_i \in G$ are in $I$ and $k$ is in $I$-inj, $k$ must be epic. The morphism $\ker(k) \longrightarrow 0$ is a pullback of of a morphism ($k$) in $I$-inj, therefore it is also in $I$-inj (see the proof of corollary \ref{cor:closed-push-pull}) and therefore, as we did earlier, $\ker(f)$ is in $\E$. \\
+	The last step is proving that $(\D, \E)$ is actually a cotorsion pair.
+\end{proof}
 
-
-\begin{definition}
-	
-\end{definition}

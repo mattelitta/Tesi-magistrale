@@ -551,7 +551,7 @@ and $h\colon B\longrightarrow B'$ we can take the pushout ${B'\times_B X}$; then
 
 \[\begin{tikzcd}
 	0 & B & X & A & 0 \\
-	0 & {B'} & {B'\times_B X} & A & {0.}
+	0 & {B'} & {B'\amalg_B X} & A & {0.}
 	\arrow[from=1-1, to=1-2]
 	\arrow["f", from=1-2, to=1-3]
 	\arrow["h", from=1-2, to=2-2]
@@ -564,8 +564,8 @@ and $h\colon B\longrightarrow B'$ we can take the pushout ${B'\times_B X}$; then
 	\arrow["{g'}", from=2-3, to=2-4]
 	\arrow[from=2-4, to=2-5]
 \end{tikzcd}\]
-Therefore, by passing to the quotient, we get a morphism of sets \[h_{*}\colon \Ext^1(A,B) \longrightarrow \Ext(A,B').\] 
-Similarly, given a morphism $k:A'\longrightarrow A$, we get a function 
+Therefore, by passing to the quotient, we get a (natural) map \[h_{*}\colon \Ext^1(A,B) \longrightarrow \Ext(A,B').\] 
+Similarly, given a morphism $k:A'\longrightarrow A$, we get a (natural) map 
 \[k_* \colon \Ext^1_\C(A, B) \longrightarrow \Ext^1_\C(A',B).\] 
 
 We will now introduce an operation, called the \textit{Baer sum}, on $\Ext^n_\C(A,B)$: given two elements in $\Ext^n_\C(A,B)$ with representatives
@@ -729,19 +729,28 @@ The dual result is also true.
 	\begin{itemize}
   		\item[(AB3)] $\C$ has all (small) coproducts (and therefore all small colimits);
     	\item[(AB4)] $\C$ satisfies (AB3) and the coproduct of monomorphisms is a monomorphism; 
-    	\item[(AB5)] filtered colimits in $\C$ are exact. 
+    	\item[(AB5)] $\C$ satisfies (AB3) and filtered colimits in $\C$ are exact. 
 	\end{itemize}
 \end{definition}
 
 
 \begin{definition}
-	A generator $\mathcal{G}$ of a category $\C$ is a family of objects $\mathcal{G} \subseteq \ob \: \C$ which satisfies the following property: for every pair of distinct morphisms $f,g: A \longrightarrow B$ there is an object $G \in \mathcal{G}$ and a morphism $h: G \longrightarrow A$ such that $fh \neq gh$.
+	A \textbf{generator} $\mathcal{G}$ of a category $\C$ is an object $G$ which satisfies the following property: for every pair of distinct morphisms $f,g: A \longrightarrow B$, there is a morphism $s\colon G \longrightarrow A$ such that $fs\neq gs$. A \textbf{family of generators} is a nonempty set $\G=\{G_i\}_i$ which satisfies the following property: for every pair of distinct morphisms $f,g: A \longrightarrow B$, there is an object $G_i  \in \G$ and a morphism $s\colon G_i \longrightarrow A$ such that $fs\neq gs$.
 \end{definition}
+
+\begin{remark}
+	It is easy to see that an object $G$ is a generator if and only if the functor $\Hom(G, {-})$ is faithful, therefore for any generator $G$ we have that $\Hom(G, X) = 0$ implies $X=0$. In an abelian category there is a slightly more interesting equivalent characterization: an object $G$ is a generator if and only if $\Hom(G, f) = f_*$ being surjective implies that $f$ is epic; similarly $\G$ is a family of generators if and only if $\Hom(G, f) = f_*$ being surjective for all $G \in \G$ implies that $f$ is epic. If we are working in an (AB3) category, the existence of a family of generators implies the existence of a generator: we only need to set
+	\[G = \bigoplus_{G_i \in \G} G_i.\]
+\end{remark}
 
 
 \begin{definition}[Grothendieck category]
-	A category $\C$ is called a Grothendieck category if it is an abelian category that satisfies (AB5) and possesses a generator.
+	An abelian category $\C$ is called a \textbf{Grothendieck} \textbf{category} if it satisfies (AB5) and possesses a generator.
 \end{definition}
+
+\begin{theorem}
+	Every Grothendieck category has all (small) limits.
+\end{theorem}
 
 
 \begin{theorem}
