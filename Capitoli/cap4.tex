@@ -214,7 +214,7 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 		\arrow[from=1-1, to=1-2]
 		\arrow[from=1-2, to=1-3]
 	\end{tikzcd}\]
-	The case where $\beta$ is a successor ordinal is a little more involved: we want to show that all exact sequences of the form
+	The case where $\beta$ is a limit ordinal is a little more involved: we want to show that all exact sequences of the form
 	\[\begin{tikzcd}
 		0 & Y & A & {X_\beta} & 0
 		\arrow[from=1-1, to=1-2]
@@ -260,7 +260,7 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 	\end{tikzcd}\]
 	We now only need to show the successor step: given a section $s_\alpha \colon X_\alpha \longrightarrow A_\alpha$ of $g_\alpha$, we want to find a section $s_{\alpha +1} \colon X_{\alpha+1} \longrightarrow A_{\alpha+1} $ such that $j_\alpha s_\alpha = s_{\alpha+1}i_{\alpha}$. Given that we already know that the sequence ending in $X_{\alpha+1}$ must split, there exists a section $t_{\alpha+1}$ of $g_{\alpha+1}$. Given that
 	\[g_{\alpha+1}(j_\alpha s_\alpha - t_{\alpha+1} i_\alpha) = i_\alpha-i_\alpha = 0\]
-	and that $Y$ is the kernel of $g_{\alpha+1}$, there is $h\colon X_\alpha\longrightarrow Y$ that satisfies $f_{\alpha+1} h = j_\alpha s_\alpha -t_{\alpha+1} i_{\alpha}$. The fact that $\Ext^1(X_{\alpha+1}/X_\alpha, Y) = 0$ implies that the map \[\Hom(X_{\alpha+1}, Y) \longrightarrow \Hom(X_{\alpha}, Y)\] is surjective, therefore there exists $k \colon X_{\alpha+1} \longrightarrow Y$ such that $ki_\alpha = h$. It is easy to check that $s_{\alpha+1} := t_{\alpha+1} +f_{\alpha+1}k$ is the section we are looking for.
+	and that $Y$ is the kernel of $g_{\alpha+1}$, there is $h\colon X_\alpha\longrightarrow Y$ that satisfies $f_{\alpha+1} h = j_\alpha s_\alpha -t_{\alpha+1} i_{\alpha}$. The fact that $\Ext^1(X_{\alpha+1}/X_\alpha, Y) = 0$ implies that the map \[\Hom_\C(X_{\alpha+1}, Y) \longrightarrow \Hom_\C(X_{\alpha}, Y)\] is surjective, therefore there exists $k \colon X_{\alpha+1} \longrightarrow Y$ such that $ki_\alpha = h$. It is easy to check that $s_{\alpha+1} := t_{\alpha+1} +f_{\alpha+1}k$ is the section we are looking for.
 \end{proof}
 
 
@@ -318,7 +318,7 @@ The following proposition charcterizes acyclic fibrations/cofibrations in an abe
 
 \begin{proposition}
 	\label{prop:acyc-in-ab}
-	Let $\C$ be both an abelian category and an abelian category (not necessarily an abelian model category!) where every cofibration is a monomorphisms and every fibration is an epimorphism, the following two results hold: fibrations coincide with epimorphisms with fibrant kernels if and only if acyclic cofibrations coincide with monomorphisms with acyclic cofibrant cokernels; similarly, acyclic fibrations coincide with epimorphisms with acyclic fibrant kernels if and only if cofibrations
+	Let $\C$ be both an abelian category and a model category (not necessarily an abelian model category!) where every cofibration is a monomorphisms and every fibration is an epimorphism, the following two results hold: fibrations coincide with epimorphisms with fibrant kernels if and only if acyclic cofibrations coincide with monomorphisms with acyclic cofibrant cokernels; similarly, acyclic fibrations coincide with epimorphisms with acyclic fibrant kernels if and only if cofibrations
 	coincide with monomorphisms with cofibrant cokernels.
 \end{proposition}
 
@@ -351,12 +351,12 @@ The following proposition charcterizes acyclic fibrations/cofibrations in an abe
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
 
-	By carefully applying the functor $\Hom({-},{-})$ to the exact sequences above, we get the following commuting diagram with exact rows and columns.
+	By carefully applying the functor $\Hom_\C({-},{-})$ to the exact sequences above, we get the following commuting diagram with exact rows and columns.
 
 	\[\begin{tikzcd}
-		{\Hom(C,Z)} & {\Hom(C,X)} & {\Hom(C,Y)} & {\Ext^1(C,Z)} \\
-		{\Hom(B,Z)} & {\Hom(B,X)} & {\Hom(B,Y)} & {\Ext^1(C,X)} \\
-		{\Hom(A,Z)} & {\Hom(A,X)} & {\Hom(A,Y)} & {\Ext^1(A,Z)} \\
+		{\Hom_\C(C,Z)} & {\Hom_\C(C,X)} & {\Hom_\C(C,Y)} & {\Ext^1(C,Z)} \\
+		{\Hom_\C(B,Z)} & {\Hom_\C(B,X)} & {\Hom_\C(B,Y)} & {\Ext^1(C,X)} \\
+		{\Hom_\C(A,Z)} & {\Hom_\C(A,X)} & {\Hom_\C(A,Y)} & {\Ext^1(A,Z)} \\
 		{\Ext^1(C,Z)} & {\Ext^1(C,X)} & {\Ext^1(C,Y)} & \cdots
 		\arrow[from=1-1, to=1-2]
 		\arrow[from=1-1, to=2-1]
@@ -383,7 +383,7 @@ The following proposition charcterizes acyclic fibrations/cofibrations in an abe
 		\arrow["{g_*}", from=4-2, to=4-3]
 		\arrow[from=4-3, to=4-4]
 	\end{tikzcd}\]
-	Our current objective is finding $\gamma\in \Hom(B,X)$ such that $f^* \gamma = \alpha$ and $g_* \gamma = \beta$, we will do so through some diagram chasing. We begin by noticing that \[g_*\delta \alpha = \delta g_* \alpha = \delta f^* \beta = 0. \] By lemma \ref{lem:ext-model} we know that ${\Ext^1(C,Z)} = 0$, therefore $g_* \colon{\Ext^1(C,X)} \longrightarrow {\Ext^1(C,Y)}$ is injective, thus $\delta \alpha = 0$ and by the exactness of the column we know that there exists $\gamma'\in \Hom(B,X)$ such that $f^* \gamma' = \alpha$. Given that $f^*(\beta - g_*\gamma')= f^*\beta -g_* \alpha = 0$, the morphism $\beta - g_*\gamma'$ must have a preimage $F$ in ${\Hom(C,Y)}$; using again lemma \ref{lem:ext-model}, we know that $g_*\colon {\Hom(C,X)} \longrightarrow  {\Hom(C,Y)}$ is surjective, and as a result there must be a morphism $G\in {\Hom(C,X)}$ such that $g_* G = F$. If we denote as $G'$ the image of $G$ in $\Hom(B,X)$, it is easy to check that $\gamma = \gamma' - G'$ is the morphism we are looking for.
+	Our current objective is finding $\gamma\in \Hom_\C(B,X)$ such that $f^* \gamma = \alpha$ and $g_* \gamma = \beta$, we will do so through some diagram chasing. We begin by noticing that \[g_*\delta \alpha = \delta g_* \alpha = \delta f^* \beta = 0. \] By lemma \ref{lem:ext-model} we know that ${\Ext^1(C,Z)} = 0$, therefore $g_* \colon{\Ext^1(C,X)} \longrightarrow {\Ext^1(C,Y)}$ is injective, thus $\delta \alpha = 0$ and by the exactness of the column we know that there exists $\gamma'\in \Hom_\C(B,X)$ such that $f^* \gamma' = \alpha$. Given that $f^*(\beta - g_*\gamma')= f^*\beta -g_* \alpha = 0$, the morphism $\beta - g_*\gamma'$ must have a preimage $F$ in ${\Hom_\C(C,Y)}$; using again lemma \ref{lem:ext-model}, we know that $g_*\colon {\Hom_\C(C,X)} \longrightarrow  {\Hom_\C(C,Y)}$ is surjective, and as a result there must be a morphism $G\in {\Hom_\C(C,X)}$ such that $g_* G = F$. If we denote as $G'$ the image of $G$ in $\Hom_\C(B,X)$, it is easy to check that $\gamma = \gamma' - G'$ is the morphism we are looking for.
 
 \end{proof}
 
@@ -414,9 +414,9 @@ The objective of this section will be to prove \virgolette{Hovey’s Corresponde
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
-	where $\coker(f)$ must be a cofibrant object. Using the long exact sequence associated to the functor $\Hom({-},B)$ and the SES above, we get
+	where $\coker(f)$ must be a cofibrant object. Using the long exact sequence associated to the functor $\Hom_\C({-},B)$ and the SES above, we get
 	\[\begin{tikzcd}
-		\cdots & {\Hom(X,B)} & {\Hom(Y,B)} & {\Ext^1(\coker(f),B)} & {\cdots;}
+		\cdots & {\Hom_\C(X,B)} & {\Hom_\C(Y,B)} & {\Ext^1(\coker(f),B)} & {\cdots;}
 		\arrow[from=1-1, to=1-2]
 		\arrow["{f^*}", from=1-2, to=1-3]
 		\arrow[from=1-3, to=1-4]
@@ -482,20 +482,20 @@ The main obstacle in proving that certain classes form a Hovey triple, which we 
 		\itemsep0em 
 		\item $\D$ contains a family of generators $\G$.
 		\item $(\D, \E)$ is cogenerated by a set  $\U$.
-		\item for each $U \in \U$, there is a monomorphism $i_U\colon B_U \longrightarrow A_U$ with cokernel $U$ such that, if $i_U^*\colon \Hom(B_U, X) \longrightarrow \Hom(A_U, X)$ is surjective for all $U\in \U$, then $X \in \E$.
+		\item for each $U \in \U$, there is a monomorphism $i_U\colon B_U \longrightarrow A_U$ with cokernel $U$ such that, if $i_U^*\colon \Hom_\C(B_U, X) \longrightarrow \Hom_\C(A_U, X)$ is surjective for all $U\in \U$, then $X \in \E$.
 	\end{enumerate}
 	We refer to the set $I$ containing all of the morphisms $i_U$ for $U \in \U$ and all of the initial morphisms $0 \longrightarrow G$ for $G \in \G$ as the \textbf{generating monomorphisms} of the cotorsion pair.
 \end{definition}
 
-It is important to remark that if $(\D, \E)$ is a small cotorsion pair, the converse of condition $3$ always holds: if $X \in \E$, then for all $U\in \U$ we have $\Ext^1(U, X) = 0$ and therefore by the long exact sequence associated to $\Ext$ we have that $i_U^*$ is surjective. We can use this fact to recover from the set $I$ of generating monomorphism the entire cotorsion pair: $\E$ is exactly the class of all objects $X$ such that $i^* = \Hom(i, X)$ is surjective for all $i\in I$ (the condition is trivial for morphisms of the form $0 \longrightarrow G$), while $\D = \lperp{\E}$. \\
-From now on we will let $\C$ be a Grothendieck category.
+It is important to remark that if $(\D, \E)$ is a small cotorsion pair, the converse of condition $3$ always holds: if $X \in \E$, then for all $U\in \U$ we have $\Ext^1(U, X) = 0$ and therefore by the long exact sequence associated to $\Ext$ we have that $i_U^*$ is surjective. We can use this fact to recover from the set $I$ of generating monomorphism the entire cotorsion pair: $\E$ is exactly the class of all objects $X$ such that $i^* = \Hom_\C (i, X)$ is surjective for all $i\in I$ (the condition is trivial for morphisms of the form $0 \longrightarrow G$), while $\D = \lperp{\E}$. \\
+From now on we will assume $\C$ to be a Grothendieck category.
 
 \begin{theorem}
 	Let $I$ be a set of monomorphisms of $\C$, then $I$ is the set of generating monomorphisms of a small cotorsion pair $(\D, \E)$ if and only if the following conditions hold:
 	\begin{enumerate}
 		\itemsep0em 
 		\item $I$ contains the morphisms $0 \longrightarrow G_i$ for a generating set $\G = \{G_i\}$ of $\C$.
-		\item For every $E \in \ob(\C)$ such that $i^*= \Hom(i, E)$ is surjective for all $i\in I$ and for every $j \in I$, we have $\Ext^1(\coker(j), E) = 0$  
+		\item For every $E \in \ob(\C)$ such that $i^*= \Hom_\C(i, E)$ is surjective for all $i\in I$ and for every $j \in I$, we have $\Ext^1(\coker(j), E) = 0$  
 	\end{enumerate}
 	In this case, $\E$ is the class of all objects $E$ such that $i^*$ (as above) is surjective for all $i \in I$, while $\D$ is the smallest class closed under summands and transfinite extensions that contains all the cokernels of morphism in $I$. Furthermore $(\D, \E)$ is complete.
 \end{theorem}
@@ -508,14 +508,33 @@ From now on we will let $\C$ be a Grothendieck category.
 		\arrow["f", from=1-1, to=1-2]
 		\arrow["g", from=1-2, to=1-3]
 	\end{tikzcd}$
-	where $f$ is in $I$-cell and $g$ is in $I$-inj. This last result implies that $\Hom(i,Y)$ is surjective for all $i \in I$, therefore $Y \in \E$. Since monomorphisms are closed under pushouts and transifinite composition (we are in a Grothendieck category, which is AB3), we only need to show that $\coker(f)$ is in $\D$; it follows from the fact that $\coker(f)$ is a transfinite extension of cokernels of morphisms in $I$ (pushouts preserve cokernels) and the definition of $\D$. \\
-	We will continue by showing that $(\D, \E)$ has enough injectives: this time we factor $0\longrightarrow X$ as 
+	where $f$ is in $I$-cell and $g$ is in $I$-inj. This last result implies that $\Hom_\C(i,Y)$ is surjective for all $i \in I$, therefore $Y \in \E$. Since monomorphisms are closed under pushouts and transifinite composition (we are in a Grothendieck category, which is AB3), we only need to show that $\coker(f)$ is in $\D$; it follows from the fact that $\coker(f)$ is a transfinite extension of cokernels of morphisms in $I$ (pushouts preserve cokernels) and the definition of $\D$. \\
+	We will continue by showing that $(\D, \E)$ has enough projectives: this time we factor $0\longrightarrow X$ as 
 	$\begin{tikzcd}[sep=small]
 		0 & Z & {X,}
 		\arrow["h", from=1-1, to=1-2]
 		\arrow["k", from=1-2, to=1-3]
 	\end{tikzcd}$
 	where $h$ is in $I$-cell and $k$ is in $I$-inj. By proceeding as we did above, we get that $\coker(h) \cong Z$ must be in $\D$. Given that $0\longrightarrow G_i$ for $G_i \in G$ are in $I$ and $k$ is in $I$-inj, $k$ must be epic. The morphism $\ker(k) \longrightarrow 0$ is a pullback of of a morphism ($k$) in $I$-inj, therefore it is also in $I$-inj (see the proof of corollary \ref{cor:closed-push-pull}) and therefore, as we did earlier, $\ker(f)$ is in $\E$. \\
-	The last step is proving that $(\D, \E)$ is actually a cotorsion pair.
+	The last step is proving that $(\D, \E)$ is actually a cotorsion pair. Let us consider $D \in \D$ and $E \in \E$, given that $\Ext^1(\coker(i), E) = 0$ for all $i \in I$, by applying what we have learned by proving lemma \ref{lem:cotorsion-trans}, it follows that $\Ext^1(D, E) = 0$; therefore $\D \subseteq \lperp{\E}$ and $\E \subseteq \rperp{\D}$. Let us take $X\in \rperp{\D}$, given that $\coker(i) \in \D $ for all $i \in I$ we can say that $\Ext^1(\coker(i), X) = 0$ for all $i \in I$, thus $X \in \E$. Now we will assume that $X \in \lperp{\E}$, by using the fact that there are enough projectives we can find a short exact sequence
+	\[\begin{tikzcd}
+		0 & Z & Y & X & {0,}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow[from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	where $Z \in \E$ and $Y \in \D$. This is a representative of an element of $\Ext^1(X, Z) = 0$, therefore it splits; given that $\D$ is closed under summands, $X \in \D$.
 \end{proof}
 
+\begin{corollary}
+	Every small cotorsion pair of $\C$ is complete.
+\end{corollary}
+
+\begin{proposition}
+	Let us put on $\C$ an abelian model structure; if the cotorsion pairs $(C, F \cap W)$ and $(C\cap W, F)$ are small, then this model structure is cofibrantly generated.
+\end{proposition}
+
+\begin{proof}
+	Let $I$ be a set of generating monomorphisms for $(C, F \cap W)$, while letting $J$ be a set of generating monomorphisms for $(C \cap W, F)$. We want to show that $I$ is the set of generating cofibrations while $J$ is the set of generating acyclic cofibrations; the smallness condition is trivial given that we are working in a Grothendieck category. Let $f$ be a morphism in $I$-inj, given that $0\longrightarrow G_h$ is in $I$ for a generating family $\G = \{G_h\}_h$, then $\Hom_\C(G_h, f)$ is surjective for all $h$ and thus $f$ is epic. The map $\ker(f)\longrightarrow 0$ is a pullback of $f$ and hence it is also in $I$-inj (see corollary \ref{cor:closed-push-pull}); thus $\Hom_\C(i, \ker{f})$ is surjective foe all $i \in I$ and $\ker(f) \in F$. We conclude that $f$ is a fibration; to show that if $g$ is in $J$-inj then $g$ is an acyclic fibration we can proceed analogously. 
+\end{proof}

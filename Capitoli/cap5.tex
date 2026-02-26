@@ -1,2 +1,37 @@
-\chapter{Model structures and chain complexes}
+\chapter{Cotorsion pairs and chain complexes}
 
+In the previous chapter we have seen the various interaction between cotorsion pairs and model structures on Grothendieck categories, we will now see how we can use this knowledge to study chain complexes in these categories. The theory has been deeveloped by James Gillespie in \cite{Gillespie2004Flat} and \cite{Gillespie2006Quillen}.
+
+
+\section{Initial remarks}
+
+
+\begin{notation}
+    Let $\C$ be an abelian category, let $X \in \ob(\C)$ and let $n \in \Z$. We denote as $S^n X$ the object of $\Ch(\C)$ given by the complex whose only nonzero element is $X$ in position $n$; we also denote as $D^n X$ the object of $\Ch(\C)$ given by the complex whose only nonzero elements are $X$ in position $n-1, n$  and whose only nonzero morphsim is $d_{n-1} = \id_X$.
+\end{notation}
+
+
+
+\begin{lemma}
+    Let $\C$ be an abelian category, let $A \in ob(\C)$ and let $X,Y \in \ob(\Ch(\C))$. The following natural isomorphisms hold:
+    \begin{enumerate}
+		\itemsep0em 
+		\item $\HomCh{\C}(D^n A, Y) = \Hom_\C(A, Y_n)$.
+		\item $\HomCh{\C}(X, D^n A) = \Hom_\C(X_{n-1}, A)$.
+	\end{enumerate}
+\end{lemma}
+
+
+\begin{lemma}
+    If $\C$ is a Grothendieck category, then $\Ch(\C)$ is also a Grothendieck category.
+\end{lemma}
+
+
+\begin{proof}
+    Let $G$ be a generator of $\C$, the adjunction \[\HomCh{\C}(D^n G, X) = \Hom_\C(G, X_n)\] shows that $\{D^n G\}_{n \in \Z}$ is a generating family for $\Ch(\C)$. We conclude by remembering that colimits in $\Ch(\C)$ are taken dimensionwise.
+\end{proof}
+
+
+
+
+\section{Induced cotorsion pairs}
