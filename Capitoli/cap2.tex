@@ -2,7 +2,7 @@
 \chapter{Abelian categories}
 
 
-This first chapter will serve as an introduction to the basics of Abelian Categories, first introduced by Alexander Grothendieck in his seminal "Tohoku Paper" \cite{Tohoku}; for a nice introduction see \cite{murfet2006abelian}.
+This chapter will serve as an introduction to the basics of Abelian Categories, first introduced by Alexander Grothendieck in his seminal "Tohoku Paper" \cite{Tohoku}; for an accessible introduction see \cite{murfet2006abelian}.
 
 \section{Basic definitions}
 Let $\C$ be a category.
@@ -82,7 +82,7 @@ All the dual results obviously hold.
 We start this section introducing additive categories and functors between them.
 
 \begin{definition}[Additive category]
-    A \textbf{additive category} is a (locally small) category $\mathcal{C}$ such that:
+    An \textbf{additive category} is a (locally small) category $\mathcal{C}$ such that:
     \begin{itemize}
         \item for every couple of objects $A,B \in \ob \: \C$ the set of arrows $\Hom_\C(A,B)$ is an abelian group such that composition distributes over its group operation;
         \item $\C$ has binary products.
@@ -201,7 +201,7 @@ We also denote the morphisms produced from $f,g$ (resp. $f',g'$) by the universa
 	\arrow["{\pi_2}"', from=2-2, to=2-3]
 \end{tikzcd}\]
 
-We will also denote the diagonal morphism $(\id_A, \id_A)$ as $\Delta_A \colon A \longrightarrow A \otimes A$ and the codiagonal morphism $id_B + id_B$ as $\nabla_B \colon B\oplus B \longrightarrow B$.\\
+We will also denote the diagonal morphism $(\id_A, \id_A)$ as $\Delta_A \colon A \longrightarrow A \oplus A$ and the codiagonal morphism $id_B + id_B$ as $\nabla_B \colon B\oplus B \longrightarrow B$.\\
 With an analogous construction we get direct sum of morphisms $f \oplus g$, with all the relevant properties.
 
 
@@ -417,10 +417,6 @@ Similarly for an epimorphism $p$ we get
 	\arrow[from=1-4, to=1-5]
 \end{tikzcd}\]
 
-
-\begin{remark}
-	
-\end{remark}
 
 \section{Extensions}
 In this section we will essentially follow \cite{Weibel_1994} and \cite{maclane2012homology}.
@@ -700,7 +696,7 @@ splits. The dual result is similar.
 The dual result is also true.
 
 \begin{proposition}
-	An object $I$ is injective if and only if for every monomorphism $e \colon X\longrightarrow E$ and every morphism $f\colon X \longrightarrow I$ there exists a morphism $\bar{f} \colon P \longrightarrow E$ such that 
+	An object $I$ is injective if and only if for every monomorphism $e \colon X\longrightarrow E$ and every morphism $f\colon X \longrightarrow I$ there exists a morphism $\bar{f} \colon E \longrightarrow I$ such that 
 	\[\begin{tikzcd}
 		X & I \\
 		E

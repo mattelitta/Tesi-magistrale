@@ -161,7 +161,7 @@ The easiest example of orthogonal complements is the following: if $\D = \ob(\C)
 \end{definition}
 
 
-One common way to define a cotorsion pair is to cogenerate it from a set, i.e. to choose a set $\D'$ and let $\E = \rperp{\D'}$ and $\D = \lperp{\E}$; the above remark proves that it is actually a cotorsion pair. The dual notion, generating the cotorsion pair from a set $\E' \subseteq \E$, does not commonly arise in practice, due to the asimmetry of certain theorems that we will need later. \\
+One common way to define a cotorsion pair is to cogenerate it from a set, i.e. to choose a set $\D'$ and let $\E = \rperp{\D'}$ and $\D = \lperp{\E}$; the above remark proves that it is actually a cotorsion pair. The dual notion, generating the cotorsion pair from a set $\E' \subseteq \E$, does not commonly arise in practice, due to the asymmetry of certain theorems that we will need later. \\
 
 
 The example we used earlier allows us to construct two examples of cotorsion pairs: $(\proj(\C), \ob(\C))$ and $(\ob(\C),\inj(\C))$. Given these examples, we would like to generalize the concept of \virgolette{enough injectives} and \virgolette{enough projectives} to cotorsion pairs.
@@ -196,10 +196,10 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 
 \begin{lemma}
 	\label{lem:cotorsion-trans}
-	Let us assume that $\C$ has all (small) limits and colimits; if $(\D, \E)$ is a cotorsion pair then $\D$ is closed under retracts and transifinite extensions.
+	Let us assume that $\C$ has all (small) limits and colimits; if $(\D, \E)$ is a cotorsion pair then $\D$ is closed under retracts, extensions and transifinite extensions.
 \end{lemma}
 \begin{proof}
-	The statement about retract is obvious: given that $\Ext^1({-},Y)$ is an additive functor, if $X$ is a retract of $X'$ then $\Ext^1(X,Y)$ is a retract of $\Ext^1(X',Y)$.
+	The statement about retract is obvious: given that $\Ext^1({-},Y)$ is an additive functor, if $X$ is a retract of $X'$ then $\Ext^1(X,Y)$ is a retract of $\Ext^1(X',Y)$. The statement about extensions follows from the long exact sequence associated to $\Ext$.
 	We will now prove that for any $Y \in \ob(\C)$, the class of objects $X$ such that $\Ext^1(X,Y)=0$ is closed under transifinite composition. Let $\lambda$ be an ordinal and let us consider a $\lambda$-sequence $X\colon \lambda \longrightarrow \C$ such that $\Ext^1(X_{\beta +1} / X_\beta,Y) = 0$ and $i_\alpha \colon X_\beta \longrightarrow X_ {\beta+1}$ is monic for any $\beta < \lambda$. We will now use transifinite induction to prove that $\Ext^1(X_\beta, Y) = 0$ for any $\beta \leq \lambda$, where we define $X_\lambda := \colim_{\beta < \lambda} X$. The base step $X_0$ is trivial. If $\beta := \alpha+1$ is a successor ordinal, we  have the exact sequence
 	\[\begin{tikzcd}
 		0 & {X_\alpha} & {X_{\alpha +1}} & {X_{\alpha+1}/ X_\alpha} & {0,}
@@ -263,7 +263,7 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 	and that $Y$ is the kernel of $g_{\alpha+1}$, there is $h\colon X_\alpha\longrightarrow Y$ that satisfies $f_{\alpha+1} h = j_\alpha s_\alpha -t_{\alpha+1} i_{\alpha}$. The fact that $\Ext^1(X_{\alpha+1}/X_\alpha, Y) = 0$ implies that the map \[\Hom_\C(X_{\alpha+1}, Y) \longrightarrow \Hom_\C(X_{\alpha}, Y)\] is surjective, therefore there exists $k \colon X_{\alpha+1} \longrightarrow Y$ such that $ki_\alpha = h$. It is easy to check that $s_{\alpha+1} := t_{\alpha+1} +f_{\alpha+1}k$ is the section we are looking for.
 \end{proof}
 
-
+It is clear that the statements about retracts and extensions are also true for $\E$, and are proved identically.
 
 
 
@@ -501,7 +501,7 @@ From now on we will assume $\C$ to be a Grothendieck category.
 \end{theorem}
 
 \begin{proof}
-	If $I$ is a set of generating monomorphisms both conditions are easily verified. We will now prove that, given a set $I$ that satisfies both condition, the pair $(\D, \E)$ as in the statement of the theorem is a complete cotorsion pair.\\
+	If $I$ is a set of generating monomorphisms, both conditions are easily verified. We will now prove that, given a set $I$ that satisfies both condition, the pair $(\D, \E)$ as in the statement of the theorem is a complete cotorsion pair.\\
 	We begin by showing that this pair has enough injectives: by applying the small object argument to $X \longrightarrow 0$ we get a factorization of the form
 	$\begin{tikzcd}[sep=small]
 		X & Y & {0,}
@@ -538,3 +538,5 @@ From now on we will assume $\C$ to be a Grothendieck category.
 \begin{proof}
 	Let $I$ be a set of generating monomorphisms for $(C, F \cap W)$, while letting $J$ be a set of generating monomorphisms for $(C \cap W, F)$. We want to show that $I$ is the set of generating cofibrations while $J$ is the set of generating acyclic cofibrations; the smallness condition is trivial given that we are working in a Grothendieck category. Let $f$ be a morphism in $I$-inj, given that $0\longrightarrow G_h$ is in $I$ for a generating family $\G = \{G_h\}_h$, then $\Hom_\C(G_h, f)$ is surjective for all $h$ and thus $f$ is epic. The map $\ker(f)\longrightarrow 0$ is a pullback of $f$ and hence it is also in $I$-inj (see corollary \ref{cor:closed-push-pull}); thus $\Hom_\C(i, \ker{f})$ is surjective foe all $i \in I$ and $\ker(f) \in F$. We conclude that $f$ is a fibration; to show that if $g$ is in $J$-inj then $g$ is an acyclic fibration we can proceed analogously. 
 \end{proof}
+
+

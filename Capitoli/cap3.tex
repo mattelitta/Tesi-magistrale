@@ -93,7 +93,7 @@ Let us consider a triple $(W, \fibT, \cofT)$ of subclasses of $\ar(\C)$, called 
 \begin{definition}[Model structure]
 	They are said to form a \textbf{model structure} on $\C$ if they satisfy the following axioms:
 	\begin{itemize}
-		\item[(\textbf{MC1})] If $f$ and $g$ are composable morphisms of $\C$ and two out three between $f,g,gf$ are weak equavalences then also the third is.
+		\item[(\textbf{MC1})] If $f$ and $g$ are composable morphisms of $\C$ and two out of three between $f,g,gf$ are weak equavalences then also the third is.
 		\item[(\textbf{MC2})] $W$, $\fibT$ and $\cofT$ are closed under retractions.
 		\item[(\textbf{MC3})] Trivial cofibrations have the LLP with respect to the fibrations, while the trivial fibrations have the RLP with the respect to the cofibrations.
 		\item[(\textbf{MC4})] Every arrow $f$ admits both of the following factorizations: (1) $f=pi$ where $i$ is an acyclic cofibration and $p$ is a fibration, and (2) $f=pi$ where $i$ is a cofibration and $p$ is an acyclic fibration.
@@ -250,7 +250,7 @@ We will from now on use $\C$ to refer to a model category.
 \section{Homotopy relations}
 
 \begin{definition}[Cylinder objects]
-	Let $A$ be an object of $\C$; a \textbf{cylinder object} is and object $A \wedge I$ (when we consider multiple cylinders we can add superscripts/subscripts to $I$), and a diagram
+	Let $A$ be an object of $\C$; a \textbf{cylinder object} is an object $A \wedge I$ (when we consider multiple cylinders we can add superscripts/subscripts to $I$), and a diagram
 	\[\begin{tikzcd}
 		{A\amalg A} & {A\wedge I} & {A.}
 		\arrow["i", from=1-1, to=1-2]
@@ -282,7 +282,7 @@ We will from now on use $\C$ to refer to a model category.
 \end{definition}
 
 \begin{definition}[Path objects]
-	Let $B$ be an object of $\C$; a \textbf{path object} is and object $A ^ I$ (when we consider multiple paths we can add superscripts/subscripts to $I$), and a diagram
+	Let $B$ be an object of $\C$; a \textbf{path object} is an object $A ^ I$ (when we consider multiple paths we can add superscripts/subscripts to $I$), and a diagram
 	\[\begin{tikzcd}
 		{B} & {B^ I} & {B\times B.}
 		\arrow["j", "\sim"', from=1-1, to=1-2]
@@ -437,7 +437,7 @@ It is important to notice that $\lsim$ and $\rsim$ aren't generally equivalence 
 \end{lemma}
 
 \begin{proof}
-	The fact that the relation $\lsim$ is symmetric is obvious, given that its definition is symmetric, meanwhile showing that it is reflaxing necessitates only observing the existence of the trivial cylinder 
+	The fact that the relation $\lsim$ is symmetric is obvious, given that its definition is symmetric, meanwhile showing that it is reflexive necessitates only observing the existence of the trivial cylinder 
 	\[\begin{tikzcd}
 		{A\amalg A} & A & {A.}
 		\arrow["{\nabla_A}", from=1-1, to=1-2]
@@ -669,7 +669,7 @@ It is important to remark that when the hypothesis of this proposition are satis
 	Let $f,g \colon A  \longrightarrow B$ be morphisms between a cofibrant and a fibrant object and let $A\wedge I$ be a cylinder object for $A$. If $f \sim g$ then there is a left homotopy between $f$ and $g$ through $A\wedge I$. Similarly if $B^I$ is a path object for $B$ and $f \sim g$ then there is a right homotopy between $f$ and $g$ through $B^I$.
 \end{corollary}
 \begin{proof}
-	It immediately follows form the fact that in the proof of the proposition we are free to chose which cylinder/path object to use.
+	It is immediately follows form the fact that in the proof of the proposition we are free to chose which cylinder/path object to use.
 \end{proof}
 
 
@@ -855,7 +855,7 @@ There dual of the previous lemma is as follows.
 		[f \colon A \to B] &\longmapsto [\tilde f \colon QA \to QB],
 	\end{align*}
 	\begin{align*}
-		R \colon \pi \C_c &\longrightarrow \pi \C_{cf} \\
+		R' \colon \pi \C_c &\longrightarrow \pi \C_{cf} \\
 		A &\longmapsto RA \\
 		[f \colon A \to B] &\longmapsto [\bar{f} \colon RA \to RB].
 	\end{align*}
@@ -939,7 +939,7 @@ We now introduce the category that will be the candidate for the localization we
 We are now ready the prove the main result of this section.
 
 \begin{theorem}
-	Let $\D$ be a category and let $G\colon \C \longrightarrow \D$ be a functor that takes weak equavalences to isomorphisms of $\D$, then there exists a unique functor $G' \colon \ho(\C) \longrightarrow \D$ such that $G = G'\gamma$.
+	Let $\D$ be a category and let $G\colon \C \longrightarrow \D$ be a functor that takes weak ivalences to isomorphisms of $\D$, then there exists a unique functor $G' \colon \ho(\C) \longrightarrow \D$ such that $G = G'\gamma$.
 \end{theorem}
 
 

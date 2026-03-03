@@ -1,15 +1,43 @@
 \chapter{Cotorsion pairs and chain complexes}
 
-In the previous chapter we have seen the various interaction between cotorsion pairs and model structures on Grothendieck categories, we will now see how we can use this knowledge to study chain complexes in these categories. The theory has been deeveloped by James Gillespie in \cite{Gillespie2004Flat} and \cite{Gillespie2006Quillen}.
+In the previous chapter we have seen the various interaction between cotorsion pairs and model structures on Grothendieck categories, we will now see how we can use this knowledge to study chain complexes in these categories. The theory has been deeveloped by James Gillespie in \cite{Gillespie2004Flat} and \cite{Gillespie2006Quillen} and by Xiaoyan Yang and Nanqing Ding in \cite{DingYang2014}.
 
 
 \section{Initial remarks}
 
+We begin by setting a standard notation for this chapter.
 
 \begin{notation}
-    Let $\C$ be an abelian category, let $X \in \ob(\C)$ and let $n \in \Z$. We denote as $S^n X$ the object of $\Ch(\C)$ given by the complex whose only nonzero element is $X$ in position $n$; we also denote as $D^n X$ the object of $\Ch(\C)$ given by the complex whose only nonzero elements are $X$ in position $n-1, n$  and whose only nonzero morphsim is $d_{n-1} = \id_X$.
+    Let $\C$ be an abelian category, let $A \in \ob(\C)$ and let $n \in \Z$. We denote as $S^n A$ the object of $\Ch(\C)$ given by the complex whose only nonzero element is $A$ in position $n$; we also denote as $D^n A$ the object of $\Ch(\C)$ given by the complex whose only nonzero elements are $A$ in position $n-1, n$  and whose only nonzero morphsim is $d_{n-1} = \id_A$. \\ 
+    If $X = (X_n, d_n)$ is a chain complex in $\Ch(\C)$, we denote as $Z_nX$ the object in $\C$ given by $\ker d_n$, while we denote as $B_nX$ the object in $\C$ given by $\im d_{n+1}$; we also denote $Z_nX/B_nX$, the $n$-th homology of the complex, as $H_n X$.
+    Finally, letting $Y$ be another complex, we denote as $\Hom(X, Y)$ the complex 
+    \[\begin{tikzcd}
+        \cdots & {\prod_{k \in \Z}\Hom_\C(X_k, Y_{k+n})} & {\prod_{k \in \Z}\Hom_\C(X_k, Y_{k+n-1})} & {\cdots,}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\delta_n}", from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+    \end{tikzcd}\]
+    where, given $f \colon X \longrightarrow Y$, $(\delta_n f)_k =  d^Y_{n+k} f_k - (-1)^n f_{k-1}d^X_k$.  \\
+    Lastly, we define the complex $\Sigma^n X$ as the complex whose objects are $(\Sigma^nX)_k = X_{n-k}$ and whose differential is $d^{\Sigma^n X}_k = (-1)^n d^X_{n-k}$.
 \end{notation}
 
+
+
+We continue by proving some standard results about categories of chain complexes.
+
+
+\begin{lemma}
+    Let $\C$ be an abelian category, let $X,Y$ be objects in $\Ch(\C)$. We have that
+    \[H_n\Hom(X,Y) =  \Hom_{\Ch(\C)}(X, \Sigma^{-n} Y) / \sim,\]
+    where $\sim$ denotes chain homotopy.
+\end{lemma}
+
+\begin{proof}
+    Let $f=(f_k)_k$ be an element of $\Hom(X,Y)_n$. We see that $f \in \ker \delta_n$ if and only if $d^Y_{n+k} f_k = (-1)^n f_{k-1}d^X_k $, but $(-1)^n d^Y_{n+k}$ is exactly $d^{\Sigma^{-n} Y}_k$, therefore the condition is equivalent to checking if $f$ is a morphism between $X$ and $\Sigma^{-n} X$. Similarly, the elements of $\im \delta_{n+1}$ are of the form 
+    \[d^Y_{k+n+1}f_k - (-1)^{n+1}f_{k-1}d^X_k = (-1)^n d^{\Sigma^{-n} Y}f_k + (-1)^n f_{k-1}d^X_k,\]
+    thus they are exactly null-homotopic maps from $X$ to $\Sigma^{-n}Y$.
+    
+\end{proof}
 
 
 \begin{lemma}
@@ -18,8 +46,13 @@ In the previous chapter we have seen the various interaction between cotorsion p
 		\itemsep0em 
 		\item $\HomCh{\C}(D^n A, Y) = \Hom_\C(A, Y_n)$.
 		\item $\HomCh{\C}(X, D^n A) = \Hom_\C(X_{n-1}, A)$.
+		\item $\HomCh{\C}(S^n A, Y) = \Hom_\C(A, Z_nY)$.
+		\item $\HomCh{\C}(X, S^n A) = \Hom_\C(X/B_nX, A)$.
 	\end{enumerate}
 \end{lemma}
+
+
+
 
 
 \begin{lemma}
@@ -35,3 +68,28 @@ In the previous chapter we have seen the various interaction between cotorsion p
 
 
 \section{Induced cotorsion pairs}
+Let $\C$ be an abelian category, let $(\D, \E)$ be a cotorsion pair.
+
+\begin{definition}[Induced cotorsion pair]
+    Let $X$ be a chain complex.
+    \begin{enumerate}
+		\itemsep0em 
+		\item $X$ is called a $\D$ \textbf{complex} if it is exact and $Z_n X \in \D$ for all $n \in \Z$.
+		\item $X$ is called a $\E$ \textbf{complex} if it is exact and $Z_n X \in \E$ for all $n \in \Z$.
+		\item $X$ is called a dg-$\D$ \textbf{complex} if $X_n \in \D$ for all $n \in \Z$ and $\Hom(X, B)$ is exact for all $\E$ complexes $B$.
+		\item $X$ is called a dg-$\E$\textbf{complex} if $X_n \in \E$ for all $n \in \Z$ and $\Hom(A, X)$ is exact for all $\D$ complexes $A$.
+	\end{enumerate}
+    We denote the class of all $\D$ complexes as $\widetilde{\D}$, while the class of all dg-$\D$ complexes is denoted as $\dg{\D}$. Similarly, we denote the class of all $\E$ complexes as $\widetilde{\E}$, while the class of all dg-$\E$ complexes is denoted as $\dg{\E}$.
+\end{definition}
+
+It is important to remark that if $X \in \DD$ then, by lemma \ref{lem:cotorsion-trans}, $X_n \in \D$ for all $n \in \Z$. Similarly, if $X \in \EE$ then $X_n \in \E$ for all $n \in \Z$.
+
+
+\begin{lemma}
+    Bounded below complexes (i.e. complexes $X$ where there exists $n\in \Z$ such that if $k<n$ then $X_k = 0$) with entries in $\D$ are dg-$\D$ complexes.\\
+     Bounded above complexes (i.e. complexes $X$ where there exists $n\in \Z$ such that if $k>n$ then $X_k = 0$) with entries in $\E$ are dg-$\E$ complexes.
+\end{lemma}
+
+\begin{proof}
+    We will prove the first statement. Let $X$ be a bounded below complex with entries in $\D$, we need to show that $\Hom(X, B)$ is exact for any $\E$ complex $B$. Given that if $B$ is an $\E$ complex then $\Sigma^k B$ is also an $\E$, we only need to prove that all morphisms $f\colon X \longrightarrow B$ are null-homotopic.
+\end{proof}
