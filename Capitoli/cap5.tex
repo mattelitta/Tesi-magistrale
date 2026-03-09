@@ -8,7 +8,7 @@ In the previous chapter we have seen the various interaction between cotorsion p
 We begin by setting a standard notation for this chapter.
 
 \begin{notation}
-    Let $\C$ be an abelian category, let $A \in \ob(\C)$ and let $n \in \Z$. We denote as $S^n A$ the object of $\Ch(\C)$ given by the complex whose only nonzero element is $A$ in position $n$; we also denote as $D^n A$ the object of $\Ch(\C)$ given by the complex whose only nonzero elements are $A$ in position $n-1, n$  and whose only nonzero morphsim is $d_{n-1} = \id_A$. \\ 
+    Let $\C$ be an abelian category, let $A \in \ob(\C)$ and let $n \in \Z$. We denote as $S^n A$ the object of $\Ch(\C)$ given by the complex whose only nonzero element is $A$ in position $n$; we also denote as $D^n A$ the object of $\Ch(\C)$ given by the complex whose only nonzero elements are $A$ in position $n-1, n$  and whose only nonzero morphsim is $d_{n-1} = \id_A$.\\ 
     If $X = (X_n, d_n)$ is a chain complex in $\Ch(\C)$, we denote as $Z_nX$ the object in $\C$ given by $\ker d_n$, while we denote as $B_nX$ the object in $\C$ given by $\im d_{n+1}$; we also denote $Z_nX/B_nX$, the $n$-th homology of the complex, as $H_n X$.
     Finally, letting $Y$ be another complex, we denote as $\Hom(X, Y)$ the complex 
     \[\begin{tikzcd}
@@ -17,7 +17,7 @@ We begin by setting a standard notation for this chapter.
         \arrow["{\delta_n}", from=1-2, to=1-3]
         \arrow[from=1-3, to=1-4]
     \end{tikzcd}\]
-    where, given $f \colon X \longrightarrow Y$, $(\delta_n f)_k =  d^Y_{n+k} f_k - (-1)^n f_{k-1}d^X_k$.  \\
+    where, given $f \in {\prod_{k \in \Z}\Hom_\C(X_k, Y_{k+n})}$, we set $(\delta_n f)_k =  d^Y_{n+k} f_k - (-1)^n f_{k-1}d^X_k$.  \\
     Lastly, we define the complex $\Sigma^n X$ as the complex whose objects are $(\Sigma^nX)_k = X_{n-k}$ and whose differential is $d^{\Sigma^n X}_k = (-1)^n d^X_{n-k}$.
 \end{notation}
 
@@ -26,21 +26,36 @@ We begin by setting a standard notation for this chapter.
 We continue by proving some standard results about categories of chain complexes.
 
 
+\begin{definition}[Degreewise Ext]
+    Let $\C$ be an abelian category, let $X,Y$ be objects in $\Ch(\C)$, we define the \textbf{degreewise Ext group} $\Ext^1_{dw}(X, Y)$ as the subgroup of $\Ext^1_{\Ch(\C)}(X, Y)$ given by all extensions which are split degreewise. 
+\end{definition}
+
 \begin{lemma}
     Let $\C$ be an abelian category, let $X,Y$ be objects in $\Ch(\C)$. We have that
-    \[H_n\Hom(X,Y) =  \Hom_{\Ch(\C)}(X, \Sigma^{-n} Y) / \sim,\]
+    \[\Ext^1_{dw}(X, \Sigma^{-n-1} Y) \cong H_n\Hom(X,Y) \cong  \Hom_{\Ch(\C)}(X, \Sigma^{-n} Y) / \sim,\]
     where $\sim$ denotes chain homotopy.
 \end{lemma}
 
 \begin{proof}
     Let $f=(f_k)_k$ be an element of $\Hom(X,Y)_n$. We see that $f \in \ker \delta_n$ if and only if $d^Y_{n+k} f_k = (-1)^n f_{k-1}d^X_k $, but $(-1)^n d^Y_{n+k}$ is exactly $d^{\Sigma^{-n} Y}_k$, therefore the condition is equivalent to checking if $f$ is a morphism between $X$ and $\Sigma^{-n} X$. Similarly, the elements of $\im \delta_{n+1}$ are of the form 
-    \[d^Y_{k+n+1}f_k - (-1)^{n+1}f_{k-1}d^X_k = (-1)^n d^{\Sigma^{-n} Y}f_k + (-1)^n f_{k-1}d^X_k,\]
-    thus they are exactly null-homotopic maps from $X$ to $\Sigma^{-n}Y$.
+    \[d^Y_{k+n+1}f_k - (-1)^{n+1}f_{k-1}d^X_k = (-1)^n d^{\Sigma^{-n} Y}_{k+1}f_k + (-1)^n f_{k-1}d^X_k,\]
+    thus they are exactly null-homotopic maps from $X$ to $\Sigma^{-n}Y$; therefore $H_n\Hom(X,Y) \cong  \Hom_{\Ch(\C)}(X, \Sigma^{-n} Y) / \sim$. \\
+    We procced by consideering the complex $W = \Sigma^{-n-1} Y$ and an extension
+    \[\begin{tikzcd}
+        0 & W & Z & X & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    that is split degreewise. This implies 
+
     
 \end{proof}
 
 
 \begin{lemma}
+    \label{lem:chain-adjoints}
     Let $\C$ be an abelian category, let $A \in ob(\C)$ and let $X,Y \in \ob(\Ch(\C))$. The following natural isomorphisms hold:
     \begin{enumerate}
 		\itemsep0em 
@@ -48,6 +63,10 @@ We continue by proving some standard results about categories of chain complexes
 		\item $\HomCh{\C}(X, D^n A) = \Hom_\C(X_{n-1}, A)$.
 		\item $\HomCh{\C}(S^n A, Y) = \Hom_\C(A, Z_nY)$.
 		\item $\HomCh{\C}(X, S^n A) = \Hom_\C(X/B_nX, A)$.
+		\item $\Ext^1_{\Ch(\C)}(D^n A, Y) = \Ext^1_\C(A, Y_n)$
+		\item $\Ext^1_{\Ch(\C)}(X, D^{n+1} A) = \Ext^1_\C(X_n, A)$ 
+		\item $\Ext^1_{\Ch(\C)}(S^n A, Y) = \Ext^1_\C(A, Z_nY) $
+		\item $\Ext^1_{\Ch(\C)}(X, S^n A) = \Ext^1_\C(Z_nX, A)$ 
 	\end{enumerate}
 \end{lemma}
 
@@ -79,10 +98,60 @@ Let $\C$ be an abelian category, let $(\D, \E)$ be a cotorsion pair.
 		\item $X$ is called a dg-$\D$ \textbf{complex} if $X_n \in \D$ for all $n \in \Z$ and $\Hom(X, B)$ is exact for all $\E$ complexes $B$.
 		\item $X$ is called a dg-$\E$\textbf{complex} if $X_n \in \E$ for all $n \in \Z$ and $\Hom(A, X)$ is exact for all $\D$ complexes $A$.
 	\end{enumerate}
-    We denote the class of all $\D$ complexes as $\widetilde{\D}$, while the class of all dg-$\D$ complexes is denoted as $\dg{\D}$. Similarly, we denote the class of all $\E$ complexes as $\widetilde{\E}$, while the class of all dg-$\E$ complexes is denoted as $\dg{\E}$.
+    We denote the class of all $\D$ complexes as $\widetilde{\D}$, while the class of all dg-$\D$ complexes is denoted as $\dg{\D}$. Similarly, we denote the class of all $\E$ complexes as $\widetilde{\E}$, while the class of all dg-$\E$ complexes is denoted as $\dg{\E}$. We also use $\ex$ to denote the class of all exact complexes.
 \end{definition}
 
-It is important to remark that if $X \in \DD$ then, by lemma \ref{lem:cotorsion-trans}, $X_n \in \D$ for all $n \in \Z$. Similarly, if $X \in \EE$ then $X_n \in \E$ for all $n \in \Z$.
+It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is an extension of $Z_nX$ and $Z_{n-1}X$; thus by lemma \ref{lem:cotorsion-trans}, $X_n \in \D$ for all $n \in \Z$. Similarly, if $X \in \EE$ then $X_n \in \E$ for all $n \in \Z$.
+
+\begin{lemma}
+    \label{lem:dg-sphere}
+    Let $n \in \Z$, If $D \in \D$ then $S^n D \in \dg{\D}$; if $E \in \E$ then $S^n E \in \dg{\E}$.
+\end{lemma}
+\begin{proof}
+    We will prove the first statement. Given that $Z_k(S^n D)$ is either $0$ or $D$, we only need to check that the hom-complex $\Hom(S^n D, X)$ is exact for every $X \in \EE$. The complex $\Hom(S^n D, X)$ is as follows
+    \[\begin{tikzcd}
+        \cdots & {\Hom_\C(D, X_{k+n+1})} & {\Hom_\C(D, X_{k+n})} & {\Hom_\C(D, X_{k+n-1})} & \cdots
+        \arrow[from=1-1, to=1-2]
+        \arrow["{d_*}", from=1-2, to=1-3]
+        \arrow["{d_*}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    and it is clear that it is the result of applying the functor $\Hom_\C(D, {-})$ to $X$.
+    Given that $X$ is exact we can break it up as follows,
+    \[\begin{tikzcd}[sep=small]
+        && 0 && 0 &&&& \\
+        &&& {Z_k X} &&&& \cdots \\
+        \cdots && {X_{k+1}} & {} & {X_k} && {X_{k-1}} && \cdots \\
+        & \cdots &&&& {Z_{k-1}X} \\
+        &&&& 0 && 0 \\
+        &&&&& {}
+        \arrow[from=1-3, to=2-4]
+        \arrow[from=2-4, to=1-5]
+        \arrow[from=2-4, to=3-5]
+        \arrow[from=3-1, to=3-3]
+        \arrow[from=3-3, to=2-4]
+        \arrow[from=3-3, to=3-5]
+        \arrow[from=3-5, to=3-7]
+        \arrow[from=3-5, to=4-6]
+        \arrow[from=3-7, to=2-8]
+        \arrow[from=3-7, to=3-9]
+        \arrow[from=4-2, to=3-3]
+        \arrow[from=4-6, to=3-7]
+        \arrow[from=4-6, to=5-7]
+        \arrow[from=5-5, to=4-6]
+    \end{tikzcd}\]
+    therefore, to check that the hom-complex is exact, we only need to prove that the following sequence is exact for every $k$:
+    \[\begin{tikzcd}
+        0 & {\Hom_\C(D, Z_nX)} & {\Hom_\C(D, X_{k+n})} & {\Hom_\C(D, X_{k+n-1})} & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    This is clearly true given that $\Hom$ is left exact and $\Ext^1(D, Z_k X) = 0$ (given that $Z_k X \in \D$).
+
+\end{proof}
+
 
 
 \begin{lemma}
@@ -91,5 +160,66 @@ It is important to remark that if $X \in \DD$ then, by lemma \ref{lem:cotorsion-
 \end{lemma}
 
 \begin{proof}
-    We will prove the first statement. Let $X$ be a bounded below complex with entries in $\D$, we need to show that $\Hom(X, B)$ is exact for any $\E$ complex $B$. Given that if $B$ is an $\E$ complex then $\Sigma^k B$ is also an $\E$, we only need to prove that all morphisms $f\colon X \longrightarrow B$ are null-homotopic.
+    We will prove the first statement. Let $X$ be a bounded below complex with entries in $\D$, we need to show that $\Hom(X, B)$ is exact for any $\E$ complex $B$. Given that if $B$ is an $\E$-complex then $\Sigma^k B$ is also an $\E$-complex, we only need to prove that all morphisms $f\colon X \longrightarrow B$ are null-homotopic. Let us assume without loss of generality that $X_n$ is the zero object for all negative $n$. We want to build a family of morphisms $h_k \colon X_k \longrightarrow E_{k+1}$ such that $f_k =d_{k+1}^E h_k+ h_{k-1}d^X_k$ for $k \in \Z$, as pictured below.
+    \[\begin{tikzcd}
+        \cdots & {X_2} & {X_1} & {X_0} & 0 & \cdots \\
+        \cdots & {E_2} & {E_1} & {E_0} & {E_{-1}} & \cdots
+        \arrow["{{{d^X_3}}}", from=1-1, to=1-2]
+        \arrow["{{{d^X_2}}}", from=1-2, to=1-3]
+        \arrow["{{{h_2}}}"{description}, from=1-2, to=2-1]
+        \arrow["{{{f_2}}}", from=1-2, to=2-2]
+        \arrow["{{{d^X_1}}}", from=1-3, to=1-4]
+        \arrow["{{{h_1}}}"{description}, from=1-3, to=2-2]
+        \arrow["{{{f_1}}}", from=1-3, to=2-3]
+        \arrow["{{{d^X_0}}}", from=1-4, to=1-5]
+        \arrow["{{{h_0}}}"{description}, from=1-4, to=2-3]
+        \arrow["{{{f_0}}}", from=1-4, to=2-4]
+        \arrow[from=1-5, to=1-6]
+        \arrow["{h_{-1}}"{description}, from=1-5, to=2-4]
+        \arrow[from=1-5, to=2-5]
+        \arrow["{{{d^E_3}}}"', from=2-1, to=2-2]
+        \arrow["{{{d^E_2}}}"', from=2-2, to=2-3]
+        \arrow["{{{d^E_1}}}"', from=2-3, to=2-4]
+        \arrow["{{{d^E_0}}}"', from=2-4, to=2-5]
+        \arrow[from=2-5, to=2-6]
+    \end{tikzcd}\]
+    We start by setting $h_k = 0$ for all negative $k$, then we will prove by induction on $k$ that there is such $h_k$ for all $k\geq 0$.\\
+    We want to define $h_k$ by assuming the existence of $h_{k-1}$: we start by setting $g_k := f_k - h_{k-1}d_{k}^E$, then $h_k$ is (if it exists) exactly a lift of $g_k$ through $d_{k+1}$
+    \[\begin{tikzcd}
+        & {X_k} \\
+        {E_{k+1}} & {E_k.}
+        \arrow["{h_k}"', dashed, from=1-2, to=2-1]
+        \arrow["{g_k}", from=1-2, to=2-2]
+        \arrow["{d^E_{k+1}}"', from=2-1, to=2-2]
+    \end{tikzcd}\]
+    We notice that, remembering the inductive hypothesis,
+    \[d_k^E g_k = d_k^E (f_k - h_{k-1}d_{k}^E) = d_k^E f_k - f_{k-1} d_k^X  + h_{k-2}d^X_{k-1}d^X_k = 0,\]
+    therefore $g_k$ factors $Z_k E =B_k E$.
+    By applying the functor $\Hom_{\Ch(\C)}(X_k, {-})$ to the exact sequence\[\begin{tikzcd}
+        0 & {Z_{k+1} E} & {E_{k+1}} & {B_{k} E} & {0}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    and remembering that $\Ext^1(X_k, Z_k E) = 0$, we get a surjection
+    \[(d_{k+1})_* \colon \Hom_{\Ch(\C)}(X_k, E_{k+1}) \longrightarrow \Hom_{\Ch(\C)}(X_k, B_{k}),\]
+    therefore a lift of $g_k$ must exist.
+
 \end{proof}
+
+
+\begin{proposition}
+    If $(\D, \E)$ has enough $\D$-objects and enough $\E$-objects (in particular when it is complete), then $(\dg{\D}, \EE)$ and $(\DD, \dg{\E})$ are cotorsion pairs. 
+\end{proposition}
+
+\begin{proof}
+    We will only proof the first statement. Let $X \in \rperp{(\dg{\D})}$, by applying lemmas \ref{lem:chain-adjoints} and \ref{lem:dg-sphere}, we get that, for every $D \in \D$,
+    \[\Ext^1_\C(D, Z_n X) = \Ext^1_{\Ch(\C)}(S^n D, X) = 0,\]
+    thus we have proven that $Z_n X \in \E$ for all $n$.
+\end{proof}
+
+
+
+
+\section{Hereditary cotorsion pairs}
