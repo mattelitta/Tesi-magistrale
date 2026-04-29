@@ -23,7 +23,7 @@ As an example, if $\C$ is a model category and $I = \cofT(\C)$, proposition \ref
 \end{remark}
 
 It is easy to verify that $I \subseteq I\text{-cof}$ and $I \subseteq I\text{-fib}$; as a consequence we have that $(I\text{-cof})\text{-inj} = I \text{-inj}$; furthermore it is also clear that if $I \subseteq J$ we have that $J \text{-inj} 	\subseteq I \text{-inj}$ and $J \text{-proj} 	\subseteq I \text{-proj}$. From these two results follows that $(I\text{-cof})\text{-inj} = I \text{-inj}$ and $(I\text{-fib})\text{-proj} = I \text{-proj}$.  \\
-Let us assume from now that $\C$ has all (small) colimits.
+Let us assume from now that $\C$ is cocomplete.
 
 \begin{definition}[$\lambda$-sequences]
 	Let $\lambda$ be an ordinal. A $\lambda$\textbf{-sequence} in $\C$ is a colimit preserving functor $X \colon \lambda \longrightarrow \C$ (where $\lambda$ is seen as a partial order); it is commonly written as
@@ -177,7 +177,7 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
-	where $E\in \E$ and $D \in \D$; if we do not require that $D \in \D$ we simply say that $(\D, \E)$ has \textbf{enough} $\D$\textbf{-objects}. Dually, a cotorsion pair $(\D, \E)$ is said to \textbf{have enough projectives} if for every $X \in \ob(\C)$ there exists an an exact sequence
+	where $E\in \E$ and $D \in \D$; if we do not require that $D \in \D$ we simply say that $(\D, \E)$ has \textbf{enough} $\E$\textbf{-objects} (i.e. every object is a subobject of an element of $\E$). Dually, a cotorsion pair $(\D, \E)$ is said to \textbf{have enough projectives} if for every $X \in \ob(\C)$ there exists an an exact sequence
 	\[\begin{tikzcd}
 		0 & E & D & X & {0,}
 		\arrow[from=1-1, to=1-2]
@@ -185,7 +185,7 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 		\arrow[from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
 	\end{tikzcd}\]
-	where $E\in \E$ and $D \in \D$; if we do not require that $E \in \E$ we simply say that $(\D, \E)$ has \textbf{enough} $\E$\textbf{-objects}. A cotorsion pair that has both enough injectives and enough projectives is said to be \textbf{complete}.
+	where $E\in \E$ and $D \in \D$; if we do not require that $E \in \E$ we simply say that $(\D, \E)$ has \textbf{enough} $\D$\textbf{-objects} (i.e. every object is a quotient of an element of $\D$). A cotorsion pair that has both enough injectives and enough projectives is said to be \textbf{complete}.
 \end{definition}
 
 
@@ -198,7 +198,7 @@ The example we used earlier allows us to construct two examples of cotorsion pai
 
 \begin{lemma}
 	\label{lem:cotorsion-trans}
-	Let us assume that $\C$ has all (small) limits and colimits; if $(\D, \E)$ is a cotorsion pair then $\D$ is closed under retracts, extensions and transifinite extensions.
+	Let us assume that $\C$ is complete and cocomplete; if $(\D, \E)$ is a cotorsion pair then $\D$ is closed under retracts, extensions and transifinite extensions.
 \end{lemma}
 \begin{proof}
 	The statement about retract is obvious: given that $\Ext^1({-},Y)$ is an additive functor, if $X$ is a retract of $X'$ then $\Ext^1(X,Y)$ is a retract of $\Ext^1(X',Y)$. The statement about extensions follows from the long exact sequence associated to $\Ext$.
@@ -479,7 +479,7 @@ The objective of this section will be to prove \virgolette{Hovey’s Corresponde
 The main obstacle in proving that certain classes form a Hovey triple, which we need if we want to use Hovey's correspondence theorem, is proving the completeness of the cotorsion pairs. This section will show that, if we are operating under certain hypothesis, this condition is free; in these particular cases we will also see that the model structure induced by the Hovey triple is cofibrantly generated.
 
 \begin{definition}[Small cotorsion pair]
-	Let $\C$ be an abelian category that has all (small) limits and colimits, let $(\D, \E)$ be a cotorsion pair of $\C$. We say that $(\D, \E)$ is \textbf{small} if all the following properties are satisfied.
+	Let $\C$ be an abelian category that is complete and cocomplete, let $(\D, \E)$ be a cotorsion pair of $\C$. We say that $(\D, \E)$ is \textbf{small} if all the following properties are satisfied.
 	\begin{enumerate}
 		\itemsep0em 
 		\item $\D$ contains a family of generators $\G$.

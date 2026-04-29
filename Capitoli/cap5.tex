@@ -31,13 +31,14 @@ We continue by proving some standard results about categories of chain complexes
 \end{definition}
 
 \begin{lemma}
+    \label{lem:deg-ext}
     Let $\C$ be an abelian category, let $X,Y$ be objects in $\Ch(\C)$. We have that
     \[\Ext^1_{dw}(X, \Sigma^{-n-1} Y) \cong H_n\Hom(X,Y) \cong  \Hom_{\Ch(\C)}(X, \Sigma^{-n} Y) / \sim,\]
     where $\sim$ denotes chain homotopy.
 \end{lemma}
 
 \begin{proof}
-    Let $f=(f_k)_k$ be an element of $\Hom(X,Y)_n$. We see that $f \in \ker \delta_n$ if and only if $d^Y_{n+k} f_k = (-1)^n f_{k-1}d^X_k $, but $(-1)^n d^Y_{n+k}$ is exactly $d^{\Sigma^{-n} Y}_k$, therefore the condition is equivalent to checking if $f$ is a morphism between $X$ and $\Sigma^{-n} X$. Similarly, the elements of $\im \delta_{n+1}$ are of the form 
+    Let $f=(f_k)_k$ be an element of $\Hom(X,Y)_n$. We see that $f \in \ker \delta_n$ if and only if $d^Y_{n+k} f_k = (-1)^n f_{k-1}d^X_k $, but $(-1)^n d^Y_{n+k}$ is exactly $d^{\Sigma^{-n} Y}_k$, therefore the condition is equivalent to checking if $f$ is a morphism between $X$ and $\Sigma^{-n} Y$. Similarly, the elements of $\im \delta_{n+1}$ are of the form 
     \[d^Y_{k+n+1}f_k - (-1)^{n+1}f_{k-1}d^X_k = (-1)^n d^{\Sigma^{-n} Y}_{k+1}f_k + (-1)^n f_{k-1}d^X_k,\]
     thus they are exactly null-homotopic maps from $X$ to $\Sigma^{-n}Y$; therefore $H_n\Hom(X,Y) \cong  \Hom_{\Ch(\C)}(X, \Sigma^{-n} Y) / \sim$. \\
     We procced by consideering the complex $W = \Sigma^{-n-1} Y$ and an extension
@@ -48,7 +49,44 @@ We continue by proving some standard results about categories of chain complexes
         \arrow[from=1-3, to=1-4]
         \arrow[from=1-4, to=1-5]
     \end{tikzcd}\]
-    that is split degreewise. This implies 
+    that is split degreewise. This implies that $Z_k \cong W_k \oplus X_k$, therefore by the commutativity of the diagram
+    \[\begin{tikzcd}
+        {W_k} & {W_k\oplus X_k} & {X_k} \\
+        {W_{k-1}} & {W_{k-1} \oplus X_{k-1}} & {X_{k-1}}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{d^W_k}", from=1-1, to=2-1]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{d^Z_k}", from=1-2, to=2-2]
+        \arrow["{d^X_k}", from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+    \end{tikzcd}\]
+    we know that 
+    \[d_k^Z =  \begin{bmatrix}
+        d_k^W & \phi_k \\
+        0 & d^k_X 
+        \end{bmatrix}  \]
+    for some $\phi_k \colon X_k \longrightarrow W_{k-1} = \Sigma^{-n} Y$; thus we have found an element $\phi = (\phi_k)_k \in \prod_{k} \Hom(X_k, Y_{n+k})$. If we substitute the form of $d^W_k$ we just derived in the condition $d^W \circ d^W = 0$ we get that $d^Y_{k+n} \phi_k - (-1)^n \phi_k d_k^X = 0$, i.e. $\phi \in Z_k \Hom(X,Y)$.\\
+    Similarly, two extensions $Z, Z'$ are equivalent iff there exists a chain isomorphism $h$ such that
+    \[\begin{tikzcd}
+        {W} & {Z} & {X} \\
+        {W} & {Z'} & {X}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\id_W}", from=1-1, to=2-1]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{h}", from=1-2, to=2-2]
+        \arrow["{\id_X}", from=1-3, to=2-3]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+    \end{tikzcd}\]
+    commutes, hence
+    \[h_k =  \begin{bmatrix}
+        1 & \psi_k \\
+        0 & 1 
+        \end{bmatrix}  \]
+    for all $k$. If we denote as $\phi, \phi'$ the elements of $Z_k \Hom(X,Y)$ induced by $Z, Z'$, some quick matrix calculations show that $h$ is actually a morphism of chain complexes iff
+    \[\phi'_k - \phi = (-1)^{n+1}d^Y_{k+n+1} h_k -h_{k-1} d^X_k.\]
+    We conclude by remarking that, up to sign, this is equivalent to asking that $\phi - \phi' \in  B_k \Hom(X,Y)$.
 
     
 \end{proof}
@@ -105,7 +143,7 @@ It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is
 
 \begin{lemma}
     \label{lem:dg-sphere}
-    Let $n \in \Z$, If $D \in \D$ then $S^n D \in \dg{\D}$; if $E \in \E$ then $S^n E \in \dg{\E}$.
+    Let $n \in \Z$. If $D \in \D$ then $S^n D \in \dg{\D}$; if $E \in \E$ then $S^n E \in \dg{\E}$.
 \end{lemma}
 \begin{proof}
     We will prove the first statement. Given that $Z_k(S^n D)$ is either $0$ or $D$, we only need to check that the hom-complex $\Hom(S^n D, X)$ is exact for every $X \in \EE$. The complex $\Hom(S^n D, X)$ is as follows
@@ -214,12 +252,213 @@ It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is
 \end{proposition}
 
 \begin{proof}
-    We will only proof the first statement. Let $X \in \rperp{(\dg{\D})}$, by applying lemmas \ref{lem:chain-adjoints} and \ref{lem:dg-sphere}, we get that, for every $D \in \D$,
+    We will only prove the first statement; we begin by showing that $\rperp{(\dg{\D})} \subseteq \EE$. Let $X \in \rperp{(\dg{\D})}$, by applying lemmas \ref{lem:chain-adjoints} and \ref{lem:dg-sphere}, we get that, for every $D \in \D$,
     \[\Ext^1_\C(D, Z_n X) = \Ext^1_{\Ch(\C)}(S^n D, X) = 0,\]
-    thus we have proven that $Z_n X \in \E$ for all $n$.
+    thus we have proven that $Z_n X \in \lperp{\D} =\E$ for all $n$. Let us now consider an epimorphism $f \colon D \longrightarrow Z_n X$ for some $n \in \Z$ and some $D \in \D$ (it must exists given that $(\D, \E)$ has enough $\D$-objects); as before $\Ext^1_{\Ch(\C)}(S^n D, X) = 0$, therefore the induced morphism $f'\colon S^n D \longrightarrow X$ must be null-homotopic and hence $f' = d^X_{n+1} h_n$ for some homotopy $\{h_i \colon (S^n D)_i \longrightarrow X_{i+1}\}_i$. This result implies that $Z_nX = \im(f') \subseteq \im(d^X_{n+1}) = B_n X$. We have concluded that $X$ must be eexact, thus $X \in \EE$. \\
+    We continue by showing that $\lperp{\EE} \subseteq (\dg{\D})$. Let $X \in \lperp{\EE}$ and let $Y$ be a $\E$-complex, then $\Ext^1_{\Ch(\C)}(X,Y) = 0$ and in particular $\Ext^1_{dw}(X,Y) = 0$; so $\Hom(X,Y)$ is exact. To show that $X_n \in \D$ we can apply lemma \ref{lem:chain-adjoints} to write, for all $E\in \E$,
+    \[\Ext^1_\C(X_n, E) \cong \Ext^1_{\Ch(\C)}(X,D^{n+1}E) = 0.\]
+    The opposite inclusions are immediate consequences of lemma \ref{lem:deg-ext}
 \end{proof}
 
 
 
+\begin{definition}[Induced cotorsion pairs]
+    Whenever the pairs $(\dg{\D}, \EE)$ and $(\DD, \dg{\E})$ are cotorsion pairs, they are said to be the \textbf{induced cotorsion pairs} (from $(\D, \E)$). We say that the induced cotorsion pairs are compatible if $\DD = \dg{\D} \cap \ex$ and $\EE = \dg{\E} \cap \ex$.
+\end{definition}
+
+We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Nanqing Ding) that we will need later to prove the completeness (in under certain hypothesis) of the induced cotorsion pair; to do so we need some preliminary algebraic results.
+
+
+\begin{lemma}
+    \label{lem:inv-limit-chain}
+    Let us assume $\C$ to be complete and let's consider an inverse system in $\Ch(\C)$
+    \[\begin{tikzcd}
+        \cdots & {P_3} & {P_2} & {P_1} & {P_0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\mu_3}", from=1-2, to=1-3]
+        \arrow["{\mu_2}", from=1-3, to=1-4]
+        \arrow["{\mu_1}", from=1-4, to=1-5]
+    \end{tikzcd}\]
+    We can define a morphism $\nu \colon \prod_{i \in \N} P_i \longrightarrow \prod_{i \in \N} P_i$ induced by 
+    \[\begin{tikzcd}
+        {\prod_{i \in \N} P_i} & {\prod_{i \in \N} P_i} \\
+        {P_{n+1}} & {P_n.}
+        \arrow["\nu", from=1-1, to=1-2]
+        \arrow["{\pi_{n+1}}"', from=1-1, to=2-1]
+        \arrow["{\pi_n}", from=1-2, to=2-2]
+        \arrow["{\mu_{n+1}}", from=2-1, to=2-2]
+    \end{tikzcd}\]
+    If we assume each $\mu_i$ to be epic and dimensionwise split, the following sequence is split exact in each degree.
+    \[\begin{tikzcd}
+    0 
+    \arrow[r] 
+    & \varprojlim P_n 
+    \arrow[r, "\lambda"] 
+    & \displaystyle\prod_{n \geq 0} P_n 
+    \arrow[r, "1-\nu"] 
+    & \displaystyle\prod_{n \geq 0} P_n 
+    \arrow[r] 
+    & 0
+  \end{tikzcd}\]
+\end{lemma}
+
+\begin{proof}
+    See \cite{MurfetDerived}, definition 29, lemma 67 and proposition 85.
+\end{proof}
+
+\begin{lemma}
+    \label{lem:inv-limit-group}
+    Let's consider an inverse system of abelian groups
+    \[\begin{tikzcd}
+        \cdots & {P_3} & {P_2} & {P_1} & {P_0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\mu_3}", from=1-2, to=1-3]
+        \arrow["{\mu_2}", from=1-3, to=1-4]
+        \arrow["{\mu_1}", from=1-4, to=1-5]
+    \end{tikzcd}\]
+    If each $\mu_i$ is surjective, the following sequence is exact, where $\nu$ is defined by $\pi_n \circ \nu = \mu_{n+1} \circ \pi_{n+1}$ for all $n \geq 0$ (as in the previous lemma).
+    \[\begin{tikzcd}
+    0 
+    \arrow[r] 
+    & \varprojlim P_n 
+    \arrow[r, "\lambda"] 
+    & \displaystyle\prod_{n \geq 0} P_n 
+    \arrow[r, "1-\nu"] 
+    & \displaystyle\prod_{n \geq 0} P_n 
+    \arrow[r] 
+    & 0
+  \end{tikzcd}\]
+\end{lemma}
+
+\begin{proof}
+    See \cite{Weibel_1994}, lemma 3.5.3.
+\end{proof}
+
+\begin{proposition}
+    Let us assume that $\C$ is complete and cocomplete and let $X \in \Ch(\C)$.
+    \begin{enumerate}
+        \itemsep0em 
+        \item If $(\D, \E)$ has enough $\E$-objects, then there exists an exact sequence in $\Ch(\C)$
+            \[\begin{tikzcd}
+                0 & E & H & X & {0,}
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-4, to=1-5]
+            \end{tikzcd}\]
+            where $E \in \dg{\E}$ and $H \in \ex$.
+        \item If $(\D, \E)$ has enough $\D$-objects, then there exists an exact sequence in $\Ch(\C)$
+            \[\begin{tikzcd}
+                0 & X & H & D & {0,}
+                \arrow[from=1-1, to=1-2]
+                \arrow[from=1-2, to=1-3]
+                \arrow[from=1-3, to=1-4]
+                \arrow[from=1-4, to=1-5]
+            \end{tikzcd}\]
+            where $D \in \dg{\D}$ and $H \in \ex$.
+    \end{enumerate}
+\end{proposition}
+
+
+
+
+\begin{proof}
+    We will only prove the first statement, given that the other is dual. Let us assume that $(\D, \E)$ has enough $\E$-objects and let $X \in \Ch(\C)$. We set $C_n := \coker(d_{n+1}^X)$ and let $\rho_n := X_{n} \longrightarrow C_n$ be the natural epimorphism. We will now define a new complex $Y^0$ by performing the so-called "killing boundaries construction": let us choose an integer $n_0 \in \Z$ and a monomorphism \[\iota \colon C_{n_0} \longrightarrow E_{n_0-1}\] for $E_{n_0-1} \in \E$ (there are enough $\E$-objects), so that the objects of the complex are $Y^0_{n_0-1} := X_{n-1} \oplus E_{n_0-1}$ and $Y^0_k := X_k$ ($k \neq n_0$), while the boundary  is given by 
+    \[\begin{tikzcd}
+        \cdots & {X_{n+1}} & {X_n} & {X_{n-1} \oplus E_{n_0-1}} & {X_{n-2}} & \cdots
+        \arrow[from=1-1, to=1-2]
+        \arrow["{d^X_{n+1}}", from=1-2, to=1-3]
+        \arrow["{(d^X_{n}, \iota \rho_n)}", from=1-3, to=1-4]
+        \arrow["{d^X_{n-1}}", from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+    \end{tikzcd}\]
+    It is clear that we get a morphism $Y^0 \longrightarrow X$ who is a degreewise split epi and whose kernel is $E^0 := S^{n_0-1}E_{n_0 -1} \in \dg{\E}$. It is easy to see that  $Y^0$ is exact at $n_0$ and that the induced morphism $B_kY^0 \longrightarrow B_k X$ is an isomorphism for $k \neq n_0$. Given a sequence $(n_0, n_1, n_2, \dots)$ such that every integer appears in it infinitely many times we can repeat the killing boundaries construction to obtain a sequence of complexes $Y^l$ and degreewise split epis $Y^{l+1} \longrightarrow Y^l$ such that $Y^l$ is exact at position $n_l$, $B_kY^{l+1} \longrightarrow B_k Y^l$ is an isomorphism for $k \neq l+1$ and \[\ker(Y^{l+1} \longrightarrow Y^l) = S^{n_l-1}E_{n_l -1} \] is in $\dg{\E}$. \\
+    We continue by defining, just like we did for $l=0$, the complex
+    \[E^l := \ker(Y^l \longrightarrow Y^{l-1} \longrightarrow \dots \longrightarrow Y^0 \longrightarrow X)\]
+    and remarking that the induced morphism $E^{l+1} \longrightarrow E^l$ must be degreewise split epis ($\ker$ is a functor, so it sends split epis in the arrow category to split epis); therefore for all $l\in \N$ we obtain the following degreewise split exact sequences (composition of split epis is a split epi):
+    \[\begin{tikzcd}
+        0 & {E^l} & {Y^l} & X & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Glueing the sequences associated to each degree yields 
+    \[\begin{tikzcd}
+        0 & {\displaystyle\prod_{l= 0}^{\infty} E^l_k} & {\displaystyle\prod_{l= 0}^{\infty} Y^l_k} & {\displaystyle\prod_{l= 0}^{\infty} X_k} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    which is split exact for all $k \in \Z$, therefore
+    \[\begin{tikzcd}
+        0 & {\displaystyle\prod_{l= 0}^{\infty} E^l} & {\displaystyle\prod_{l= 0}^{\infty} Y^l} & {\displaystyle\prod_{l= 0}^{\infty} X} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    is exact. We continue by setting $E := \varprojlim E^l$ and $H:= \varprojlim Y^l$ (and remarking that, trivially, $X = \varprojlim X$) and applying lemma \ref{lem:inv-limit-chain} to obtain a commutative diagram with exact columns and where the last two rows are also exact;
+    \[\begin{tikzcd}
+        & 0 \arrow[d] & 0 \arrow[d] & 0 \arrow[d] & \\
+        0 \arrow[r] 
+        & E \arrow[r] \arrow[d] 
+        & H \arrow[r] \arrow[d] 
+        & X \arrow[r] \arrow[d] 
+        & 0 \\
+        0 \arrow[r] 
+        & \displaystyle\prod_{l = 0} ^{\infty} E^l \arrow[r] \arrow[d, "1-\nu"] 
+        & \displaystyle\prod_{l = 0} ^{\infty} Y^l \arrow[r] \arrow[d, "1-\nu"] 
+        & \displaystyle\prod_{l = 0} ^{\infty} X \arrow[r] \arrow[d, "1-\nu"] 
+        & 0 \\
+        0 \arrow[r] 
+        & \displaystyle\prod_{l = 0} ^{\infty} E^l \arrow[r] \arrow[d] 
+        & \displaystyle\prod_{l = 0} ^{\infty} Y^l \arrow[r] \arrow[d] 
+        & \displaystyle\prod_{l = 0} ^{\infty} X \arrow[r] \arrow[d] 
+        & 0 \\
+        & 0 & 0 & 0 &
+    \end{tikzcd}\]
+    from the nine lemma follows the exactness of the sequence
+    \[\begin{tikzcd}
+        0 & E & H & X & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    To prove that this sequence is the one we are looking for, it remains to prove that $E \in \dg{\E}$ and $H \in \ex$, we begin by investigating $E$. The first step is proving that $E_k \in \E$ for all $k$, but if we set $K^l := \ker(E^{l+1} \longrightarrow E^l)$, the following diagram of kernels 
+    \[\begin{tikzcd}
+        0 & {K^l} & {S^{n_l-1}E_{n_l-1}} & 0 & \\
+        0 & {E^{l+1}} & {Y^{l+1}} & X & 0 \\
+        0 & {E^l} & {Y^l} & X & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=3-2, to=3-3]
+        \arrow[from=3-3, to=3-4]
+        \arrow[from=3-4, to=3-5]
+    \end{tikzcd}\]
+    shows that $K^l \cong S^{n_l-1}E_{n_l-1} \in \dg{\E}$. Given that the morphism in the projective system used to compute $E$ are degreewise split epis, we can compute $E_k$ degreewise to find
+    \[ E_k = \left( \varprojlim E^l \right)_k = E^0_k \oplus \prod_{l=0}^{\infty} K^l_k,\]
+    thus $E_k\in \E$, given that $\E$ is part of a cotorsion pair and therefore closed under products. 
+
+
+    
+\end{proof}
+
 
 \section{Hereditary cotorsion pairs}
+
+
