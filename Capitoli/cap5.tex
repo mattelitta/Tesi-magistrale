@@ -141,8 +141,8 @@ Let $\C$ be an abelian category, let $(\D, \E)$ be a cotorsion pair.
 
 It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is an extension of $Z_nX$ and $Z_{n-1}X$; thus by lemma \ref{lem:cotorsion-trans}, $X_n \in \D$ for all $n \in \Z$. Similarly, if $X \in \EE$ then $X_n \in \E$ for all $n \in \Z$.
 
+\iffalse
 \begin{lemma}
-    \label{lem:dg-sphere}
     Let $n \in \Z$. If $D \in \D$ then $S^n D \in \dg{\D}$; if $E \in \E$ then $S^n E \in \dg{\E}$.
 \end{lemma}
 \begin{proof}
@@ -189,10 +189,11 @@ It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is
     This is clearly true given that $\Hom$ is left exact and $\Ext^1(D, Z_k X) = 0$ (given that $Z_k X \in \D$).
 
 \end{proof}
-
+\fi
 
 
 \begin{lemma}
+    \label{lem:dg-sphere}
     Bounded below complexes (i.e. complexes $X$ where there exists $n\in \Z$ such that if $k<n$ then $X_k = 0$) with entries in $\D$ are dg-$\D$ complexes.\\
      Bounded above complexes (i.e. complexes $X$ where there exists $n\in \Z$ such that if $k>n$ then $X_k = 0$) with entries in $\E$ are dg-$\E$ complexes.
 \end{lemma}
@@ -340,22 +341,22 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
         \itemsep0em 
         \item If $(\D, \E)$ has enough $\E$-objects, then there exists an exact sequence in $\Ch(\C)$
             \[\begin{tikzcd}
-                0 & E & H & X & {0,}
+                0 & E & P & X & {0,}
                 \arrow[from=1-1, to=1-2]
                 \arrow[from=1-2, to=1-3]
                 \arrow[from=1-3, to=1-4]
                 \arrow[from=1-4, to=1-5]
             \end{tikzcd}\]
-            where $E \in \dg{\E}$ and $H \in \ex$.
+            where $E \in \dg{\E}$ and $P \in \ex$.
         \item If $(\D, \E)$ has enough $\D$-objects, then there exists an exact sequence in $\Ch(\C)$
             \[\begin{tikzcd}
-                0 & X & H & D & {0,}
+                0 & X & P & D & {0,}
                 \arrow[from=1-1, to=1-2]
                 \arrow[from=1-2, to=1-3]
                 \arrow[from=1-3, to=1-4]
                 \arrow[from=1-4, to=1-5]
             \end{tikzcd}\]
-            where $D \in \dg{\D}$ and $H \in \ex$.
+            where $D \in \dg{\D}$ and $P \in \ex$.
     \end{enumerate}
 \end{proposition}
 
@@ -372,10 +373,10 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
         \arrow["{d^X_{n-1}}", from=1-4, to=1-5]
         \arrow[from=1-5, to=1-6]
     \end{tikzcd}\]
-    It is clear that we get a morphism $Y^0 \longrightarrow X$ who is a degreewise split epi and whose kernel is $E^0 := S^{n_0-1}E_{n_0 -1} \in \dg{\E}$. It is easy to see that  $Y^0$ is exact at $n_0$ and that the induced morphism $B_kY^0 \longrightarrow B_k X$ is an isomorphism for $k \neq n_0$. Given a sequence $(n_0, n_1, n_2, \dots)$ such that every integer appears in it infinitely many times we can repeat the killing boundaries construction to obtain a sequence of complexes $Y^l$ and degreewise split epis $Y^{l+1} \longrightarrow Y^l$ such that $Y^l$ is exact at position $n_l$, $B_kY^{l+1} \longrightarrow B_k Y^l$ is an isomorphism for $k \neq l+1$ and \[\ker(Y^{l+1} \longrightarrow Y^l) = S^{n_l-1}E_{n_l -1} \] is in $\dg{\E}$. \\
+    It is clear that we get a morphism $Y^0 \longrightarrow X$ which is a degreewise split epi and whose kernel is $E^0 := S^{n_0-1}E_{n_0 -1} \in \dg{\E}$. It is easy to see that  $Y^0$ is exact at $n_0$ and that the induced morphism $B_kY^0 \longrightarrow B_k X$ is an isomorphism for $k \neq n_0$. Given a sequence $(n_0, n_1, n_2, \dots)$ such that every integer appears in it infinitely many times we can repeat the killing boundaries construction to obtain a sequence of complexes $Y^l$ and degreewise split epis $Y^{l+1} \longrightarrow Y^l$ such that $Y^l$ is exact at position $n_l$, $B_kY^{l+1} \longrightarrow B_k Y^l$ is an isomorphism for $k \neq l+1$ and \[\ker(Y^{l+1} \longrightarrow Y^l) = S^{n_l-1}E_{n_l -1} \] is in $\dg{\E}$\\
     We continue by defining, just like we did for $l=0$, the complex
     \[E^l := \ker(Y^l \longrightarrow Y^{l-1} \longrightarrow \dots \longrightarrow Y^0 \longrightarrow X)\]
-    and remarking that the induced morphism $E^{l+1} \longrightarrow E^l$ must be degreewise split epis ($\ker$ is a functor, so it sends split epis in the arrow category to split epis); therefore for all $l\in \N$ we obtain the following degreewise split exact sequences (composition of split epis is a split epi):
+    and remarking that the induced morphism $E^{l+1} \longrightarrow E^l$ must be degreewise split epis ($\ker$ is a functor, so it sends split epis in the arrow category to split epis); it is also important to remark that $E^{l+1}$ is an extension of $S^{n_l-1}E_{n_l -1}$ and $E^l$, therefore by induction it must also be in $\dg{\E}$. Furthermore for all $l\in \N$ we obtain the following degreewise split exact sequences (composition of split epis is a split epi):
     \[\begin{tikzcd}
         0 & {E^l} & {Y^l} & X & {0.}
         \arrow[from=1-1, to=1-2]
@@ -399,12 +400,12 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
         \arrow[from=1-3, to=1-4]
         \arrow[from=1-4, to=1-5]
     \end{tikzcd}\]
-    is exact. We continue by setting $E := \varprojlim E^l$ and $H:= \varprojlim Y^l$ (and remarking that, trivially, $X = \varprojlim X$) and applying lemma \ref{lem:inv-limit-chain} to obtain a commutative diagram with exact columns and where the last two rows are also exact;
+    is exact. We continue by setting $E := \varprojlim E^l$ and $P:= \varprojlim Y^l$ (and remarking that, trivially, $X = \varprojlim X$) and applying lemma \ref{lem:inv-limit-chain} to obtain a commutative diagram with exact columns and where the last two rows are also exact;
     \[\begin{tikzcd}
         & 0 \arrow[d] & 0 \arrow[d] & 0 \arrow[d] & \\
         0 \arrow[r] 
         & E \arrow[r] \arrow[d] 
-        & H \arrow[r] \arrow[d] 
+        & P \arrow[r] \arrow[d] 
         & X \arrow[r] \arrow[d] 
         & 0 \\
         0 \arrow[r] 
@@ -421,13 +422,13 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
     \end{tikzcd}\]
     from the nine lemma follows the exactness of the sequence
     \[\begin{tikzcd}
-        0 & E & H & X & {0.}
+        0 & E & P & X & {0.}
         \arrow[from=1-1, to=1-2]
         \arrow[from=1-2, to=1-3]
         \arrow[from=1-3, to=1-4]
         \arrow[from=1-4, to=1-5]
     \end{tikzcd}\]
-    To prove that this sequence is the one we are looking for, it remains to prove that $E \in \dg{\E}$ and $H \in \ex$, we begin by investigating $E$. The first step is proving that $E_k \in \E$ for all $k$, but if we set $K^l := \ker(E^{l+1} \longrightarrow E^l)$, the following diagram of kernels 
+    To prove that this sequence is the one we are looking for, it remains to prove that $E \in \dg{\E}$ and $P \in \ex$, we begin by investigating $E$. The first step is proving that $E_k \in \E$ for all $k$, but if we set $K^l := \ker(E^{l+1} \longrightarrow E^l)$, the following diagram of kernels 
     \[\begin{tikzcd}
         0 & {K^l} & {S^{n_l-1}E_{n_l-1}} & 0 & \\
         0 & {E^{l+1}} & {Y^{l+1}} & X & 0 \\
@@ -452,7 +453,62 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
     \end{tikzcd}\]
     shows that $K^l \cong S^{n_l-1}E_{n_l-1} \in \dg{\E}$. Given that the morphism in the projective system used to compute $E$ are degreewise split epis, we can compute $E_k$ degreewise to find
     \[ E_k = \left( \varprojlim E^l \right)_k = E^0_k \oplus \prod_{l=0}^{\infty} K^l_k,\]
-    thus $E_k\in \E$, given that $\E$ is part of a cotorsion pair and therefore closed under products. 
+    thus $E_k\in \E$, given that $\E$ is part of a cotorsion pair and therefore closed under products (see lemma \ref{lem:cotorsion-prod}). We can apply the $\Hom(D, {-})$ functor (for a certain $D \in \D$) to the short exact sequence 
+    \[\begin{tikzcd}
+        0 & {K^l} & {E^{l+1}} & {E^l} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    to obtain 
+    \[\begin{tikzcd}[sep=small]
+        \cdots & {\Hom_\C(D, E^{l+1})} & {\Hom_\C(D, E^l)} & {\Ext^1_\C(D, K^l)} & {\cdots.}
+	    \arrow[from=1-1, to=1-2]
+	    \arrow[from=1-2, to=1-3]
+	    \arrow[from=1-3, to=1-4]
+	    \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Given that $K^l \in \dg{\E}$ and $D \in \D$, we know that ${\Ext^1_\C(D, K^l)} = 0$, therefore the morphism 
+    \[{\Hom_\C(D, E^{l+1})} \longrightarrow {\Hom_\C(D, E^l)}\]
+    must be epic for all $l$. Applying lemma \ref{lem:inv-limit-group}, we obtain the following exact sequence:
+    \[\begin{tikzcd}[sep=tiny]
+        0 & {\varprojlim \Hom_\C(D,E^l)} & {\displaystyle \prod_{l=0}^{\infty}\Hom_\C(D,E^l)} & {\displaystyle \prod_{l=0}^{\infty}\Hom_\C(D,E^l)} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    hence, given that $\prod_{l=0}^{\infty}\Hom_\C(D,E^l)$ is exact ($E^l \in \dg{\E}$ and the product of exact complexes of abelian groups is exact), $\varprojlim \Hom_\C(D,E^l) \cong \Hom_\C(D,E)$ is exact ($\Hom(D, {-})$ is a continuous functor).\\
+    All that remains is showing that $P \in \ex$, we will show that it is exact at each homological position $k \in \Z$. Let us choose a cofinal subsequence $(n_{m_0}, n_{m_1}, \dots)$ of $(n_0, n_1, \dots)$ such that $n_{m_t} = k$ for all $t$; such a subsequence must exist given that each integer appears infinitely many times in the original sequence, furthermore the cofinality condition implies that we can compute the limit using only complexes that are exact in position $k$:
+    \[P = \varprojlim_{i \in \N} Y^i = \varprojlim_{i \in \N} Y^{m_i}.\]
+    Applying lemma \ref{lem:inv-limit-chain} allows us to write the following
+    \[\begin{tikzcd}
+        0 & P & {\displaystyle\prod_{i = 0} ^{\infty} Y^{m_i}} & {\displaystyle\prod_{i = 0} ^{\infty} Y^{m_i}} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["1-\nu", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    which is split exact in each degree and yields the following exact sequence:
+    \[\begin{tikzcd}
+        { 0} & {H_k(P)} & {H_k\left({\displaystyle\prod_{i = 0} ^{\infty} Y^{m_i}}\right)} & {H_k\left({\displaystyle\prod_{i = 0} ^{\infty} Y^{m_i}}\right)} & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{H_k(1- \nu)}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    If we denote as $\mu_j$ the morphism $Y^{m_j} \longrightarrow Y^{m_{j-1}}$, from the definition of $\nu$ follows immediately that \[\pi_{m_j} (1-\nu) = \pi_{m_j} - \mu_{j+1} \pi_{{m_{j+1}}}\] for all $j$; from the exactness of $Y^l$ and the fact that for abelian groups products are exact, by denoting as $\mu_{t,i}$ and $\pi_{t,i}$ the degree $i$ component of $\mu_t$ and $\pi_t$, we deduce  
+    \begin{align*}
+        \mu_{j+1, k} \pi_{m_{j+1}, k} \left(Z_k \prod_{i=0}^{\infty} Y^{m_i}  \right) &=  \mu_{j+1, k} \pi_{m_{j+1}, k}\left( \prod_{i=0}^{\infty} Z_k  Y^{m_i}  \right) = \\
+        &= \mu_{j+1, k} \left( Z_k Y^{m_{j+1}} \right) = \\
+        &= \mu_{j+1, k}  \left(B_k Y^{m_{j+1}} \right) = \\
+        &= \mu_{j+1, k} d^{Y^{m_{j+1}}}_{k+1} \left(Y^{m_{j+1}}_{k+1} \right) = \\
+        &=  d^{Y^{m_{j}}}_{k+1} \mu_{j+1, k+1} \left(Y^{m_{j+1}}_{k+1} \right) \subseteq B_k Y^{m_j}.
+    \end{align*}
+    We conclude that $H_k (\mu_{j+1} \pi_{{m_{j+1}}})$ is trivial, therefore $H_k(\pi_{m_j}(1-\nu)) = H_k(\pi_j)$ for all $j$, thus $1-\nu$ is a quasi-isomorphism and hence $H_k(P) = 0$. Given that this holds for all $k$, $P$ must be exact.
+    
+
 
 
     
