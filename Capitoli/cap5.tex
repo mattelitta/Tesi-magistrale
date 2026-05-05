@@ -139,7 +139,58 @@ Let $\C$ be an abelian category, let $(\D, \E)$ be a cotorsion pair.
     We denote the class of all $\D$ complexes as $\widetilde{\D}$, while the class of all dg-$\D$ complexes is denoted as $\dg{\D}$. Similarly, we denote the class of all $\E$ complexes as $\widetilde{\E}$, while the class of all dg-$\E$ complexes is denoted as $\dg{\E}$. We also use $\ex$ to denote the class of all exact complexes.
 \end{definition}
 
-It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is an extension of $Z_nX$ and $Z_{n-1}X$; thus by lemma \ref{lem:cotorsion-trans}, $X_n \in \D$ for all $n \in \Z$. Similarly, if $X \in \EE$ then $X_n \in \E$ for all $n \in \Z$.
+We begin with a fundamental result on this kinds of complexes.
+
+\begin{proposition}
+	\label{prop:dg-containment}
+	Every morphism of complexes from a $\D$-complex to an $\E$-complex is null-homotopic.
+\end{proposition}
+\begin{proof}
+	Let us consider $D\in \D$ and $E \in \E$ and chose a morphism $f\colon D \longrightarrow E$. We will show that there exists an homotopically equivalent morphism $g$ such that $g_{n} d_{n+1}^D = 0$ and $d_{n}^E g_n = 0$ for all $n \in \N$, where the subscript indicates the degree of the component; we will also denote with $Z_n f$ the induced morphism between $Z_n D$ and $Z_n E$. We begin by considering the exact sequence (given us by the exactness of $E$ at homological position $n+1$)
+	\[\begin{tikzcd}
+		0 & {Z_{n+1 }E} & {E_{n+1}} & {Z_n E} & {0.}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["{d_{n+1}^E}", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	Applying the functor $\Hom_\C(Z_n D, {-})$ to such a sequence yields
+	\[\begin{tikzcd}
+		{\Hom_\C(Z_n D, E_{n+1})} & {\Hom_\C(Z_n D, Z_n E)} & {\Ext^1_\C(Z_n D, Z_{n+1 }E),}
+		\arrow["{(d_{n+1}^E)_*}", from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+	\end{tikzcd}\]
+	therefore, by observing that $Z_n D \in \D$ and $Z_{n+1 }E \in \E$ implies the equality ${\Ext^1_\C(Z_n D, Z_{n+1 }E)} =0 $, we know that ${(d_{n+1}^E)_*}$ must be surjective; thus there exists a morphism $\alpha_n \colon Z_n D \longrightarrow E_{n+1}$ that satisfies $Z_n f = {(d_{n+1}^E)_*} \alpha_n$. With a similar argument (the vanishing of $\Ext$) we prove that the exactness of $D$ at position $n$, in the form of the exact sequence
+	\[\begin{tikzcd}
+		0 & {Z_{n }D} & {D_{n}} & {Z_{n-1} D} & {0,}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-2, to=1-3]
+		\arrow["{d_{n}^D}", from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
+	implies the surjectivity of the map $\Hom_\C(D_n,E_{n+1}) \longrightarrow \Hom_\C(Z_n D,E_{n+1}) $, therefore there exists $\beta_n \colon D_n \longrightarrow E_{n+1}$ such that $\alpha_n$ is the restriction of $\beta_n$ to $Z_n D$. We can thus define the morphism $g$ of complexes (that will be homotopically equivalent to $f$ by definition) component by component, as
+	\[g_n = f_n + (d_{n+1}^E \beta_n - \beta_{n-1}d_n^D).\]
+	By direct computation 
+	\begin{align*}
+		d_n^E g_n &= d_n^E f_n +d_n^E d_{n+1}^E \beta_n - d_n^E \beta_{n-1} d_n^D = \\
+		& = d_n^E f_n - d_n^E \beta_{n-1} d_n^D = d_n^E f_n - f_{n-1}d_n^D =  0
+	\end{align*} 
+	and similarly $g_n d_{n+1}^D =0 $. We will now prove that this implies that $g$ is null-homotopic (and hence $f$ also is). We observe that $d_n^E g_n = 0$ implies that $\im(g_n) \subseteq Z_n E$ and $g_n d_{n+1}^D =0 $ implies that $g_n$ is also well defined up to quotienting with $B_n D = Z_n D$, therefore $g_n$ induces a morphism $\bar{g_n} D_n / Z_n D \longrightarrow Z_n E$, which makes the following diagram commute (the isomorphism is the first isomorphism theorem).
+	\[\begin{tikzcd}
+		{D_n} & {D_n} & {D_n} \\
+		{B_{n-1}D = Z_{n-1}D} & {D_n/Z_nD} & {Z_n E}
+		\arrow["{\id_{D_n}}", from=1-1, to=1-2]
+		\arrow["{d_n^D}", from=1-1, to=2-1]
+		\arrow["{\id_{D_n}}", from=1-2, to=1-3]
+		\arrow[from=1-2, to=2-2]
+		\arrow["{g_n}", from=1-3, to=2-3]
+		\arrow["{\bar{d_n^D}}"', "\cong", from=2-2, to=2-1]
+		\arrow["{\bar{g_n}}", from=2-2, to=2-3]
+	\end{tikzcd}\]
+	If we set $h_n = {\bar{g_n}}\left({\bar{d_n^D}}\right)^{-1} \colon Z_{n-1}D \longrightarrow Z_n E$, the argument used to define $\alpha$ shows that there exists $k_n \colon Z_{n-1} D \longrightarrow E_{n+1}$ such that $h_n = \left(d_{n+1}^E\right)_*k_n$. A quick calculation shows that $g = d_{n+1}^Ek_n d_n^D  - k_{n-1}d_{n-1}^D d_n^D$ , therefore $k_n d_n^D$ is the homotopy between $g$ and $0$ that we are looking for.
+\end{proof}
+
+It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is an extension of $Z_nX$ and $Z_{n-1}X$; thus by lemma \ref{lem:cotorsion-trans}, $X_n \in \D$ for all $n \in \Z$. Similarly, if $X \in \EE$ then $X_n \in \E$ for all $n \in \Z$. This result, together with proposition \ref{prop:dg-containment}, implies that $\DD \subseteq \dg{\D}$ and $\EE \subseteq \dg{\E}$.
 
 \iffalse
 \begin{lemma}
@@ -336,6 +387,7 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
 \end{proof}
 
 \begin{proposition}
+    \label{prop:enough-objects}
     Let us assume that $\C$ is complete and cocomplete and let $X \in \Ch(\C)$.
     \begin{enumerate}
         \itemsep0em 
@@ -507,9 +559,6 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
         &=  d^{Y^{m_{j}}}_{k+1} \mu_{j+1, k+1} \left(Y^{m_{j+1}}_{k+1} \right) \subseteq B_k Y^{m_j}.
     \end{align*}
     We conclude that $H_k (\mu_{j+1} \pi_{{m_{j+1}}})$ is trivial, therefore $H_k(\pi_{m_j}(1-\nu)) = H_k(\pi_j)$ for all $j$, thus $1-\nu$ is a quasi-isomorphism and hence $H_k(P) = 0$. Given that this holds for all $k$, $P$ must be exact.
-    
-
-
 
     
 \end{proof}
@@ -517,4 +566,528 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
 
 \section{Hereditary cotorsion pairs}
 
+To reach our objective of obtaining a model structure by applying Hovey's correspondence, we need the induced cotorsion pairs to be compatible and complete. The work of Xiaoyan Yang and Nanqing Ding (see \cite{DingYang2014}) has found a complete characterization of which cotorsion pairs in a complete and biconplete abelian category induce compatible and complete cotrsion pairs in the categoryy of complexes; to this characterizationis key the concept of hereditary cotorsion pairs. \\
+Let $\C$ be an abelian category and let $(\D, \E)$ be a cotorsion pair in $\C$.
 
+\begin{definition}[hereditary cotorsion pairs]
+    We say that the cotorsion pair $(\D, \E)$ is \textbf{hereditary} if $\Ext^i_\C(D,E) = 0$ for all $i \geq 1$ and $D\in \D, E\in \E$.
+\end{definition}
+
+We will additionally need two technical definitions.
+
+\begin{definition}[Covers and envelopes]
+    Let $\F$ be a subclass of $\ob(\C)$, we say that a morphism $\phi \colon F \longrightarrow X$ is an $\F$\textbf{-precover} of $X$ if the sequence of abelian groups
+    \[\begin{tikzcd}
+        {\Hom_\C(F',F)} & {\Hom_\C(F',X)} & 0
+        \arrow["{\phi_*}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+    \end{tikzcd}\]
+    is exact for all $F' \in \F$. An $\F$-precover is said to be \textbf{special} if $\phi$ is an epimorphism and $\ker(\phi) \in \rperp{\F}$. If $\phi$ is an $\F$-precover such that any endomorphisms $f\colon F \longrightarrow F$ that satisfies $\phi f = \phi$ is necessarily an automorphism of $F$, we say that $\phi$ is an $\F$\textbf{-cover} of $X$. \\
+    Dually, we say that a morphism $\psi \colon X \longrightarrow F$ is an $\F$\textbf{-preenvelope} of $X$ if the sequence of abelian groups
+    \[\begin{tikzcd}
+        {\Hom_\C(F,F')} & {\Hom_\C(X,F')} & 0
+        \arrow["{\psi^*}", from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+    \end{tikzcd}\]
+    is exact for all $F' \in \F$. An $\F$-preenvelope is said to be \textbf{special} if $\psi$ is a monomorphism and $\coker(\psi) \in \lperp{\F}$. If $\psi$ is an $\F$-preenvelope such that any endomorphism $f\colon F \longrightarrow F$ that satisfies $f\psi  = \psi$ is necessarily an automorphism of $F$, we say that $\psi$ is an $\F$\textbf{-envelope} of $X$. \\
+\end{definition}
+
+It is clear that requiring every object to have a special $\D$-precover is equivalent to asking that $(\D, \E)$ has enough projectives, while requiring every object to have a special $\E$-preenvelope is equivalent to asking that $(\D, \E)$ has enough injectives.
+
+\begin{lemma}
+    \label{lem:cover-ext}
+    Let $(\D, \E)$ be a hereditary cotorsion pair in $\C$, the class of objects that admit a special $\D$-precover and the class of objects that admit a special $\E$-preenvelope are closed under extensions, i.e. for any exact sequence
+    \[\begin{tikzcd}
+        0 & {X_1} & X & {X_2} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    in $\C$ the following holds:
+    \begin{enumerate}
+        \itemsep0em 
+        \item If $X_1, X_2$ have a special $\D$-precover then $X$ has a special $\D$-precover.
+        \item If $X_1, X_2$ have a special $\E$-preenvelope then $X$ has a special $\E$-preenvelope.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    We will just prove the first statement since the second follows by duality. \\  
+    Let $\phi_1\colon D_1 \longrightarrow X_1$ and $\phi_2\colon D_2 \longrightarrow X_2$ be special $\D$-precovers, we want to use these to define a special $\D$-precover of $X$. The extension $\xi$
+    \[\begin{tikzcd}
+        0 & {X_1} & X & {X_2} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    induces through the morphism $\phi_2$ another extension $\xi' := \phi_2^* \xi$ (see section \ref{sec:extensions}) which fits the commutative diagram with exact rows below
+    \[\begin{tikzcd}
+        &&& 0 & 0 & \\
+        &&& {E_2} & {E_2} \\
+        {\xi':} & 0 & {X_1} & Y & {D_2} & 0 \\
+        {\xi:} & 0 & {X_1} & X & {X_2} & 0 \\
+        &&& 0 & 0
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-5, to=2-5]
+        \arrow["{\id_{E_2}}", from=2-4, to=2-5]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=2-5, to=3-5]
+        \arrow[from=3-2, to=3-3]
+        \arrow[from=3-3, to=3-4]
+        \arrow["{\id_{X_1}}", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow[from=3-4, to=4-4]
+        \arrow[from=3-5, to=3-6]
+        \arrow["{\phi_2}", from=3-5, to=4-5]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-4, to=5-4]
+        \arrow[from=4-5, to=4-6]
+        \arrow[from=4-5, to=5-5]
+    \end{tikzcd}\]
+    where $Y := X \times_{X_2} D_2$ and $E_2 := \ker(\phi_2)$. If we now set $E_1:= \ker(\phi_1)$, we get an exact sequence 
+    \[\begin{tikzcd}
+        0 & {E_1} & {D_1} & {X_1} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{\phi_1}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    from which, by applying $\Hom_\C(D_2, {-})$, we get
+    \[\begin{tikzcd}
+        \cdots & {\Ext^1_\C(D_2,D_1)} & {\Ext^1_\C(D_2,X_1)} & {\Ext^2_\C(D_2,E_1)} & {\cdots.}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{(\phi_1)_*}", from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Given that $E_1 \in \E$ ($\phi_2$ is special) and $(\D, \E)$ is hereditary, ${\Ext^2_\C(D_2,E_1)} = 0$ and so ${(\phi_1)_*} \colon {\Ext^1_\C(D_2,D_1)} \longrightarrow {\Ext^1_\C(D_2,X_1)}$ is surjective, therefore there exists an extension $\xi''$
+    \[\begin{tikzcd}
+        {\xi'':} & 0 & {D_2} & D & {D_1} & 0
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+    \end{tikzcd}\]
+    such that $(\phi_1)_*(\xi'') = \xi'$; given that $\D$ is closed under extensions, $D \in \D$. By writing explicitly the action of $(\phi_1)^*$ we obtain the commutative diagram
+    \[\begin{tikzcd}
+        && 0 & 0 && \\
+        && {E_1} & {E_1} \\
+        {\xi'':} & 0 & {D_1} & D & {D_2} & 0 \\
+        {\xi':} & 0 & {X_1} & Y & {D_2} & {0.}
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow["{\id_{E_1}}", from=2-3, to=2-4]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-2, to=3-3]
+        \arrow[from=3-3, to=3-4]
+        \arrow["{\phi_1}", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow[from=3-4, to=4-4]
+        \arrow[from=3-5, to=3-6]
+        \arrow["{\id_{D_2}}", from=3-5, to=4-5]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-5, to=4-6]
+    \end{tikzcd}\]
+    By joining together the two diagrams (and using the serpent's lemma with the fact that $\phi_1$ is epic) we get
+    \[\begin{tikzcd}
+        & 0 & {E_1} & E & {E_2} & 0 \\
+        {\xi'':} & 0 & {D_1} & D & {D_2} & 0 \\
+        {\xi':} & 0 & {X_1} & Y & {D_2} & 0 \\
+        {\xi:} & 0 & {X_1} & X & {X_2} & {0,}
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-5, to=2-5]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow["{\phi_1}", from=2-3, to=3-3]
+        \arrow["{\phi_1}"'{pos=0.2}, curve={height=12pt}, from=2-3, to=4-3]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=2-5, to=2-6]
+        \arrow["{\id_{D_2}}", from=2-5, to=3-5]
+        \arrow["{\phi_2}"'{pos=0.2}, curve={height=12pt}, from=2-5, to=4-5]
+        \arrow[from=3-2, to=3-3]
+        \arrow[from=3-3, to=3-4]
+        \arrow["{\id_{X_1}}", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow[from=3-4, to=4-4]
+        \arrow[from=3-5, to=3-6]
+        \arrow["{\phi_2}", from=3-5, to=4-5]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-5, to=4-6]
+    \end{tikzcd}\]
+    where $E$ is the kernel of the composition $\phi \colon D \longrightarrow Y \longrightarrow X$; given that $\E$ is closed under extensions, $E \in \E$ and therefore $\phi_*$ is surjective (the obstructing $\Ext$ vanishes because $(\D, \E)$ is a cotorsion pair). We conclude by remarking that both $D \longrightarrow Y$ and $Y \longrightarrow X$ are epic (they are pullbacks/pushouts of epic morphisms), therefore $\phi\colon D \longrightarrow X$ is a special $\D$-precover.
+\end{proof}
+
+\begin{remark}
+    It is important to remark that in the proof above we have actually shown something stronger that the thesis: given special $\D$-precovers $\phi_1 \colon D_1 \longrightarrow X_1$ and $\phi_2\colon D_2 \longrightarrow X_2$ we can actually choose a special $\D$-precover $\phi\colon D \longrightarrow X$ such that the following diagram with exact rows and columns commutes
+    \[\begin{tikzcd}
+        & 0 & 0 & 0 & \\
+        0 & {E_1} & E & {E_2} & 0 \\
+        0 & {D_1} & D & {D_2} & 0 \\
+        0 & {X_1} & X & {X_2} & 0 \\
+        & 0 & 0 & {0,}
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=3-2, to=3-3]
+        \arrow["{\phi_1}", from=3-2, to=4-2]
+        \arrow[from=3-3, to=3-4]
+        \arrow["\phi", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow["{\phi_2}", from=3-4, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-2, to=5-2]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-3, to=5-3]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-4, to=5-4]
+    \end{tikzcd}\]
+    where $E_1,E_2,E$ denote the appropriate kernels. The case of preenvelopes is dual.
+\end{remark}
+
+
+\begin{lemma}
+    \label{lem:find-precover}
+    If $(\D, \E)$ is complete and hereditary, then every exact complex admits a special $\DD$-precover and a special $\EE$-preenvelope.
+\end{lemma}
+
+\begin{proof}
+    Let $X\in \ex$ be an exact complex, therefore for any $k \in \Z$ there exist an exact sequence 
+    \[\begin{tikzcd}
+        0 & {Z_{k}X} & {X_k} & {Z_{k-1}X} & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    Given that $(\D, \E)$ is complete we can find special $\D$-precovers $\phi_i' \colon D_i'  \longrightarrow Z_i X$ for all $i\in \Z$, so we can apply lemma \ref{lem:cover-ext} and the  observation following it to find a commutative diagram 
+    \[\begin{tikzcd}
+        & 0 & 0 & 0 & \\
+        0 & {\ker(\phi_k')} & {\ker(\phi_k)} & {\ker(\phi_{k-1}')} & 0 \\
+        0 & {D_k'} & {D_k} & {D_{k-1}'} & 0 \\
+        0 & {Z_{k}X} & {X_k} & {Z_{k-1}X} & 0 \\
+        & 0 & 0 & 0
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-4, to=2-5]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-1, to=3-2]
+        \arrow["{\delta_k}", from=3-2, to=3-3]
+        \arrow["{\phi_k'}", from=3-2, to=4-2]
+        \arrow["{\varepsilon_k}", from=3-3, to=3-4]
+        \arrow["{\phi_k}", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow["{\phi_{k-1}'}", from=3-4, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-2, to=5-2]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-3, to=5-3]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-4, to=5-4]
+    \end{tikzcd}\]
+    such that $\phi_k$ is a special $\D$-precover. Setting $d^D_k= \delta_{k-1}\varepsilon_k \colon D_k \longrightarrow D_{k-1}$ allows us to define the complex $D= \{ (D_k, d^D_k)\}_k$, along with the morphism of complexes $\phi=\{\phi_k\}_k \colon D \longrightarrow X$. We can see for all $k$ that $D_k \in \D$, that \[\ker(d^D_k) = \ker(\delta_{k-1}\varepsilon_k) = \ker(\varepsilon_k) = D'_k\] and that \[\im(d^D_{k+1}) = \im(\delta_{k}\varepsilon_{k+1}) = \im(\delta_{k}) = D'_k,\] therefore $D \in \DD$; athe same exact argument shows that the complex $\ker(\phi)$ is in $\EE$.
+    The construction above makes also clear that $\phi_k$ must be epic, therefore $\phi$ is the special $\DD$-precover we are looking for. The case of special $\EE$-preenvelopes is dual.
+
+\end{proof}
+
+
+We are finally ready to prove some of the main result of this thesis: a characterization of completeness and compatibility of the induced cotorsion pair.
+
+
+
+\begin{theorem}
+    Let $(\D, \E)$ be complete and hereditary and let $\C$ be complete and cocomplete, then the induced cotorsion pairs $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ are complete. 
+\end{theorem}
+
+\begin{proof}
+    Let $X \in \Ch(\C)$, by applying proposition \ref{prop:enough-objects} we can find an exact sequence
+    \[\begin{tikzcd}
+        0 & E & P & X & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    with $E \in \dg{\E}$ and $P \in \ex$. Applying lemma \ref{lem:find-precover} to the exact complex $P$, we find a special $\DD$ precover $\phi$ of $P$ as in the sequence below:
+    \[\begin{tikzcd}
+        0 & {E'} & D & P & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["\phi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    By defining $E'':= E \times_P D$ we obtain a pullback commutative diagram as follows:
+    \[\begin{tikzcd}
+        & 0 & 0 && \\
+        & {E'} & {E'} \\
+        0 & {E''} & D & X & 0 \\
+        0 & E & P & X & 0 \\
+        & 0 & {0.}
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=2-3]
+        \arrow["{\id_{E'}}", from=2-2, to=2-3]
+        \arrow[from=2-2, to=3-2]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=3-2, to=3-3]
+        \arrow[from=3-2, to=4-2]
+        \arrow[from=3-3, to=3-4]
+        \arrow["\phi"', from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow["{\id_X}"', from=3-4, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow[from=4-2, to=4-3]
+        \arrow[from=4-2, to=5-2]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-3, to=5-3]
+        \arrow[from=4-4, to=4-5]
+    \end{tikzcd}\]
+    Given that $E''$ is an extension of $E$ and $E'$, $E'' \in \dg{\E}$ and that $D \in \DD$, the second row of this diagram shows that $(\DD, \dg{\E})$ has enough projectives. \\
+    We now continue by using the completeness of $(\D, \E)$ to find a monomorphism $\iota_k\colon X_k \longrightarrow E_k'$ for all $k \in \Z$ with $E_k' \in \E$. By lemma \ref{lem:dg-sphere} the complexes $D^{k+1}E_k'$ are in $\dg{\E}$, therefore, by lemma \ref{lem:cotorsion-prod}, $\prod_{k \in \Z} D^{k+1}E_k'$ also is. Thus, by defining the monomorphism $\psi \colon X \longrightarrow \prod_{k \in \Z} D^{k+1}E_k'$ through
+    \[\begin{tikzcd}
+        {} & {\psi_k\colon X_k} && {\left(\displaystyle\prod_{k \in \Z} D^{k+1}E_k' \right)_k = E_k'\times E_{k-1}'}
+        \arrow["{(\iota_k, \iota_{k-1}d^X_k)}", from=1-2, to=1-4]
+    \end{tikzcd}\]
+    and by setting $Y := \coker(\psi)$, we can  find a short exact sequence 
+    \[\begin{tikzcd}
+        0 & X & {\prod_{k \in \Z} D^{k+1}E_k'} & Y & {0.}
+        \arrow[from=1-1, to=1-2]
+        \arrow["\psi", from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    If we now apply to $Y$ the fact that $(\DD, \dg{\E})$ has enough projectives (which we have already proven), we can find another exact sequence
+    \[\begin{tikzcd}
+        0 & {E''} & D & Y & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    hence by defining $E := {\prod_{k \in \Z} D^{k+1}E_k'} \times_Y D$ we get a pullback diagram
+    \[\begin{tikzcd}
+        && 0 & 0 & \\
+        && {E''} & {E''} \\
+        0 & X & E & D & 0 \\
+        0 & X & {\prod_{k \in \Z} D^{k+1}E_k'} & Y & 0 \\
+        & {} & 0 & 0
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow["{\id_{E''}}", from=2-3, to=2-4]
+        \arrow[from=2-3, to=3-3]
+        \arrow[from=2-4, to=3-4]
+        \arrow[from=3-1, to=3-2]
+        \arrow[from=3-2, to=3-3]
+        \arrow["{\id_X}"', from=3-2, to=4-2]
+        \arrow[from=3-3, to=3-4]
+        \arrow[from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow[from=3-4, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow["\psi", from=4-2, to=4-3]
+        \arrow[from=4-3, to=4-4]
+        \arrow[from=4-3, to=5-3]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-4, to=5-4]
+    \end{tikzcd}\]
+    whose first exact row is the proof that $(\DD, \dg{\E})$ has enough injectives.
+    The other statements follow by duality.
+
+\end{proof}
+
+\begin{theorem}
+    Let $(\D, \E)$ be hereditary. If $(\D, \E)$ has enough $\D$-objects, then $\dg{\E} \cap \ex = \EE$ and if $(\D, \E)$ has enough $\E$-objects, then $\dg{\D} \cap \ex = \DD$. In particular, if $(\D, \E)$ is complete then the induced cotorsion pairs are compatible.
+\end{theorem}
+
+\begin{proof}
+    We will only prove $\dg{\E} \cap \ex = \EE$, the other case is dual. \\
+    We begin by remarking that we have already proven that $\EE \subseteq \dg{\E} \cap \ex$, so we only need to prove the opposite containment. Let $X$ be an exact complex in $\dg{\E}$, we want to prove that $Z_k X \in \E$ for all $k \in \Z$, i.e. that $\Ext^1_\C(D_0, Z_k X)=0$ for all $D_0 \in \D$. Given that the exactness of $X$ allows us to write the short exact sequence 
+    \[\begin{tikzcd}
+        0 & {Z_{k}X} & {X_k} & {Z_{k-1}X} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    the vanishing of this $\Ext$ functor is equivalent to asking that the morphism
+    \[\Hom_\C(D_0, X_k)\longrightarrow \Hom_\C(D_0, Z_{k-1} X)\]
+    is surjective, i.e. that all morphisms $f\colon D_0 \longrightarrow Z_{k-1} X$ lift to $X_k$. 
+    By setting $Y_1 := X_k \times_{Z_{k-1}X} D_0$ we get a pullback diagram as follows.
+    \[\begin{tikzcd}
+        0 & {Z_kX} & {Y_1} & {D_0} & 0 \\
+        0 & {Z_{k}X} & {X_k} & {Z_{k-1}X} & {0}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{\id_{Z_kX}}", from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow["f", from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+    \end{tikzcd}\]
+    If we now use explicitly the fact that $(\D, \E)$ has enough $\D$-objects, there must be an epimorphism $D_1 \longrightarrow Y_1$, so by composing the necessary morphisms with the diagram above we can find the following commutative diagram:
+    \[\begin{tikzcd}
+        0 & {\ker\left(d^D_{1}\right)} & {D_1} & {D_0} & 0 \\
+        0 & {Z_{k}X} & {X_k} & {X_{k-1}.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow["{d^D_{1}}", from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow["{d^X_k}", from=2-3, to=2-4]
+    \end{tikzcd}\]
+    This process can be repeated inductively: from a diagram
+    \[\begin{tikzcd}
+        0 & {Z_{n+1}X} & {X_{n+1}} & {Z_{n}X} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    and a morphism $\ker\left(d^D_{n-k+1}\right) \longrightarrow Z_{n}X$ we can get a pullback diagram
+    \[\begin{tikzcd}
+        0 & {Z_{n+1}X} & {Y_{n-k+2}} & {\ker\left(d^D_{n-k+1}\right)} & 0 \\
+        0 & {Z_{n+1}X} & {X_{n+1}} & {Z_{n}X} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+    \end{tikzcd}\]
+    which induces, by choosing an epimorphism $D_{n-k+1} \longrightarrow Y_{n-k+1}$ with $D_{n-k+1} \in \D$ and by taking the appropriate compositions, the diagram
+    \[\begin{tikzcd}
+        0 & {\ker\left(d^D_{n-k+2}\right)} & {D_{n-k+2}} & {D_{n-k+1}} \\
+        0 & {Z_{n+1}X} & {X_{n+1}} & {X_n.}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-2, to=2-2]
+        \arrow["{d^D_{n-k+2}}", from=1-3, to=1-4]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+    \end{tikzcd}\]
+    Given that by construction \[\ker(d_n^D) =\im(Y_{n+1} \longrightarrow \ker(d_n^D))= \im(d^D_{n+1}),\]  we have thus found an exact complex $D$
+    \[\begin{tikzcd}
+        \cdots & {D_2} & {D_1} & {D_0} & 0 & 0 & {\cdots,}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{d^D_2}", from=1-2, to=1-3]
+        \arrow["{d^D_1}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-6, to=1-7]
+    \end{tikzcd}\]
+    and a morphism $D \longrightarrow X$ such that its component in degree $0$ is exactly $f$.
+    We will now prove by induction that $Z_nD \in \D$ for all $n$ (and thus $D \in \DD$): the base step is trivial, $Z_0 D =D_0 \in \D$; by applying $\Hom({-}, E)$, for some $E\in \E$, to the short exact sequence
+    \[\begin{tikzcd}
+        0 & {Z_nD} & {D_n} & {Z_{n-1}D} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    we obtain the exact sequence
+    \[\begin{tikzcd}[sep=tiny]
+        \cdots & {\Ext^1_\C(D_n, E)} & {\Ext^1_\C(Z_nD, E)} & {\Ext^2_\C(Z_{n-1}D, E)} & {\cdots,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    but $D_n \in D$ implies that ${\Ext^1_\C(D_n, E)}=0$ and the inductive hypothesis plus the fact that the cotorsion pair is hereditary implies that ${\Ext^2_\C(Z_{n-1}D, E)}= 0$, therefore ${\Ext^1_\C(Z_nD, E)} = 0$ and $Z_n D \in \D$.
+    What we have just shown (and the fact that shifting degree preserves membership in $\DD$) implies that $\Hom(\Sigma ^{k-1}D,X)$ must be exact and hence morphism we defined (which is a degree $k-1$ chain map) is nullhomotopic: this, in degree zero, implies exactly that the lift we are looking for exists (if $h$ is the homotopy then $f=d^X_k h$).
+\end{proof}
+
+
+
+
+Given that the need to check the vanishing of all $\Ext^k$ makes definition of hereditary cotorsion pair unwieldy, we need to find a simpler equivalent condition; luckily the following proposition holds.
+
+\begin{proposition}
+    Let $(\D, \E)$ be a complete cotorsion pair in $\C$, the following are equivalent:
+    \begin{enumerate}
+        \itemsep0em 
+        \item $(\D, \E)$ is hereditary, i.e. $\Ext^i_\C(D,E) = 0$ for all $i\geq 1$, $D\in\D$ and $E\in \E$;
+        \item $\Ext^2_\C(D,E) = 0$ for all $D\in\D$ and $E\in \E$;
+        \item $\D$ is closed under taking kernels of epimorphisms;
+        \item $\E$ is closed under taking cokernels of monomorphisms.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+        It is clear that $(1) \Rightarrow (2)$.\\
+         To prove $(2) \Rightarrow (3)$, we begin by letting $D_1, D_2 \in \D$ and letting $\phi\colon D_1 \longrightarrow D_2 $ be an epimorphism, then we set $X:=\ker(\phi)$; the exact sequence 
+        \[\begin{tikzcd}
+            0 & X & {D_1} & {D_2} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}\]
+        induces for all $E \in \E$
+        \[\begin{tikzcd}
+            \cdots & {\Ext^1_\C(D_1, E)} & {\Ext^1_\C(X, E)} & {\Ext^2_\C(D_2,E)} & {\cdots,}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}\]
+        given that ${\Ext^1_\C(D_1, E)} = 0 = {\Ext^2_\C(D_2,E)}$, it is clear that ${\Ext^1_\C(X, E)} = 0$ and $X \in \D$.\\
+        Now, to prove $(3) \Rightarrow (1)$, we consider a representative of an element of $\Ext^n_\C(D,E)$ for $n \geq 1, D \in \D$ and $E \in E$ 
+        \[\begin{tikzcd}
+            0 & E & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & D & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=1-5, to=1-6]
+            \arrow[from=1-6, to=1-7]
+            \arrow[from=1-7, to=1-8]
+        \end{tikzcd}\]
+
+
+\end{proof}
