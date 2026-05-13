@@ -710,8 +710,7 @@ The dual result is also true.
 	commutes.
 \end{proposition}
 
-\section{Exact functors}
-\textbf{DECIDERE COSA SCRIVERE}
+
 
 
 
@@ -728,10 +727,16 @@ The dual result is also true.
 	\begin{itemize}
   		\item[(AB3)] $\C$ has all (small) coproducts (and therefore is cocomplete);
     	\item[(AB4)] $\C$ satisfies (AB3) and the coproduct of monomorphisms is a monomorphism; 
-    	\item[(AB5)] $\C$ satisfies (AB3) and filtered colimits in $\C$ are exact. 
+    	\item[(AB5)] $\C$ satisfies (AB3) and filtered colimits in $\C$ are exact.
+    	\item[(AB3*)] $\C$ has all (small) products (and therefore is complete);
+    	\item[(AB4*)] $\C$ satisfies (AB3*) and the product of epimorphisms is an epimorphism; 
+    	\item[(AB5*)] $\C$ satisfies (AB3*) and filtered limits in $\C$ are exact.  
 	\end{itemize}
 \end{definition}
 
+It is clear that axiom (AB4) is equivalent to (AB3) plus the exactness of coproducts, while (AB4*) is equivalent to (AB3) plus the exactness of products. Writing
+\[ \bigoplus_{i\in I} X_i = \varinjlim_{F \subseteq I \text{ finite}} \bigoplus_{j\in F} X_j\]
+shows (AB5) $\Rightarrow$ (AB4); the dual argument also works.
 
 \begin{definition}
 	A \textbf{generator} $\mathcal{G}$ of a category $\C$ is an object $G$ which satisfies the following property: for every pair of distinct morphisms $f,g: A \longrightarrow B$, there is a morphism $s\colon G \longrightarrow A$ such that $fs\neq gs$. A \textbf{family of generators} is a nonempty set $\G=\{G_i\}_i$ which satisfies the following property: for every pair of distinct morphisms $f,g: A \longrightarrow B$, there is an object $G_i  \in \G$ and a morphism $s\colon G_i \longrightarrow A$ such that $fs\neq gs$.
@@ -747,9 +752,31 @@ The dual result is also true.
 	An abelian category $\C$ is called a \textbf{Grothendieck} \textbf{category} if it satisfies (AB5) and possesses a generator.
 \end{definition}
 
+We will now state some basic results on Grothendieck categories.
+
 \begin{theorem}
 	Every Grothendieck category is complete.
 \end{theorem}
+\begin{proof}
+	See \cite{Borceux_1994}.
+\end{proof}
+
+\begin{proposition}[Baer's criterion]
+    Let $\C$ be a Grothendieck category and let $G$ be a generator of $\C$. An object $I$ is injective if and only if for all subobjects $M \subseteq G$ and for all morphisms $f\colon G \longrightarrow I$, $g\colon G \longrightarrow M$ there exists a morphism $g' \colon M \longrightarrow I$ such that the diagram
+	\[\begin{tikzcd}
+		G & I \\
+		M
+		\arrow["f", from=1-1, to=1-2]
+		\arrow["g"', from=1-1, to=2-1]
+		\arrow["{g'}"', dashed, from=2-1, to=1-2]
+	\end{tikzcd}\]
+	commutes.
+\end{proposition}
+
+\begin{proof}
+    See  \cite[\href{https://stacks.math.columbia.edu/tag/05AB}{Section 05AB}]{stacks-project}.
+\end{proof}
+
 
 
 \begin{theorem}
@@ -758,11 +785,3 @@ The dual result is also true.
 \begin{proof}
 	See \cite{Tohoku}.
 \end{proof}
-
-\begin{example}
-	Modules/sheaves.
-	\textbf{DECIDERE COSA SCRIVERE}
-\end{example}
-
-
-\textbf{FUNTORI DERIVATI STANDARD}

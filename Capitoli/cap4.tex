@@ -510,6 +510,23 @@ The objective of this section will be to prove \virgolette{Hovey’s Corresponde
 
 
 
+We proceed with one important example.
+
+\begin{definition}[Frobenius categories]
+	An abelian category $\C$ is said to be a Frobenius category if it has enough projectives and enough injectives and where the classes of projectives and injectives coincide.
+\end{definition}
+
+
+\begin{proposition}
+	Let $\C$ be a Frobenius category, there exists an abelian model structure on $\C$  where the cofibrations are the monomorphisms and the fibrations are the epimorphisms.
+\end{proposition}
+
+\begin{proof}
+	Let us set $C$ and $F$ to be the class $\ob(\C)$ and $W$ to be the class of injective/projective objects. We have remarked already that (by definition) $\lperp{\ob(\C)} = \inj(\C)$ and $\rperp{\ob(\C)} = \proj(\C)$ and vice versa; this satisfies the hypothesis needed to apply Hovey's correspondence. Given that $F = \ob(\C) = C$, there is no condition needed on the kernels and the cokernels.
+\end{proof}
+
+
+
 \section{Small cotorsion pairs}
 
 The main obstacle in proving that certain classes form a Hovey triple, which we need if we want to use Hovey's correspondence theorem, is proving the completeness of the cotorsion pairs. This section will show that, if we are operating under certain hypothesis, this condition is free; in these particular cases we will also see that the model structure induced by the Hovey triple is cofibrantly generated.
@@ -568,6 +585,12 @@ From now on we will assume $\C$ to be a Grothendieck category.
 \begin{corollary}
 	Every small cotorsion pair of $\C$ is complete.
 \end{corollary}
+
+
+
+
+
+
 
 \begin{proposition}
 	Let us put on $\C$ an abelian model structure; if the cotorsion pairs $(C, F \cap W)$ and $(C\cap W, F)$ are small, then this model structure is cofibrantly generated.

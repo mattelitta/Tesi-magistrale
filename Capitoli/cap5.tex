@@ -318,7 +318,17 @@ It is important to remark that if $X \in \DD$ then it must be exact, so $X_n$ is
     Whenever the pairs $(\dg{\D}, \EE)$ and $(\DD, \dg{\E})$ are cotorsion pairs, they are said to be the \textbf{induced cotorsion pairs} (from $(\D, \E)$). We say that the induced cotorsion pairs are compatible if $\DD = \dg{\D} \cap \ex$ and $\EE = \dg{\E} \cap \ex$.
 \end{definition}
 
-We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Nanqing Ding) that we will need later to prove the completeness (in under certain hypothesis) of the induced cotorsion pair; to do so we need some preliminary algebraic results.
+
+
+
+
+
+\section{Hereditary cotorsion pairs}
+
+To reach our objective of obtaining a model structure by applying Hovey's correspondence, we need the induced cotorsion pairs to be compatible and complete. The work of Xiaoyan Yang and Nanqing Ding (see \cite{DingYang2014}) has found a complete characterization of which cotorsion pairs in certain complete and bicomplete abelian category induce compatible and complete cotrsion pairs in the category of complexes.  We must remark that the paper originally claimed to settle the question in all complete and cocomplete abelian categories, as shown in \cite{herbera2025poisonousexample} by Dolors Herbera, Wolfgang Pitsch, Manuel Saorí and Simone Virili, this characterization only works in categories which are both (AB4) and (AB4*). \\
+
+Let $\C$ be an abelian category and let $(\D, \E)$ be a cotorsion pair in $\C$.
+We begin by proving a rather technical proposition  that we will need later to prove the completeness (in under certain hypothesis) of the induced cotorsion pair; to do so we need some preliminary algebraic results.
 
 
 \begin{lemma}
@@ -386,9 +396,11 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
     See \cite{Weibel_1994}, lemma 3.5.3.
 \end{proof}
 
+Before proving the following proposition, it is important to remark that results on filtered colimits/injective limits which are dual to the above lemmas also hold.
+
 \begin{proposition}
     \label{prop:enough-objects}
-    Let us assume that $\C$ is complete and cocomplete and let $X \in \Ch(\C)$.
+    Let us assume that $\C$ is complete, cocomplete, (AB4) and (AB4*); let $X \in \Ch(\C)$.
     \begin{enumerate}
         \itemsep0em 
         \item If $(\D, \E)$ has enough $\E$-objects, then there exists an exact sequence in $\Ch(\C)$
@@ -558,16 +570,16 @@ We proceed by proving a rather technical proposition (due to Xiaoyan Yang and Na
         &= \mu_{j+1, k} d^{Y^{m_{j+1}}}_{k+1} \left(Y^{m_{j+1}}_{k+1} \right) = \\
         &=  d^{Y^{m_{j}}}_{k+1} \mu_{j+1, k+1} \left(Y^{m_{j+1}}_{k+1} \right) \subseteq B_k Y^{m_j}.
     \end{align*}
-    We conclude that $H_k (\mu_{j+1} \pi_{{m_{j+1}}})$ is trivial, therefore $H_k(\pi_{m_j}(1-\nu)) = H_k(\pi_j)$ for all $j$, thus $1-\nu$ is a quasi-isomorphism and hence $H_k(P) = 0$. Given that this holds for all $k$, $P$ must be exact.
+    Given that the (AB4*) hypothesis allows us to write \[\prod_{j=0}^\infty B_k Y^{m_j} =   B_k \prod_{j=0}^\infty Y^{m_j},\] we can conclude that $H_k (\mu_{j+1} \pi_{{m_{j+1}}})$ is trivial, therefore $H_k(\pi_{m_j}(1-\nu)) = H_k(\pi_j)$ for all $j$, thus $1-\nu$ acts as the identity on the $k$-th homology groups and hence $H_k(P) = 0$. Given that this holds for all $k$, $P$ must be exact.
 
     
 \end{proof}
 
 
-\section{Hereditary cotorsion pairs}
 
-To reach our objective of obtaining a model structure by applying Hovey's correspondence, we need the induced cotorsion pairs to be compatible and complete. The work of Xiaoyan Yang and Nanqing Ding (see \cite{DingYang2014}) has found a complete characterization of which cotorsion pairs in a complete and biconplete abelian category induce compatible and complete cotrsion pairs in the categoryy of complexes; to this characterizationis key the concept of hereditary cotorsion pairs. \\
-Let $\C$ be an abelian category and let $(\D, \E)$ be a cotorsion pair in $\C$.
+
+
+
 
 \begin{definition}[hereditary cotorsion pairs]
     We say that the cotorsion pair $(\D, \E)$ is \textbf{hereditary} if $\Ext^i_\C(D,E) = 0$ for all $i \geq 1$ and $D\in \D, E\in \E$.
@@ -826,7 +838,7 @@ We are finally ready to prove some of the main result of this thesis: a characte
 
 
 \begin{theorem}
-    Let $(\D, \E)$ be complete and hereditary and let $\C$ be complete and cocomplete, then the induced cotorsion pairs $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ are complete. 
+    Let $(\D, \E)$ be complete and hereditary and let $\C$ be complete, cocomplete, (AB4) and (AB4*); then the induced cotorsion pairs $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ are complete. 
 \end{theorem}
 
 \begin{proof}
@@ -926,6 +938,7 @@ We are finally ready to prove some of the main result of this thesis: a characte
 \end{proof}
 
 \begin{theorem}
+    \label{thm:induced-compatible}
     Let $(\D, \E)$ be hereditary. If $(\D, \E)$ has enough $\D$-objects, then $\dg{\E} \cap \ex = \EE$ and if $(\D, \E)$ has enough $\E$-objects, then $\dg{\D} \cap \ex = \DD$. In particular, if $(\D, \E)$ is complete then the induced cotorsion pairs are compatible.
 \end{theorem}
 
@@ -1045,9 +1058,10 @@ We are finally ready to prove some of the main result of this thesis: a characte
 
 
 
-Given that the need to check the vanishing of all $\Ext^k$ makes definition of hereditary cotorsion pair unwieldy, we need to find a simpler equivalent condition; luckily the following proposition holds.
+Given that the need to check the vanishing of all $\Ext^k$ makes definition of hereditary cotorsion pair unwieldy, we need to find a simpler equivalent condition to more easily check the hypothesis of the theorems above; luckily the following proposition holds.
 
 \begin{proposition}
+    \label{prop:hereditary-equiv}
     Let $(\D, \E)$ be a complete cotorsion pair in $\C$, the following are equivalent:
     \begin{enumerate}
         \itemsep0em 
@@ -1077,7 +1091,7 @@ Given that the need to check the vanishing of all $\Ext^k$ makes definition of h
             \arrow[from=1-4, to=1-5]
         \end{tikzcd}\]
         given that ${\Ext^1_\C(D_1, E)} = 0 = {\Ext^2_\C(D_2,E)}$, it is clear that ${\Ext^1_\C(X, E)} = 0$ and $X \in \D$.\\
-        Now, to prove $(3) \Rightarrow (1)$, we consider a representative of an element of $\Ext^n_\C(D,E)$ for $n \geq 1, D \in \D$ and $E \in E$ 
+        Now, to prove $(3) \Rightarrow (1)$, we consider a representative $\xi$ of an element of $\Ext^n_\C(D,E)$ for $n \geq 1, D \in \D$ and $E \in E$ 
         \[\begin{tikzcd}
             0 & E & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & D & 0
             \arrow[from=1-1, to=1-2]
@@ -1088,6 +1102,243 @@ Given that the need to check the vanishing of all $\Ext^k$ makes definition of h
             \arrow[from=1-6, to=1-7]
             \arrow[from=1-7, to=1-8]
         \end{tikzcd}\]
-
+        We now define another exact complex by repeating the same process of successives pullbacks we used in the proof of theorem \ref{thm:induced-compatible} to the complex $X$ given by
+        \[\begin{tikzcd}
+            \cdots & 0 & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & 0 & {\cdots,}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+            \arrow[from=1-5, to=1-6]
+            \arrow[from=1-6, to=1-7]
+            \arrow[from=1-7, to=1-8]
+        \end{tikzcd}\]
+        starting from an epimorphism $P_0 \longrightarrow X_0$ with $P_0 \in \D$ (it exists thanks to the completeness of the cotorsion pair), to obtain
+        \[\begin{tikzcd}
+            0 & {\ker(d^P_1)} & {P_1} & {P_0} \\
+            0 & {Z_1X} & {X_1} & {X_0}
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-2, to=2-2]
+            \arrow["{{d_1^P}}", from=1-3, to=1-4]
+            \arrow[from=1-3, to=2-3]
+            \arrow[from=1-4, to=2-4]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+        \end{tikzcd}\]
+        where the morphisms from $P_1 \in \D$ are defined from an epimorphsim $P_1 \longrightarrow X_1 \times_{X_0} P_0$. By adding preceding zeroes to $\xi$ to form a complex $X$, we can continue the process to get a semi-infinite complex $P$ and a morphism $P \longrightarrow X$,
+        \[\begin{tikzcd}
+            \cdots & {P_n} & {P_{n-1}} & {P_{n-2}} & \cdots & {P_0} & 0 \\
+            \cdots & 0 & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["{{d_n^P}}", from=1-2, to=1-3]
+            \arrow[from=1-2, to=2-2]
+            \arrow["{{d_{n-1}^P}}", from=1-3, to=1-4]
+            \arrow[from=1-3, to=2-3]
+            \arrow["{{d_{n-2}^P}}", from=1-4, to=1-5]
+            \arrow[from=1-4, to=2-4]
+            \arrow[from=1-5, to=1-6]
+            \arrow[from=1-6, to=1-7]
+            \arrow[from=1-6, to=2-6]
+            \arrow[from=2-1, to=2-2]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-5, to=2-6]
+            \arrow[from=2-6, to=2-7]
+        \end{tikzcd}\]
+        By construction it is clear that $H_0(P) = \coker(X_1 \longrightarrow X_0) = D = H_0(X)$ and that $H_{n-1}(P) = \ker(X_{n-1} \longrightarrow X_{n-2}) = E = H_{n-1}(X)$, hence the morphism is a quasi-isomorphism and induces the following commutative diagram 
+        \[\begin{tikzcd}[sep=small]
+            {\xi'\colon} & 0 & E & {\coker(d^P_n)} & {P_{n-2}} & \cdots & {P_0} & D & 0 \\
+            {\xi\colon} & 0 & E & {X_{n-1}} & {X_{n-2}} & \cdots & {X_0} & D & {0,}
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow["{{\id_E}}", from=1-3, to=2-3]
+            \arrow["{{{d_{n-1}^P}}}", from=1-4, to=1-5]
+            \arrow[from=1-4, to=2-4]
+            \arrow["{{{d_{n-2}^P}}}", from=1-5, to=1-6]
+            \arrow[from=1-5, to=2-5]
+            \arrow[from=1-6, to=1-7]
+            \arrow[from=1-7, to=1-8]
+            \arrow[from=1-7, to=2-7]
+            \arrow[from=1-8, to=1-9]
+            \arrow["{{\id_D}}", from=1-8, to=2-8]
+            \arrow[from=2-2, to=2-3]
+            \arrow[from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-5, to=2-6]
+            \arrow[from=2-6, to=2-7]
+            \arrow[from=2-7, to=2-8]
+            \arrow[from=2-8, to=2-9]
+        \end{tikzcd}\]
+        which is an equivalence between extensions $\xi$ and $\xi'$.
+        The same inductive argument we used in theorem \ref{thm:induced-compatible} shows that $\im(d^P_i) \in \D$ for all $i$, thus 
+        \[\begin{tikzcd}
+            0 & E & {\coker(d^P_n)} & {\im(d^P_n)} & 0 
+            \arrow[from=1-1, to=1-2]
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}\]
+        splits ($\Ext^1_\C(\im(d^P_n), E) = 0$); it allows us to find a retraction $\rho \colon {\coker(d^P_n)} \longrightarrow E$. We can hence write the diagram
+        \[\begin{tikzcd}[sep=small]
+            {\xi'\colon} & 0 & E & {\coker(d^P_n)} & {P_{n-2}} & \cdots & {P_2} & {P_1} & D & 0 \\
+            {\xi''\colon} & 0 & E & E & 0 & \cdots & 0 & D & D & {0}
+            \arrow[from=1-2, to=1-3]
+            \arrow[from=1-3, to=1-4]
+            \arrow["{\id_E}", from=1-3, to=2-3]
+            \arrow["{{{d_{n-1}^P}}}", from=1-4, to=1-5]
+            \arrow["\rho", from=1-4, to=2-4]
+            \arrow[from=1-5, to=1-6]
+            \arrow[from=1-5, to=2-5]
+            \arrow[from=1-6, to=1-7]
+            \arrow[from=1-7, to=1-8]
+            \arrow[from=1-7, to=2-7]
+            \arrow[from=1-8, to=1-9]
+            \arrow[from=1-8, to=2-8]
+            \arrow[from=1-9, to=1-10]
+            \arrow["{\id_D}", from=1-9, to=2-9]
+            \arrow[from=2-2, to=2-3]
+            \arrow["{\id_E}", from=2-3, to=2-4]
+            \arrow[from=2-4, to=2-5]
+            \arrow[from=2-5, to=2-6]
+            \arrow[from=2-6, to=2-7]
+            \arrow[from=2-7, to=2-8]
+            \arrow["{\id_D}"', from=2-8, to=2-9]
+            \arrow[from=2-9, to=2-10]
+        \end{tikzcd}\]
+        that shows that $\xi'$ is equivalent to $\xi''$, but it is clear that $\xi''$ represents $0$ in $\Ext^n_\C(D,E)$, thus $\Ext^n_\C(D,E)=0$. \\
+        The remaining implications $(2) \Rightarrow (4)$ and $(4) \Rightarrow (1)$ follow from duality.
 
 \end{proof}
+
+From this proposition follow some of the core results.
+
+\begin{corollary}
+    Let $(\D, \E)$ be complete, the following holds:
+    \begin{enumerate}
+        \itemsep0em 
+        \item If $(\D, \E)$ is hereditary, then the induced cotorsion pairs $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ in $\Ch(\C)$ are also hereditary.
+        \item If either of the induced cotorsion pairs $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ is hereditary, then $(\D, \E)$ is hereditary.
+        \item If $\C$ is complete and cocomplete, the following statement are equivalent:
+        \begin{enumerate}
+            \itemsep0em
+            \item $(\D, \E)$ is hereditary.
+            \item $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ are hereditary.
+            \item $(\DD, \dg{\E})$ and $(\dg{\D}, \EE)$ are compatible.
+        \end{enumerate}
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    ($1$) Let's begin by proving that $(\dg{\D}, \EE)$ is hereditary by showing that $\dg{\D}$ is closed under taking kernels of epimorphism: we consider an exact sequence 
+    \[\begin{tikzcd}
+        0 & {D} & {D'} & {D''} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $D', D'' \in \dg{\D}$; given that $(\D, \E)$ is hereditary and $D_k$ is the kernel of the morphism between $D'_k\in \D $ and $D''_k \in \D$, it is clear that $D_k \in \D$ for all $k$. If we choose a complex $E \in \EE$, we get an exact sequence
+    \[\begin{tikzcd}
+        0 & {\Hom_\C(D_{k+n},E_n)} & {\Hom_\C(D'_{k+n},E_n)} & {\Hom_\C(D''_{k+n},E_n)} \\
+        & {\Ext^1_\C(D_{k+n},E_n)} & {\Ext^1_\C(D'_{k+n},E_n)} & {\cdots,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=2-2]
+        \arrow[from=2-2, to=2-3]
+        \arrow[from=2-3, to=2-4]
+    \end{tikzcd}\]
+    given that for all $k,n \in \Z$ we know that $\Ext^1_\C(D_{k+n},E_n)= 0$ and in the category of abelian groups products are exact, we get an exact sequence 
+    \[\begin{tikzcd}[sep=tiny]
+        0 & {\displaystyle \prod _{k \in \Z}\Hom_\C(D_{k+n},E_n)} & {\displaystyle \prod _{k \in \Z}\Hom_\C(D'_{k+n},E_n)} & {\displaystyle \prod _{k \in \Z}\ \Hom_\C(D''_{k+n},E_n)} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    thus the following sequence is exact.
+    \[\begin{tikzcd}[sep=small]
+        0 & {\Hom(D,E)} & {\Hom(D',E)} & {\Hom(D'',E)} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    From the associated long exact sequence is clear that $\Hom(D,E)$ is exact, therefore $D \in \dg{\D}$. The other case is dual. \\ 
+    (2) Let us assume that $(\DD, \dg{\E})$ is hereditary; we consider an exact sequence in the base category $\C$ as follows
+    \[\begin{tikzcd}
+        0 & X & {X'} & {X''} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    with $X',X'' \in \D$, we need to show that $X \in \D$. It is clear that the complexes $D^0 X'$ and $D^0 X''$ are in $\DD$, therefore using the following exact sequence
+    \[\begin{tikzcd}
+        0 & {D^0X} & {D^0X'} & {D^0X''} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    and the hereditariness of $(\DD, \dg{\E})$ (in the form of proposition \ref{prop:hereditary-equiv}), we know that $D^0X \in \DD$; this implies $X \in \D$. \\
+    (3) The fact that condition (a) implies condition (c) is exactly theorem \ref{thm:induced-compatible}, while the fact that condition (a) is equivalent to condition (b) is given by points (1) and (2) of this corollary; thus we only need to show that condition (c) implies condition (a). We will show that $\DD = \dg{\D} \cap \ex$ implies that $(\D, \E)$ is hereditary. Let us consider an exact sequence
+    \[\begin{tikzcd}
+        0 & D & {D'} & {D''} & {0,}
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    with $D',D'' \in \D$. Given that $(\D, \E)$ is complete (in particular it has enough projectives) we can find an exact complex
+    \[\begin{tikzcd}
+        {X\colon} & \cdots & {X_1} & {X_0} & {D'} & {D''} & 0 & \cdots
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-6, to=1-7]
+        \arrow[from=1-7, to=1-8]
+    \end{tikzcd}\]
+    with $X_k \in \D$ for all $k$. By applying lemma \ref{lem:dg-sphere}, we find that $X \in \dg{\D}$. By construction $X \in \ex$, so the compatibility condition implies $X \in \DD$; it follows that $Z_0X =\ker(D' \longrightarrow D'') = D \in \D$.
+\end{proof}
+
+We can finally put together all that we have proven thus far.
+
+\begin{corollary}
+    If $\C$ is complete, cocomplete, (AB4) and (AB4*) and if $(\D, \E)$ is complete and hereditary then there exists a model structure on $\Ch(\C)$ where:
+    \begin{itemize}
+        \itemsep0em 
+        \item $\ex$ is the class of trivial objects.
+        \item $\dg{\D}$ is the class of cofibrant objects.
+        \item $\DD$ is the class of acyclic cofibrant objects.
+        \item $\dg{\E}$ is the class of fibrant objects.
+        \item $\EE$ is the class of acyclic fibrant objects.
+    \end{itemize}
+    Conversely, if there exists an abelian model structure on $\Ch(C)$ with trivial objects $\ex$, cofibrant objects $\dg{\D}$ and fibrant objects $\dg{\E}$, then $(\D, \E)$ must be complete and hereditary.
+\end{corollary}
+
+
+\section{Some examples: derived categories}
+
+We will proceed to produce some standard examples.
+
+
+
+
+
+\begin{lemma}
+    If ($\dg{\D}$, $\ex$, $\dg{\E}$) is an Hovey triple, then a morphism is a weak equivalence in the induced model structure if and only if it is a quasi-isomorphism.
+\end{lemma}
+
+\begin{proof}
+    Let $f\colon X \longrightarrow Y$ be a weak equivalence in the induced model structure, so by definition it can be written as $qi$, where $q$ is an acyclic fibration (i.e. an epi with fibrant kernel) and $i$ is an acyclic cofibration (i.e. a mono with cofibrant cokernel).
+\end{proof}
+
+
+\begin{definition}[Derived category]
+    Let $\C$ be an abelian category and let $H$ be the class of quasi-isomorphisms of $\Ch(\C)$; the derived category of $\C$ is the localization $\Ch(\C)[H^{-1}]$.
+\end{definition}
